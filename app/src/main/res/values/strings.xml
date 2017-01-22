@@ -1,0 +1,49 @@
+<resources>
+    <!-- DEFAULT -->
+    <string name="app_name">PantallasElgoibar</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- NON DEFAULT -->
+
+    <string name="working">Working:</string>
+    <string name="half_working">Half Working:</string>
+    <string name="not_working">Not Working:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="empty"></string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="percent">%1$d %%</string>
+
+    <string name="nav_all_zones">Machine status</string>
+    <string name="nav_work_orders">Work Orders</string>
+    <string name="nav_instructions">Remaining instructions</string>
+    <string name="nav_help">Help &amp; Feedback</string>
+    <string name="action_login">Login</string>
+    <string name="title_total">TOTAL</string>
+    <string name="more_info">DETAILS</string>
+    <string name="send">SEND</string>
+    <string name="breakdown">breakdown</string>
+    <string name="maintenance_request_machine">Machine: %1$s</string>
+    <string name="failure_type">Failure type:</string>
+    <string-array name="arr_failure_type">
+        <item>Electrical</item>
+        <item>Mechanical</item>
+        <item>Others</item>
+    </string-array>
+
+    <string name="equipment_available">Equipment_available:</string>
+    <string-array name="arr_equipment_available">
+        <item>Yes</item>
+        <item>No</item>
+        <item>Reduced availability</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

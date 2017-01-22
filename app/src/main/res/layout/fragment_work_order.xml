@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout">
+
+    <TextView
+        android:text="CF-1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_machine"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_breakdown"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:text="Breakdown: \nBroken screw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_breakdown"
+        app:layout_constraintTop_toBottomOf="@+id/tv_machine"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:text="Description: \nNo description available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_description"
+        app:layout_constraintTop_toBottomOf="@+id/tv_breakdown"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:text="Severity: Low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_severity"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:text="Fault type: Mechanical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_failure_type"
+        app:layout_constraintTop_toBottomOf="@+id/tv_severity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <Button
+        android:text="SEE INTRUCTIONS"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_instructions"
+        style="@style/Widget.AppCompat.Button"
+        app:layout_constraintTop_toBottomOf="@+id/tv_failure_type"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:drawableRight="@drawable/ic_menu_instructions"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:text="Start Woking"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_start_working"
+        app:layout_constraintTop_toBottomOf="@+id/btn_instructions"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="visible"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:text="Next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_stop_working"
+        app:layout_constraintTop_toBottomOf="@+id/btn_instructions"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="invisible"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:drawableRight="@drawable/ic_send_white"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp" />
+
+    <Button
+        android:text="CANCEL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_cancel_work"
+        app:layout_constraintTop_toBottomOf="@+id/btn_stop_working"
+        app:layout_constraintRight_toRightOf="@+id/btn_stop_working"
+        app:layout_constraintLeft_toLeftOf="@+id/btn_stop_working"
+        android:visibility="invisible"
+        android:layout_marginTop="8dp" />
+
+</android.support.constraint.ConstraintLayout>

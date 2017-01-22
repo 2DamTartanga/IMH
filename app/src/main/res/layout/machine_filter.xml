@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@android:drawable/editbox_background_normal"
+    android:gravity="center"
+    android:id="@+id/layout">
+
+    <ImageButton
+        app:srcCompat="@drawable/ic_working"
+        android:id="@+id/btn_working"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:layout_width="35dp"
+        android:layout_height="35dp" />
+
+    <ImageButton
+        app:srcCompat="@drawable/ic_half_working"
+        android:id="@+id/btn_half_working"
+        android:background="@android:color/transparent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:scaleType="fitCenter"
+        android:layout_width="35dp"
+        android:layout_height="35dp" />
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:srcCompat="@drawable/ic_not_working"
+        android:id="@+id/btn_not_woking"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter" />
+</LinearLayout>
