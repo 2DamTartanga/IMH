@@ -1,4 +1,4 @@
-package model;
+package com.tartanga.dam.imhandroid.model;
 
 /**
  * Created by 2dam on 23/01/2017.

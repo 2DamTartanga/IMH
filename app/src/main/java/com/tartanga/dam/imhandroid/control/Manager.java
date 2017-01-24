@@ -1,4 +1,4 @@
-package control;
+package com.tartanga.dam.imhandroid.control;
 
 /**
  * Created by 2dam on 23/01/2017.

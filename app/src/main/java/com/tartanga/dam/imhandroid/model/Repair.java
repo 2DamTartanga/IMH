@@ -1,4 +1,4 @@
-package model;
+package com.tartanga.dam.imhandroid.model;
 
 import java.util.Date;
 
