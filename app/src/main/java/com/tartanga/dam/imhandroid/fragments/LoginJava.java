@@ -9,14 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.tartanga.dam.imhandroid.Interfaces.OnFragmentInteractionListener;
 import com.tartanga.dam.imhandroid.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LoginJava.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link LoginJava#newInstance} factory method to
  * create an instance of this fragment.

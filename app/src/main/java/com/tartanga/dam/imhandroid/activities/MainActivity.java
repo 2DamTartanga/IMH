@@ -1,5 +1,7 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.fragments.LoginJava;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
