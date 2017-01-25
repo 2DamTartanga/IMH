@@ -3,17 +3,20 @@ package com.tartanga.dam.imhandroid.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.tartanga.dam.imhandroid.Interfaces.OnFragmentInteractionListener;
 import com.tartanga.dam.imhandroid.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LoginJava.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link LoginJava#newInstance} factory method to
  * create an instance of this fragment.
@@ -65,16 +68,16 @@ public class LoginJava extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ConstraintLayout cl = inflater.inflate(R.layout.fragment_login, container, false);
-        Button btn = (Button) cl.FindViewById(R.id.btn_login);
-        btn_login.setText("Cambiado");
+        ConstraintLayout cl = (ConstraintLayout) inflater.inflate(R.layout.fragment_login, container, false);
+        Button btn = (Button) cl.findViewById(R.id.btn_login);
+        btn.setText("Cambiado");
         return cl;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+           // mListener.onFragmentInteraction(uri);
         }
     }
 
