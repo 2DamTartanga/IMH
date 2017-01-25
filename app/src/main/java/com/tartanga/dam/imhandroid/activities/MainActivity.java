@@ -16,7 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.tartanga.dam.imhandroid.R;
+<<<<<<< HEAD
 import com.tartanga.dam.imhandroid.fragments.LoginJava;
+=======
+import com.tartanga.dam.imhandroid.control.Manager;
+>>>>>>> 85146d9adc1c7efcd3c8b5484e46f3c1ba1f14bd
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,7 +41,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        init();
     }
+
+    private void init() {
+        Manager m = Manager.getInstance();
+
+    }
+
 
     @Override
     public void onBackPressed() {
