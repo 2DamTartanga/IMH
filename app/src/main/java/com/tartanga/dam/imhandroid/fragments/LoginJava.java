@@ -65,7 +65,10 @@ public class LoginJava extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login_java, container, false);
+        ConstraintLayout cl = inflater.inflate(R.layout.fragment_login, container, false);
+        Button btn = (Button) cl.FindViewById(R.id.btn_login);
+        btn_login.setText("Cambiado");
+        return cl;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -102,8 +105,5 @@ public class LoginJava extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+
 }
