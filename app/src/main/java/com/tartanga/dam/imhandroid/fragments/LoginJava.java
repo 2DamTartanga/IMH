@@ -3,11 +3,14 @@ package com.tartanga.dam.imhandroid.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.tartanga.dam.imhandroid.Interfaces.OnFragmentInteractionListener;
 import com.tartanga.dam.imhandroid.R;
 
 /**
@@ -65,9 +68,9 @@ public class LoginJava extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ConstraintLayout cl = inflater.inflate(R.layout.fragment_login, container, false);
-        Button btn = (Button) cl.FindViewById(R.id.btn_login);
-        btn_login.setText("Cambiado");
+        ConstraintLayout cl = (ConstraintLayout) inflater.inflate(R.layout.fragment_login, container, false);
+        Button btn = (Button) cl.findViewById(R.id.btn_login);
+        btn.setText("Cambiado");
         return cl;
     }
 
