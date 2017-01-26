@@ -18,12 +18,13 @@ import com.tartanga.dam.imhandroid.R;
  * Use the {@link LoginJava#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginJava extends Fragment {
+public class LoginJava extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    View view;
+    Button btnLogin;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -50,8 +51,11 @@ public class LoginJava extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        view = inflater.inflate(R.layout.fragment_login, container, false);
+        btnLogin = (Button) view.findViewById(R.id.btn_login);
+        btnLogin.setOnClickListener(this);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -71,6 +75,13 @@ public class LoginJava extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId()== R.id.btn_login){
+            getFragmentManager().beginTransaction().replace(R.id.linearFragmento, NavigationMenu.newInstance());
+        }
     }
 
     /**
