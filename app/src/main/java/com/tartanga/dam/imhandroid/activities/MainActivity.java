@@ -11,20 +11,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.tartanga.dam.imhandroid.R;
+
+import com.tartanga.dam.imhandroid.fragments.LoginJava;
+
+import com.tartanga.dam.imhandroid.control.Manager;
+
 import com.tartanga.dam.imhandroid.fragments.LoginJava;
 import com.tartanga.dam.imhandroid.control.Manager;
 import com.tartanga.dam.imhandroid.fragments.LoginJava;
+import com.tartanga.dam.imhandroid.fragments.NavigationMenu;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_navigation);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setContentView(R.layout.activity_main);
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        7bfe5f93fafd754cf718c83cc51e5dc953a7b4c6
         setSupportActionBar(toolbar);
 
 
@@ -39,6 +51,8 @@ public class MainActivity extends AppCompatActivity
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.linearFragmento,LoginJava.newInstance()).commit();
         }
+        btn = (Button) findViewById(R.id.btn_login);
+        btn.setOnClickListener(this);
     }
 
     private void init() {
@@ -102,5 +116,12 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==btn.getId()){
+            getSupportFragmentManager().beginTransaction().replace(R.id.linearFragmento, NavigationMenu.newInstance());
+        }
     }
 }
