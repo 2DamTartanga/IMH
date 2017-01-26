@@ -2,7 +2,7 @@ package com.tartanga.dam.imhandroid.control;
 
 import android.support.v7.app.AppCompatActivity;
 
-public class Manager {
+public class  Manager {
     private FrameManager frameManager;
     private static Manager manager = new Manager();
     private Manager() {
