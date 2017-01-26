@@ -13,16 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.tartanga.dam.imhandroid.R;
-<<<<<<< HEAD
 import com.tartanga.dam.imhandroid.fragments.LoginJava;
-=======
 import com.tartanga.dam.imhandroid.control.Manager;
-<<<<<<< HEAD
 import com.tartanga.dam.imhandroid.fragments.LoginJava;
-
-=======
->>>>>>> 85146d9adc1c7efcd3c8b5484e46f3c1ba1f14bd
->>>>>>> 829bc8b55ad2672c8c8d977d41febdfd186fe138
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
