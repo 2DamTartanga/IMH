@@ -13,9 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.tartanga.dam.imhandroid.R;
+
+import com.tartanga.dam.imhandroid.fragments.LoginJava;
+
+import com.tartanga.dam.imhandroid.control.Manager;
+
 import com.tartanga.dam.imhandroid.fragments.LoginJava;
 import com.tartanga.dam.imhandroid.control.Manager;
 import com.tartanga.dam.imhandroid.fragments.LoginJava;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,8 +29,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_navigation);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setContentView(R.layout.activity_main);
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        7bfe5f93fafd754cf718c83cc51e5dc953a7b4c6
         setSupportActionBar(toolbar);
 
 
