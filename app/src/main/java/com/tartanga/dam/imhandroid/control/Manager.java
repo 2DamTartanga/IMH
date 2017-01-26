@@ -14,7 +14,7 @@ public class  Manager {
     }
 
     public void switchMainFragment(AppCompatActivity activity, int fragmentTag, Object[] args){
-        frameManager.switchMainFragment(activity, fragmentTag, args);
+       // frameManager.switchMainFragment(activity, fragmentTag, args);
     }
     public void switchMainFragment(AppCompatActivity activity, int fragmentTag){
         this.switchMainFragment(activity, fragmentTag, null);
