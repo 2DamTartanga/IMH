@@ -120,8 +120,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==btn.getId()){
-            getSupportFragmentManager().beginTransaction().replace(R.id.linearFragmento, NavigationMenu.newInstance());
-        }
+        
     }
 }
