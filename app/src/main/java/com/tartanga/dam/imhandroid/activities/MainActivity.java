@@ -3,9 +3,6 @@ package com.tartanga.dam.imhandroid.activities;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +18,11 @@ import com.tartanga.dam.imhandroid.fragments.LoginJava;
 
 import com.tartanga.dam.imhandroid.control.Manager;
 
+import com.tartanga.dam.imhandroid.fragments.LoginJava;
+import com.tartanga.dam.imhandroid.control.Manager;
+import com.tartanga.dam.imhandroid.fragments.LoginJava;
+
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,38 +30,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-        Toolbar toolbar = (Toolbar) findViewById(R
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                .id.toolbar);
+        setContentView(R.layout.activity_main);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        7bfe5f93fafd754cf718c83cc51e5dc953a7b4c6
         setSupportActionBar(toolbar);
 
 
@@ -70,9 +45,10 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        init();
+        navigationView.setNavigationItemSelectedListener(this);*/
+        if (savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.linearFragmento,LoginJava.newInstance()).commit();
+        }
     }
 
     private void init() {
