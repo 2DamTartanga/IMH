@@ -51,12 +51,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);*/
 
-        if (savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.linearFragmento,LoginJava.newInstance()).commit();
-        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.linearFragmento,LoginJava.newInstance()).commit();
 
-        btn = (Button) findViewById(R.id.btn_login);
-        btn.setOnClickListener(this);
     }
 
     private void init() {
