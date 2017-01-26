@@ -3,20 +3,17 @@ package com.tartanga.dam.imhandroid.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.tartanga.dam.imhandroid.Interfaces.OnFragmentInteractionListener;
 import com.tartanga.dam.imhandroid.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
+ * {@link LoginJava.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link LoginJava#newInstance} factory method to
  * create an instance of this fragment.
@@ -34,25 +31,11 @@ public class LoginJava extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public LoginJava() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginJava.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static LoginJava newInstance(String param1, String param2) {
-        LoginJava fragment = new LoginJava();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static LoginJava newInstance(){
+        return new LoginJava();
     }
 
     @Override
@@ -68,28 +51,20 @@ public class LoginJava extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ConstraintLayout cl = (ConstraintLayout) inflater.inflate(R.layout.fragment_login, container, false);
-        Button btn = (Button) cl.findViewById(R.id.btn_login);
-        btn.setText("Cambiado");
-        return cl;
+        return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-           // mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override
@@ -108,5 +83,8 @@ public class LoginJava extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
 }

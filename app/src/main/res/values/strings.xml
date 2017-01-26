@@ -24,7 +24,7 @@
     <string name="nav_work_orders">Work Orders</string>
     <string name="nav_instructions">Remaining instructions</string>
     <string name="nav_help">Help &amp; Feedback</string>
-    <string name="action_login">Login</string>
+    <string name="action_login">Logout</string>
     <string name="title_total">TOTAL</string>
     <string name="more_info">DETAILS</string>
     <string name="send">SEND</string>
