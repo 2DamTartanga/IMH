@@ -27,7 +27,9 @@ import com.tartanga.dam.imhandroid.fragments.NavigationMenu;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+
     Button btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +50,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);*/
-        if (savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.linearFragmento,LoginJava.newInstance()).commit();
-        }
-        btn = (Button) findViewById(R.id.btn_login);
-        btn.setOnClickListener(this);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.linearFragmento,LoginJava.newInstance()).commit();
+
     }
 
     private void init() {
