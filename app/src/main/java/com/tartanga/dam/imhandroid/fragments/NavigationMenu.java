@@ -9,16 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link NavigationMenu.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link NavigationMenu#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NavigationMenu extends Fragment {
+public class NavigationMenu extends Fragment implements onFragmentInteractionListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,7 +28,7 @@ public class NavigationMenu extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private onFragmentInteractionListener mListener;
 
     public NavigationMenu() {
         // Required empty public constructor
@@ -75,8 +75,8 @@ public class NavigationMenu extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof onFragmentInteractionListener) {
+            mListener = (onFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -89,6 +89,11 @@ public class NavigationMenu extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -99,8 +104,4 @@ public class NavigationMenu extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }
