@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +21,7 @@ import com.tartanga.dam.imhandroid.R;
  * Use the {@link LoginJava#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginJava extends Fragment{
+public class LoginJava extends Fragment implements onFragmentInteractionListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +32,7 @@ public class LoginJava extends Fragment{
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private onFragmentInteractionListener mListener;
 
     public LoginJava() {
 
@@ -68,6 +69,8 @@ public class LoginJava extends Fragment{
     private void onButtonClicked(View view) {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.linearFragmento, NavigationMenu.newInstance());
+        ft.commit();
+        ft.addToBackStack(null);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +92,11 @@ public class LoginJava extends Fragment{
         mListener = null;
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -99,8 +107,4 @@ public class LoginJava extends Fragment{
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

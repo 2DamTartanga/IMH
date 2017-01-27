@@ -2,6 +2,7 @@ package com.tartanga.dam.imhandroid.activities;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,9 +25,10 @@ import com.tartanga.dam.imhandroid.fragments.LoginJava;
 import com.tartanga.dam.imhandroid.control.Manager;
 import com.tartanga.dam.imhandroid.fragments.LoginJava;
 import com.tartanga.dam.imhandroid.fragments.NavigationMenu;
+import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, onFragmentInteractionListener {
 
     Button btn;
 
@@ -120,6 +122,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }
