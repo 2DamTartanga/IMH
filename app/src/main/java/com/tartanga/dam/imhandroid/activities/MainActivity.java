@@ -1,15 +1,12 @@
 package com.tartanga.dam.imhandroid.activities;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,15 +14,8 @@ import android.widget.Button;
 
 import com.tartanga.dam.imhandroid.R;
 
-import com.tartanga.dam.imhandroid.fragments.LoginJava;
-
 import com.tartanga.dam.imhandroid.control.Manager;
 
-import com.tartanga.dam.imhandroid.fragments.LoginJava;
-import com.tartanga.dam.imhandroid.control.Manager;
-import com.tartanga.dam.imhandroid.fragments.LoginJava;
-import com.tartanga.dam.imhandroid.fragments.NavBar;
-import com.tartanga.dam.imhandroid.fragments.NavigationMenu;
 import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
 
 public class MainActivity extends AppCompatActivity
@@ -36,12 +26,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_login);
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        7bfe5f93fafd754cf718c83cc51e5dc953a7b4c6
+
         setSupportActionBar(toolbar);
 
 
@@ -53,9 +41,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);*/
-        getSupportFragmentManager().beginTransaction().add(R.id.linearFragmento, NavBar.newInstance());
-        getSupportFragmentManager().beginTransaction().add(R.id.linearFragmento,LoginJava.newInstance()).commit();
 
+        btn = (Button) findViewById(R.id.btn_login);
+        btn.setOnClickListener(this);
     }
 
     private void init() {
@@ -123,6 +111,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
+        if(v.getId()==R.id.btn_login){
+        }
 
     }
 
