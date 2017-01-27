@@ -24,6 +24,7 @@ import com.tartanga.dam.imhandroid.control.Manager;
 import com.tartanga.dam.imhandroid.fragments.LoginJava;
 import com.tartanga.dam.imhandroid.control.Manager;
 import com.tartanga.dam.imhandroid.fragments.LoginJava;
+import com.tartanga.dam.imhandroid.fragments.NavBar;
 import com.tartanga.dam.imhandroid.fragments.NavigationMenu;
 import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
 
@@ -52,8 +53,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);*/
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.linearFragmento,LoginJava.newInstance()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.linearFragmento, NavBar.newInstance());
+        getSupportFragmentManager().beginTransaction().add(R.id.linearFragmento,LoginJava.newInstance()).commit();
 
     }
 
