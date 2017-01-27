@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);*/
-<<<<<<< HEAD
-
-=======
->>>>>>> 4ea46e39ef9d3c2111d7e31574f9ac150ebbbf03
         btn = (Button) findViewById(R.id.btn_login);
         btn.setOnClickListener(this);
     }
@@ -115,14 +111,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.btn_login){
-<<<<<<< HEAD
-        }
-
-=======
             Intent i = new Intent(this, Navegador.class);
             startActivity(i);
         }
->>>>>>> 4ea46e39ef9d3c2111d7e31574f9ac150ebbbf03
     }
 
     @Override
