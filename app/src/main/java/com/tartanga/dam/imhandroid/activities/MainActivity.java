@@ -41,7 +41,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);*/
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8cc3636e539a6d630e77656cbb2a7e097c85ddde
         btn = (Button) findViewById(R.id.btn_login);
         btn.setOnClickListener(this);
     }
