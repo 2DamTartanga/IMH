@@ -5,20 +5,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
 
-public class Navegador extends AppCompatActivity{
-
+public class Navegador extends AppCompatActivity implements View.OnClickListener{
+    Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
+        setContentView(R.layout.content_navigation);
 
 
-
-
+        btn = (Button) findViewById(R.id.btnZones);
+        btn.setOnClickListener(this);
     }
 
     @Override
@@ -41,7 +43,9 @@ public class Navegador extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
-    /*public void onClickStatus(View v){
-        Toast.makeText(this,"PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
-    }*/
+
+    @Override
+    public void onClick(View view) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.layoutPrincipal, fragment_ZoneTotal.newInstance());
+    }
 }
