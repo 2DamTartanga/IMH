@@ -2,6 +2,8 @@ package com.tartanga.dam.imhandroid.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
@@ -15,8 +17,12 @@ public class activity_fragmentos_cartas extends AppCompatActivity {
         setContentView(R.layout.activity_fragmentos_cartas);
 
         getSupportFragmentManager().beginTransaction().add(R.id.layoutFragmento1, fragment_ZoneTotal.newInstance()).commit();
-
-        String pam1 = "11";
+        RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
+        recList.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recList.setLayoutManager(llm);
+        /*String pam1 = "11";
         String pam2= "11";
         String pam3="11";
         for(int i=0;i<2;i++){
@@ -24,6 +30,6 @@ public class activity_fragmentos_cartas extends AppCompatActivity {
             pam1 = "12";
             pam2="12";
             pam3="12";
-        }
+        }*/
     }
 }
