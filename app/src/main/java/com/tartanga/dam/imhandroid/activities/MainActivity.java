@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 
         btn = (Button) findViewById(R.id.btn_login);
         btn.setOnClickListener(this);
+
     }
 
     private void init() {

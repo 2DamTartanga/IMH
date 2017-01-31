@@ -13,21 +13,35 @@ import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
 
 public class Navegador extends AppCompatActivity implements View.OnClickListener{
-    Button btn;
+
+    Button btnZonas, btnOT;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_navigation);
 
 
-        btn = (Button) findViewById(R.id.btnZones);
-        btn.setOnClickListener(this);
+        btnZonas = (Button) findViewById(R.id.btnZones);
+        btnZonas.setOnClickListener(this);
+        btnOT = (Button) findViewById(R.id.btnOT);
+        btnOT.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         Toast.makeText(this,"PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
-        Intent i = new Intent(this, activity_fragmentos_cartas.class);
-        startActivity(i);
+
+        switch (view.getId()) {
+            case R.id.btnZones:
+                    Intent zonas = new Intent(this, activity_fragmentos_cartas.class);
+                    startActivity(zonas);
+                break;
+            case R.id.btnOT:
+                    Intent ot = new Intent(this, WorkOrderActivity.class);
+                    startActivity(ot);
+                break;
+
+        }
     }
 }
