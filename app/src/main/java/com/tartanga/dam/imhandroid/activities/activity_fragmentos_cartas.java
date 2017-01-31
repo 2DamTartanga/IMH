@@ -7,17 +7,15 @@ import android.support.v7.widget.RecyclerView;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
-import com.tartanga.dam.imhandroid.fragments.fragmento_Zonas;
 
 public class activity_fragmentos_cartas extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragmentos_cartas);
+        setContentView(R.layout.activity_work_zones);
 
         getSupportFragmentManager().beginTransaction().add(R.id.layoutFragmento1, fragment_ZoneTotal.newInstance()).commit();
-<<<<<<< HEAD
         RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);

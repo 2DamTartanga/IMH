@@ -29,7 +29,7 @@ public class MachineAdapter extends RecyclerView.Adapter<MachineAdapter.MachineV
         }
     }
 
-    public MachineAdapter(List<Machine> macchines) {
+    public MachineAdapter(List<Machine> machines) {
         this.machines = machines;
     }
 

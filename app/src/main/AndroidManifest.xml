@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".activities.Navegador" />
         <activity android:name=".activities.activity_fragmentos_cartas" />
+        <activity android:name=".activities.WorkZonesActivity" />
         <activity android:name=".activities.WorkOrderActivity"></activity>
     </application>
 
