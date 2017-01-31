@@ -8,6 +8,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 
 import com.tartanga.dam.imhandroid.R;
 
@@ -68,6 +69,14 @@ public class fragment_WorkOrder extends Fragment {
         // Inflate the layout for this fragment
 
         return inflater.inflate(R.layout.fragment_work_order, container, false);
+    }
+
+    // TODO: onViewCreated
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstance) {
+        super.onViewCreated(view, savedInstance);
+        CardView cv = (CardView) view.findViewById(R.id.card_machine);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
