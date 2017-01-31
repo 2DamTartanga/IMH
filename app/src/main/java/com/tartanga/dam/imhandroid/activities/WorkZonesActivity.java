@@ -1,11 +1,13 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActivityChooserView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
@@ -42,7 +44,10 @@ public class WorkZonesActivity extends AppCompatActivity{
     }
 
     public void onClickZone(View v) {
-        
+        TextView txt = (TextView) v.findViewById(R.id.tv_work_zone);
+        Intent i = new Intent(this, MachinesActivity.class);
+        i.putExtra("zone", txt.getText());
+        startActivity(i);
     }
 
 }
