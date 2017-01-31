@@ -35,7 +35,5 @@ public class WorkOrderActivity extends AppCompatActivity {
         adapter = new WorkOrderAdapter(orders);
         recycler.setAdapter(adapter);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.activity_work_order, WorkOrderFragment.newInstance()).commit();
-
     }
 }

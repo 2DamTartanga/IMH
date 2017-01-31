@@ -4,13 +4,13 @@ package com.tartanga.dam.imhandroid.model;
  * Created by 2dam on 23/01/2017.
  */
 
-public class MachineAndroid {
+public class Machine {
 
     private String id;
     private int state;
     private int importance;
 
-    public MachineAndroid(String id, int state, int importance) {
+    public Machine(String id, int state, int importance) {
         this.id = id;
         this.state = state;
         this.importance = importance;

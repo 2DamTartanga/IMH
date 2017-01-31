@@ -17,12 +17,17 @@ public class activity_fragmentos_cartas extends AppCompatActivity {
         setContentView(R.layout.activity_fragmentos_cartas);
 
         getSupportFragmentManager().beginTransaction().add(R.id.layoutFragmento1, fragment_ZoneTotal.newInstance()).commit();
+<<<<<<< HEAD
         RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
         /*String pam1 = "11";
+=======
+/*
+        String pam1 = "11";
+>>>>>>> 858ce6cdd3b24631f5245fd6e90c69a837205343
         String pam2= "11";
         String pam3="11";
         for(int i=0;i<2;i++){
