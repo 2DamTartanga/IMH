@@ -42,10 +42,15 @@ public class MachinesActivity extends AppCompatActivity {
     //MACHINE
     public void onClickMachine(View v){
         TextView txt = (TextView) v.findViewById(R.id.tv_machine_name);
+    }
 
+    public void onClickDetails(View v) {
+        Toast.makeText(this,"Details", Toast.LENGTH_LONG).show();
     }
 
     //FILTROS
+
+    //TODO
     public void onClickWorking(View v){
         Toast.makeText(this,"WORKING", Toast.LENGTH_LONG).show();
 
@@ -58,6 +63,7 @@ public class MachinesActivity extends AppCompatActivity {
     public void onClickNot(View v){
         Toast.makeText(this,"NOT WORKING", Toast.LENGTH_LONG).show();
     }
+
 
 
 }
