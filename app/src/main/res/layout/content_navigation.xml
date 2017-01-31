@@ -44,10 +44,6 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent" />
-<<<<<<< HEAD
-    >>>>>>> 03c951362f8f4ce2524f7f311d37be4085293d3d
-=======
->>>>>>> 65b95b0569bd93d2cc878482ef4e76a95672a5d7
 
     <Button
         android:text="@string/nav_instructions"

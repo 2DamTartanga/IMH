@@ -2,18 +2,40 @@ package com.tartanga.dam.imhandroid.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.ListView;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
 import com.tartanga.dam.imhandroid.fragments.WorkOrderFragment;
 import com.tartanga.dam.imhandroid.fragments.fragmento_Zonas;
 
+import java.util.List;
+
 public class WorkOrderActivity extends AppCompatActivity {
+
+    List orders;
+
+    private RecyclerView recycler;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager lManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_order);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.layoutFragmento, WorkOrderFragment.newInstance()).commit();
+        recycler = (RecyclerView) findViewById(R.id.container);
+        recycler.setHasFixedSize(true);
+
+        lManager = new LinearLayoutManager(this);
+        recycler.setLayoutManager(lManager);
+
+        adapter = new WorkOrderAdapter(orders);
+        recycler.setAdapter(adapter);
+
+        getSupportFragmentManager().beginTransaction().add(R.id.activity_work_order, WorkOrderFragment.newInstance()).commit();
+
     }
 }
