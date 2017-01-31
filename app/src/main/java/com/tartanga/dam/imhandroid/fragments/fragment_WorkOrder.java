@@ -67,9 +67,6 @@ public class fragment_WorkOrder extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        CardView cv = (CardView) inflater.inflate(R.layout.card_work_order, container, false);
-
-
         return inflater.inflate(R.layout.fragment_work_order, container, false);
     }
 
