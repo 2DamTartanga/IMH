@@ -14,7 +14,16 @@ public class activity_fragmentos_cartas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragmentos_cartas);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.layoutFragmento, fragment_ZoneTotal.newInstance()).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.layoutFragmento, fragmento_Zonas.newInstance()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.layoutFragmento1, fragment_ZoneTotal.newInstance()).commit();
+
+        String pam1 = "11";
+        String pam2= "11";
+        String pam3="11";
+        for(int i=0;i<2;i++){
+            getSupportFragmentManager().beginTransaction().add(R.id.list, fragmento_Zonas.newInstance(pam1,pam2,pam3)).commit();
+            pam1 = "12";
+            pam2="12";
+            pam3="12";
+        }
     }
 }
