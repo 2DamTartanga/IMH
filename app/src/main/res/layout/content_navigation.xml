@@ -25,35 +25,35 @@
             android:text="@string/nav_all_zones"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/button5" />
+            android:id="@+id/btnMachineStatus" />
 
         <Button
             android:text="@string/nav_work_orders"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/button4"
+            android:id="@+id/btnOT"
             android:layout_marginTop="20dp" />
 
         <Button
             android:text="@string/nav_instructions"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/button2"
+            android:id="@+id/btnInstructions"
             android:layout_marginTop="20dp" />
 
         <Button
             android:text="@string/action_settings"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/button3"
+            android:id="@+id/btnSettings"
             android:layout_marginTop="20dp" />
 
         <Button
             android:text="@string/nav_help"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/button"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:id="@+id/btnHelp" />
 
     </LinearLayout>
 
