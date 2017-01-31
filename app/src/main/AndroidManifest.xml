@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Navegador"></activity>
+        <activity android:name=".activities.Navegador" />
+        <activity android:name=".activities.activity_fragmentos_cartas"></activity>
     </application>
 
 </manifest>

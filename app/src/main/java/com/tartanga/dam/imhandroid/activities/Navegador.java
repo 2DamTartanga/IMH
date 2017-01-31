@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,28 +25,9 @@ public class Navegador extends AppCompatActivity implements View.OnClickListener
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-      getMenuInflater().inflate(R.menu.activity_navigation_drawer, menu);
-        Toast.makeText(this,"PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.nav_all_zones:
-                Toast.makeText(this,"PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.nav_work_orders:
-                Toast.makeText(this,"PULSADO NUMERO 2", Toast.LENGTH_LONG).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onClick(View view) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.layoutPrincipal, fragment_ZoneTotal.newInstance());
+        Toast.makeText(this,"PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
+        Intent i = new Intent(this, activity_fragmentos_cartas.class);
+        startActivity(i);
     }
 }
