@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.tartanga.dam.imhandroid.R;
 
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, onFragmentInteractionListener {
 
     Button btn;
+    private ListView mDrawerList;
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,6 @@ public class MainActivity extends AppCompatActivity
         Manager m = Manager.getInstance();
 
     }
-
 
     @Override
     public void onBackPressed() {
