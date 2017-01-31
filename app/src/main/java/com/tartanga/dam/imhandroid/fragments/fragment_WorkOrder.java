@@ -71,13 +71,6 @@ public class fragment_WorkOrder extends Fragment {
         return inflater.inflate(R.layout.fragment_work_order, container, false);
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstance) {
-        super.onViewCreated(view, savedInstance);
-        CardView cv = (CardView) view.findViewById(R.id.card_machine);
-
-    }
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
