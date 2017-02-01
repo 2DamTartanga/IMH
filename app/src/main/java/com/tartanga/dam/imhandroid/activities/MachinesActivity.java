@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,6 +43,9 @@ public class MachinesActivity extends AppCompatActivity {
     //MACHINE
     public void onClickMachine(View v){
         TextView txt = (TextView) v.findViewById(R.id.tv_machine_name);
+        Intent i = new Intent(this, machine_Details.class);
+        i.putExtra("codigo", txt.getText());
+        startActivity(i);
     }
 
     public void onClickDetails(View v) {
