@@ -1,9 +1,11 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ListView;
 
 import com.tartanga.dam.imhandroid.R;
@@ -13,7 +15,7 @@ import com.tartanga.dam.imhandroid.fragments.fragmento_Zonas;
 
 import java.util.List;
 
-public class WorkOrderActivity extends AppCompatActivity {
+public class WorkOrderCardActivity extends AppCompatActivity {
 
     List orders;
 
@@ -35,5 +37,10 @@ public class WorkOrderActivity extends AppCompatActivity {
         adapter = new WorkOrderAdapter(orders);
         recycler.setAdapter(adapter);
 
+    }
+
+    public void onClickWorkOrder(View v) {
+        Intent i = new Intent(this, DetailsWorkOrderActivity.class);
+        startActivity(i);
     }
 }
