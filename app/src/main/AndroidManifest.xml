@@ -18,7 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Navegador"></activity>
+        <activity android:name=".activities.Navegador" />
+        <activity android:name=".activities.WorkZonesActivity" />
+        <activity android:name=".activities.WorkOrderActivity" />
+        <activity android:name=".activities.MachinesActivity" />
+        <activity android:name=".activities.machine_Details"></activity>
     </application>
 
 </manifest>

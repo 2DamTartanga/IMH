@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,40 +13,35 @@ import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
 
 public class Navegador extends AppCompatActivity implements View.OnClickListener{
-    Button btn;
+
+    Button btnZonas, btnOT;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_navigation);
 
 
-        btn = (Button) findViewById(R.id.btnZones);
-        btn.setOnClickListener(this);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-      getMenuInflater().inflate(R.menu.activity_navigation_drawer, menu);
-        Toast.makeText(this,"PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.nav_all_zones:
-                Toast.makeText(this,"PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.nav_work_orders:
-                Toast.makeText(this,"PULSADO NUMERO 2", Toast.LENGTH_LONG).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+        btnZonas = (Button) findViewById(R.id.btnZones);
+        btnZonas.setOnClickListener(this);
+        btnOT = (Button) findViewById(R.id.btnOT);
+        btnOT.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.layoutPrincipal, fragment_ZoneTotal.newInstance());
+        Toast.makeText(this,"PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
+
+        switch (view.getId()) {
+            case R.id.btnZones:
+                    Intent zonas = new Intent(this, WorkZonesActivity.class);
+                    startActivity(zonas);
+                break;
+            case R.id.btnOT:
+                    Intent ot = new Intent(this, WorkOrderActivity.class);
+                    startActivity(ot);
+                break;
+
+        }
     }
 }

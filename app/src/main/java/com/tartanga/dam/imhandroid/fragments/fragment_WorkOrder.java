@@ -5,22 +5,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 
 import com.tartanga.dam.imhandroid.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link fragment_ZoneTotal.OnFragmentInteractionListener} interface
+ * {@link fragment_WorkOrder.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link fragment_ZoneTotal#newInstance} factory method to
+ * Use the {@link fragment_WorkOrder#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_ZoneTotal extends Fragment {
+public class fragment_WorkOrder extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,7 +32,7 @@ public class fragment_ZoneTotal extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public fragment_ZoneTotal() {
+    public fragment_WorkOrder() {
         // Required empty public constructor
     }
 
@@ -42,20 +42,16 @@ public class fragment_ZoneTotal extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment fragment_ZoneTotal.
+     * @return A new instance of fragment fragment_WorkOrder.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_ZoneTotal newInstance(String param1, String param2) {
-        fragment_ZoneTotal fragment = new fragment_ZoneTotal();
+    public static fragment_WorkOrder newInstance(String param1, String param2) {
+        fragment_WorkOrder fragment = new fragment_WorkOrder();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public static fragment_ZoneTotal newInstance(){
-        return new fragment_ZoneTotal();
     }
 
     @Override
@@ -71,12 +67,9 @@ public class fragment_ZoneTotal extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.card_work_zone_total, container, false);
-        Log.v("tag","onCreateView");
-        return view;
+
+        return inflater.inflate(R.layout.fragment_work_order, container, false);
     }
-
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -88,13 +81,12 @@ public class fragment_ZoneTotal extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.v("tag", "Fragmento adjuntado");
-        /*if (context instanceof OnFragmentInteractionListener) {
+        if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }*/
+        }
     }
 
     @Override
