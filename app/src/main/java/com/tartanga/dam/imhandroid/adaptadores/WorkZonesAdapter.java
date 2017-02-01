@@ -6,9 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tartanga.dam.imhandroid.R;
-import com.tartanga.dam.imhandroid.activities.WorkZonesActivity;
-import com.tartanga.dam.imhandroid.model.Machine;
-import com.tartanga.dam.imhandroid.model.WorkZone;
 
 import java.util.List;
 

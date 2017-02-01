@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tartanga.dam.imhandroid.R;
-import com.tartanga.dam.imhandroid.model.WorkOrder;
 
 import java.util.List;
 
