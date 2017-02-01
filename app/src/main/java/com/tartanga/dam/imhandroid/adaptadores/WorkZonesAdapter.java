@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.model.Section;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class WorkZonesAdapter extends RecyclerView.Adapter<WorkZonesAdapter.WorkZonesViewHolder>{
 
-    private List<WorkZone> zones;
+    private List<Section> zones;
 
     public static class WorkZonesViewHolder extends RecyclerView.ViewHolder {
 
@@ -27,7 +28,7 @@ public class WorkZonesAdapter extends RecyclerView.Adapter<WorkZonesAdapter.Work
         }
     }
 
-    public WorkZonesAdapter(List<WorkZone> zones) {
+    public WorkZonesAdapter(List<Section> zones) {
         this.zones = zones;
     }
 
