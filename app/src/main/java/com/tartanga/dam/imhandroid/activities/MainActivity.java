@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 import com.tartanga.dam.imhandroid.R;
 
-import com.tartanga.dam.imhandroid.control.Manager;
+import com.tartanga.dam.imhandroid.manager.Manager;
 
 import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
 

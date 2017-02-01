@@ -1,4 +1,4 @@
-package com.tartanga.dam.imhandroid.control;
+package com.tartanga.dam.imhandroid.manager;
 
 import android.support.v7.app.AppCompatActivity;
 
