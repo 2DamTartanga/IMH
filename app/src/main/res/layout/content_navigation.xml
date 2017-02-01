@@ -11,7 +11,7 @@
         android:text="@string/nav_work_orders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
+        android:id="@+id/btnOT"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginEnd="16dp"
@@ -19,52 +19,17 @@
         android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@+id/btnZones" />
 
-<<<<<<< HEAD
-        <Button
-            android:text="@string/nav_all_zones"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnMachineStatus" />
-
-        <Button
-            android:text="@string/nav_work_orders"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnOT"
-            android:layout_marginTop="20dp" />
-
-        <Button
-            android:text="@string/nav_instructions"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnInstructions"
-            android:layout_marginTop="20dp" />
-
-        <Button
-            android:text="@string/action_settings"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnSettings"
-            android:layout_marginTop="20dp" />
-
-        <Button
-            android:text="@string/nav_help"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:id="@+id/btnHelp" />
-=======
     <Button
         android:text="@string/nav_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
+        android:id="@+id/btnHelp"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/btnSettings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -79,29 +44,29 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent" />
->>>>>>> 03c951362f8f4ce2524f7f311d37be4085293d3d
 
     <Button
         android:text="@string/nav_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button4"
+        android:id="@+id/btnInstructions"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnOT" />
 
     <Button
         android:text="@string/action_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button5"
+        android:id="@+id/btnSettings"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/btnInstructions" />
+
 </android.support.constraint.ConstraintLayout>
