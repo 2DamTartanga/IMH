@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
-    <android.support.constraint.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layoutFragmento2">
@@ -31,6 +31,6 @@
             android:id="@+id/cardList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </android.support.constraint.ConstraintLayout>
+    </FrameLayout>
 
 </LinearLayout>

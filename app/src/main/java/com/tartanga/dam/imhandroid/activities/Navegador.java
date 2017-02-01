@@ -34,7 +34,7 @@ public class Navegador extends AppCompatActivity implements View.OnClickListener
 
         switch (view.getId()) {
             case R.id.btnZones:
-                    Intent zonas = new Intent(this, activity_fragmentos_cartas.class);
+                    Intent zonas = new Intent(this, WorkZonesActivity.class);
                     startActivity(zonas);
                 break;
             case R.id.btnOT:
