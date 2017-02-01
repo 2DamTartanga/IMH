@@ -17,7 +17,6 @@ public class activity_fragmentos_cartas extends AppCompatActivity {
         setContentView(R.layout.activity_fragmentos_cartas);
 
         getSupportFragmentManager().beginTransaction().add(R.id.layoutFragmento1, fragment_ZoneTotal.newInstance()).commit();
-<<<<<<< HEAD
         RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
