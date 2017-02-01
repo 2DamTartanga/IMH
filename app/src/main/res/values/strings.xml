@@ -20,9 +20,9 @@
     <string name="no">NO</string>
     <string name="percent">%1$d %%</string>
 
-    <string name="nav_all_zones">Machine status</string>
-    <string name="nav_work_orders">Work Orders</string>
-    <string name="nav_instructions">Remaining instructions</string>
+    <string name="nav_all_zones">&#160;&#160;&#160;&#160;Machine status</string>
+    <string name="nav_work_orders">&#160;&#160;&#160;&#160;Work Orders</string>
+    <string name="nav_instructions">&#160;&#160;&#160;&#160;Remaining instructions</string>
     <string name="nav_help">Help &amp; Feedback</string>
     <string name="action_login">Logout</string>
     <string name="title_total">TOTAL</string>
