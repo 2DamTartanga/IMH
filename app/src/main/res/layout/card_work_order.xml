@@ -12,7 +12,8 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/layout">
+        android:id="@+id/layout"
+        android:onClick="onClickWorkOrder">
 
         <TextView
             android:text="Broken screw"

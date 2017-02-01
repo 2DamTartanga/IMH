@@ -20,10 +20,21 @@
         </activity>
         <activity android:name=".activities.Navegador" />
         <activity android:name=".activities.WorkZonesActivity" />
+<<<<<<< HEAD
+        <activity android:name=".activities.WorkOrderCardActivity" />
+        <activity android:name=".activities.MachinesActivity" />
+        <activity android:name=".activities.DetailsWorkOrderActivity" />
+        <activity android:name=".activities.SendWorkOrderActivity"></activity>
+=======
         <activity android:name=".activities.WorkOrderActivity" />
         <activity android:name=".activities.MachinesActivity" />
+<<<<<<< HEAD
         <activity android:name=".activities.MachineDetails" />
         <activity android:name=".activities.ActivityReport"></activity>
+=======
+        <activity android:name=".activities.machine_Details"></activity>
+>>>>>>> af5c59f3571191b08c58b80726c6a5a2f255c022
+>>>>>>> 1735eef6bd9b2027a8f6772d87d4d0a48ea3d603
     </application>
 
 </manifest>

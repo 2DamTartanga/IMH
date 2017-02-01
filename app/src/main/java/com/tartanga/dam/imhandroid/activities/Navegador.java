@@ -3,14 +3,11 @@ package com.tartanga.dam.imhandroid.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
-import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
 
 public class Navegador extends AppCompatActivity implements View.OnClickListener{
 
@@ -38,7 +35,7 @@ public class Navegador extends AppCompatActivity implements View.OnClickListener
                     startActivity(zonas);
                 break;
             case R.id.btnOT:
-                    Intent ot = new Intent(this, WorkOrderActivity.class);
+                    Intent ot = new Intent(this, WorkOrderCardActivity.class);
                     startActivity(ot);
                 break;
 
