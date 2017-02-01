@@ -108,6 +108,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintRight_toRightOf="parent"
-            android:drawableRight="@drawable/ic_menu_send" />
+            android:drawableRight="@drawable/ic_menu_send"
+            android:onClick="onClickSend" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
