@@ -30,6 +30,7 @@
     <string name="send">SEND</string>
     <string name="breakdown">breakdown</string>
     <string name="maintenance_request_machine">Machine: %1$s</string>
+    <string name="machine_details">Touch for details</string>
     <string name="failure_type">Failure type:</string>
     <string-array name="arr_failure_type">
         <item>Electrical</item>

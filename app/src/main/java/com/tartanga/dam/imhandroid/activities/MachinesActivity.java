@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.MachineAdapter;
-import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
 import com.tartanga.dam.imhandroid.fragments.fragment_Filtro;
 
 import java.util.List;
@@ -41,15 +40,12 @@ public class MachinesActivity extends AppCompatActivity {
     }
 
     //MACHINE
-    public void onClickMachine(View v){
+    public void onClickMachine(View v) {
+        Toast.makeText(this,"Details", Toast.LENGTH_LONG).show();
         TextView txt = (TextView) v.findViewById(R.id.tv_machine_name);
-        Intent i = new Intent(this, machine_Details.class);
+        Intent i = new Intent(this, MachineDetails.class);
         i.putExtra("codigo", txt.getText());
         startActivity(i);
-    }
-
-    public void onClickDetails(View v) {
-        Toast.makeText(this,"Details", Toast.LENGTH_LONG).show();
     }
 
     //FILTROS
