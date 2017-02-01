@@ -24,20 +24,8 @@
         <activity android:name=".activities.MachinesActivity" />
         <activity android:name=".activities.DetailsWorkOrderActivity" />
         <activity android:name=".activities.SendWorkOrderActivity"></activity>
-<<<<<<< HEAD
-        <activity android:name=".activities.machine_Details"></activity>
-=======
-=======
-        <activity android:name=".activities.WorkOrderActivity" />
-        <activity android:name=".activities.MachinesActivity" />
-<<<<<<< HEAD
         <activity android:name=".activities.MachineDetails" />
         <activity android:name=".activities.ActivityReport"></activity>
-=======
-        <activity android:name=".activities.machine_Details"></activity>
->>>>>>> af5c59f3571191b08c58b80726c6a5a2f255c022
->>>>>>> 1735eef6bd9b2027a8f6772d87d4d0a48ea3d603
->>>>>>> f2b5bfe46c7801b7ec13ad5792a2bb6cdf1596b8
     </application>
 
 </manifest>
