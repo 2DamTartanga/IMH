@@ -11,29 +11,37 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Navegador"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.WorkZonesActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.WorkOrderCardActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.MachinesActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.DetailsWorkOrderActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.SendWorkOrderActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activities.Navegador"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.WorkZonesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.WorkOrderCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MachinesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.DetailsWorkOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SendWorkOrderActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.MachineDetails" />
-        <activity android:name=".activities.ActivityReport"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activities.ActivityReport"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.TypeMachineActivity"></activity>
     </application>
 
 </manifest>
