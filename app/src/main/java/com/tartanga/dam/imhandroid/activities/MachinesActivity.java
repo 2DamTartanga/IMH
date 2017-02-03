@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.MachineAdapter;
-import com.tartanga.dam.imhandroid.fragments.fragment_Filtro;
 
 import java.util.List;
 
@@ -47,8 +46,6 @@ public class MachinesActivity extends AppCompatActivity {
 
         adapter = new MachineAdapter(machines);
         recycler.setAdapter(adapter);
-
-        //getSupportFragmentManager().beginTransaction().add(R.id.layoutFiltro, fragment_Filtro.newInstance()).commit();
 
         linear = (LinearLayout) findViewById(R.id.layout);
 
