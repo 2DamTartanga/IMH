@@ -55,7 +55,7 @@
     <string name="choose">Choose</string>
 
     <string-array name="failure_localization">
-        <item>Choose</item>
+        <item>Choose failure localization</item>
         <item>Gear box</item>
         <item>Feed</item>
         <item>Measurements</item>
