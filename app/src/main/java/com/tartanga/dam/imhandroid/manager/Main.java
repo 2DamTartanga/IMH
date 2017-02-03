@@ -23,7 +23,7 @@ public class Main implements MessageListener {
 
     public static void main(String[] args){
         try {
-            Main mc = new Main();
+            Main m = new Main();
         } catch (IOException e) {
             e.printStackTrace();
         }
