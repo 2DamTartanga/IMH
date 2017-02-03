@@ -35,6 +35,7 @@
     <string name="machine_details">Touch for details</string>
     <string name="failure_type">Failure type:</string>
     <string-array name="arr_failure_type">
+        <item>Choose failure type</item>
         <item>Electrical</item>
         <item>Mechanical</item>
         <item>Others</item>
@@ -42,6 +43,7 @@
 
     <string name="equipment_available">Equipment_available:</string>
     <string-array name="arr_equipment_available">
+        <item>Choose availability</item>
         <item>Yes</item>
         <item>No</item>
         <item>Reduced availability</item>
