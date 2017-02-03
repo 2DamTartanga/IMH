@@ -27,6 +27,7 @@
     <string name="action_login">Logout</string>
     <string name="title_total">TOTAL</string>
     <string name="availability">Availability after repair</string>
+    <string name="see_instructions">SEE INSTRUCTIONS</string>
     <string name="more_info">DETAILS</string>
     <string name="send">SEND</string>
     <string name="breakdown">breakdown</string>

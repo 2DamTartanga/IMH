@@ -67,7 +67,7 @@
         android:layout_marginStart="16dp" />
 
     <Button
-        android:text="SEE INTRUCTIONS"
+        android:text="@string/see_instructions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/btn_instructions"
