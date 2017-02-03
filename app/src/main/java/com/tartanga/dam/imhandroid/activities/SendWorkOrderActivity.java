@@ -23,6 +23,7 @@ public class SendWorkOrderActivity extends AppCompatActivity {
     private EditText et_repair_process;
     private Switch sw_failure_repaired;
     private Switch sw_add_instructions;
+    private Spinner spn_Availability;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +37,12 @@ public class SendWorkOrderActivity extends AppCompatActivity {
         et_repair_process = (EditText) findViewById(R.id.et_repair_process);
         sw_failure_repaired = (Switch) findViewById(R.id.sw_failure_repaired);
         sw_add_instructions = (Switch) findViewById(R.id.sw_add_instructions);
+        spn_Availability = (Spinner) findViewById(R.id.spn_availability);
 
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.failure_localization, android.R.layout.simple_spinner_item);
 
         String[] localizations = getResources().getStringArray(R.array.failure_localization);
-
+        //SPINNER FAILURE LOCALIZATIONS
         ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_item, localizations) {
             @Override
             public boolean isEnabled(int position) {
@@ -68,6 +70,37 @@ public class SendWorkOrderActivity extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_failure_localization.setAdapter(adapter);
+
+        //SPINNER AVAILABILITY AFTER REPAIR
+        String[] availability = getResources().getStringArray(R.array.failure_localization);
+
+        ArrayAdapter adapterAval = new ArrayAdapter<String>(this,android.R.layout.select_dialog_item, availability) {
+            @Override
+            public boolean isEnabled(int position) {
+                if(position == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_Availability.setAdapter(adapter);
     }
 
     public void onClickOK(View v) {
@@ -83,6 +116,7 @@ public class SendWorkOrderActivity extends AppCompatActivity {
             et_repair_process.setText("");
             sw_failure_repaired.setChecked(false);
             sw_add_instructions.setChecked(false);
+            spn_Availability.setSelection(0);
         }
     }
 }

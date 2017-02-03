@@ -40,6 +40,9 @@ public class MachineDetails extends AppCompatActivity {
 
     }
 
+    public void onClickWorkOrder(View v){
+
+    }
     public void onClickAddRequest(View v){
         Intent i = new Intent(this, ActivityReport.class);
         //AÑADIR PUTEXTRA CON EL DATO DEL INTENT ANTERIOR

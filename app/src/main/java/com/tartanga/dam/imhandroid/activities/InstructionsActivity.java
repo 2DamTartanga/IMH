@@ -35,10 +35,12 @@ public class InstructionsActivity extends AppCompatActivity {
         recycler.setAdapter(adapter);
     }
 
+
     public void onClickWorkOrder(View v) {
         Intent i = new Intent(this, DetailsWorkOrderActivity.class);
         i.putExtra("Instruct", true);
         startActivity(i);
     }
-
 }
+
+

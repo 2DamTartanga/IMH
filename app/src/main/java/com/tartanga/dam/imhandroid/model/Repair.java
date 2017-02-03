@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import java.io.Serializable;
+import java.util.HashMap;
+
 public class Repair implements Serializable {
 
 	/**
@@ -14,7 +16,7 @@ public class Repair implements Serializable {
 	private int failureLocalization;
 	private float time;
 	private String availabilityAfterRepair;
-	private ArrayList<String> tools;
+	private HashMap<Integer,String> tools;
 	private String repairProcess;
 	private boolean isRepaired;
 	private String replacements;
@@ -32,7 +34,7 @@ public class Repair implements Serializable {
 	public String getAvailabilityAfterRepair() {
 		return availabilityAfterRepair;
 	}
-	public ArrayList<String> getTools() {
+	public HashMap<Integer,String> getTools() {
 		return tools;
 	}
 	public String getRepairProcess() {
@@ -58,7 +60,7 @@ public class Repair implements Serializable {
 	public void setAvailabilityAfterRepair(String availabilityAfterRepair) {
 		this.availabilityAfterRepair = availabilityAfterRepair;
 	}
-	public void setTools(ArrayList<String> tools) {
+	public void setTools(HashMap<Integer,String> tools) {
 		this.tools = tools;
 	}
 	public void setRepairProcess(String repairProcess) {

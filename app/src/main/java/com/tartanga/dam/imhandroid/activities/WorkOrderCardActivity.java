@@ -40,6 +40,7 @@ public class WorkOrderCardActivity extends AppCompatActivity {
 
     public void onClickWorkOrder(View v) {
         Intent i = new Intent(this, DetailsWorkOrderActivity.class);
+        i.putExtra("Instruct", false);
         startActivity(i);
     }
 }
