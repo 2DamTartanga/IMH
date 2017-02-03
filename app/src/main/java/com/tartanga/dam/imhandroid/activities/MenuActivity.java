@@ -9,9 +9,9 @@ import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 
-public class Navegador extends AppCompatActivity implements View.OnClickListener{
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button btnZonas, btnOT;
+    Button btnZonas, btnOT, btnInstructions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,8 @@ public class Navegador extends AppCompatActivity implements View.OnClickListener
         btnZonas.setOnClickListener(this);
         btnOT = (Button) findViewById(R.id.btnOT);
         btnOT.setOnClickListener(this);
+        btnInstructions = (Button) findViewById(R.id.btnInstructions);
+        btnInstructions.setOnClickListener(this);
     }
 
     @Override
@@ -37,6 +39,11 @@ public class Navegador extends AppCompatActivity implements View.OnClickListener
             case R.id.btnOT:
                     Intent ot = new Intent(this, WorkOrderCardActivity.class);
                     startActivity(ot);
+                break;
+
+            case R.id.btnInstructions:
+                Intent inst = new Intent(this, InstructionsActivity.class);
+                startActivity(inst);
                 break;
 
         }

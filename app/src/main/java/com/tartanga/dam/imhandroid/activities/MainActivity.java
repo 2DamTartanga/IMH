@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.btn_login){
-            Intent i = new Intent(this, Navegador.class);
+            Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
         }
     }
