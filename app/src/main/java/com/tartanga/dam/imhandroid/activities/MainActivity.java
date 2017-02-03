@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.btn_login){
-            if (username.getText().equals("") && pass.getText().equals("")){
+            if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()){
                 Toast.makeText(this,"Must enter username and password", Toast.LENGTH_LONG).show();
             }else {
                 Intent i = new Intent(this, MenuActivity.class);
@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity
             }
             Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
-
         }
     }
 
