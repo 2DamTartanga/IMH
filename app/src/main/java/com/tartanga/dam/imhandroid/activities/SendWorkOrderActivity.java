@@ -72,7 +72,7 @@ public class SendWorkOrderActivity extends AppCompatActivity {
         spn_failure_localization.setAdapter(adapter);
 
         //SPINNER AVAILABILITY AFTER REPAIR
-        String[] availability = getResources().getStringArray(R.array.failure_localization);
+        String[] availability = getResources().getStringArray(R.array.arr_equipment_available);
 
         ArrayAdapter adapterAval = new ArrayAdapter<String>(this,android.R.layout.select_dialog_item, availability) {
             @Override

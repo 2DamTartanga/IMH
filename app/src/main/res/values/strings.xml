@@ -42,6 +42,7 @@
 
     <string name="equipment_available">Equipment_available:</string>
     <string-array name="arr_equipment_available">
+        <item>Choose availability</item>
         <item>Yes</item>
         <item>No</item>
         <item>Reduced availability</item>
