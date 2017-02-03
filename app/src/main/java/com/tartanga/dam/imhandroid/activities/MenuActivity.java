@@ -11,7 +11,7 @@ import com.tartanga.dam.imhandroid.R;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button btnZonas, btnOT, btnInstructions;
+    Button btnZonas, btnOT, btnInstructions, btnSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +25,13 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         btnOT.setOnClickListener(this);
         btnInstructions = (Button) findViewById(R.id.btnInstructions);
         btnInstructions.setOnClickListener(this);
+        btnSettings = (Button) findViewById(R.id.btnSettings);
+        btnSettings.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         Toast.makeText(this,"PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
-
         switch (view.getId()) {
             case R.id.btnZones:
                     Intent zonas = new Intent(this, WorkZonesActivity.class);
@@ -40,12 +41,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                     Intent ot = new Intent(this, WorkOrderCardActivity.class);
                     startActivity(ot);
                 break;
-
             case R.id.btnInstructions:
-                Intent inst = new Intent(this, InstructionsActivity.class);
-                startActivity(inst);
+                    Intent inst = new Intent(this, InstructionsActivity.class);
+                    startActivity(inst);
                 break;
-
+            case R.id.btnSettings:
+                    Intent settings = new Intent(this, InstructionsActivity.class);
+                    startActivity(settings);
+                break;
         }
     }
 }
