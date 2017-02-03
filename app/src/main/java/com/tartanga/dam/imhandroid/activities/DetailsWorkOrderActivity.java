@@ -19,9 +19,17 @@ public class DetailsWorkOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_work_order);
 
+        boolean ins = getIntent().getExtras().getBoolean("Instruct");
+
         btnStart = (Button) findViewById(R.id.btn_start_working);
         btnNext = (Button) findViewById(R.id.btn_next);
         btnCancel = (Button) findViewById(R.id.btn_cancel_work);
+
+        if(ins) {
+            btnStart.setVisibility(View.INVISIBLE);
+            btnNext.setVisibility(View.INVISIBLE);
+            btnCancel.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void onClickStart(View v) {
