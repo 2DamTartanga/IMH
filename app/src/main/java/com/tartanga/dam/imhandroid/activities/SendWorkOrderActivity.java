@@ -1,12 +1,16 @@
 package com.tartanga.dam.imhandroid.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
 
@@ -32,6 +36,38 @@ public class SendWorkOrderActivity extends AppCompatActivity {
         et_repair_process = (EditText) findViewById(R.id.et_repair_process);
         sw_failure_repaired = (Switch) findViewById(R.id.sw_failure_repaired);
         sw_add_instructions = (Switch) findViewById(R.id.sw_add_instructions);
+
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.failure_localization, android.R.layout.simple_spinner_item);
+
+        String[] localizations = getResources().getStringArray(R.array.failure_localization);
+
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_item, localizations) {
+            @Override
+            public boolean isEnabled(int position) {
+                if(position == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_failure_localization.setAdapter(adapter);
     }
 
     public void onClickOK(View v) {
@@ -39,12 +75,14 @@ public class SendWorkOrderActivity extends AppCompatActivity {
     }
 
     public void onClickClear(View v) {
-        et_time_spent.setText("");
-        spn_failure_localization.setSelection(0);
-        et_replacements.setText("");
-        et_tools.setText("");
-        et_repair_process.setText("");
-        sw_failure_repaired.setChecked(false);
-        sw_add_instructions.setChecked(false);
+        if(!et_time_spent.getText().toString().isEmpty() || !et_replacements.getText().toString().isEmpty() || !et_tools.getText().toString().isEmpty() || !et_repair_process.getText().toString().isEmpty() ) {
+            et_time_spent.setText("");
+            spn_failure_localization.setSelection(0);
+            et_replacements.setText("");
+            et_tools.setText("");
+            et_repair_process.setText("");
+            sw_failure_repaired.setChecked(false);
+            sw_add_instructions.setChecked(false);
+        }
     }
 }

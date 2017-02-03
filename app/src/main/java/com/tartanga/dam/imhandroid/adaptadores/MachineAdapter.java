@@ -50,7 +50,7 @@ public class MachineAdapter extends RecyclerView.Adapter<MachineAdapter.MachineV
 
         //TODO: UN COUNT DEL NUMERO DE WORK ORDERS QUE HAY EN LA BD
 
-        return 10;
+        return 20;
     }
 
 

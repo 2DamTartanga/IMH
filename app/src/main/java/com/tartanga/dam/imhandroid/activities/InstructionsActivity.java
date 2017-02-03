@@ -6,16 +6,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ListView;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
-import com.tartanga.dam.imhandroid.fragments.WorkOrderFragment;
-import com.tartanga.dam.imhandroid.fragments.fragmento_Zonas;
 
 import java.util.List;
 
-public class WorkOrderCardActivity extends AppCompatActivity {
+public class InstructionsActivity extends AppCompatActivity {
 
     List orders;
 
@@ -26,7 +23,7 @@ public class WorkOrderCardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_work_order);
+        setContentView(R.layout.activity_instructions);
 
         recycler = (RecyclerView) findViewById(R.id.container);
         recycler.setHasFixedSize(true);
@@ -40,6 +37,8 @@ public class WorkOrderCardActivity extends AppCompatActivity {
 
     public void onClickWorkOrder(View v) {
         Intent i = new Intent(this, DetailsWorkOrderActivity.class);
+        i.putExtra("Instruct", true);
         startActivity(i);
     }
+
 }

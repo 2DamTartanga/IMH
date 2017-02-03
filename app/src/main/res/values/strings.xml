@@ -46,6 +46,21 @@
         <item>Reduced availability</item>
     </string-array>
 
+    <string name="choose">Choose</string>
+
+    <string-array name="failure_localization">
+        <item>Choose</item>
+        <item>Gear box</item>
+        <item>Feed</item>
+        <item>Measurements</item>
+        <item>Transmission</item>
+        <item>Safety</item>
+        <item>Lubrication system</item>
+        <item>Electric panel</item>
+        <item>Hydraulic group</item>
+        <item>Pneumatic</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
