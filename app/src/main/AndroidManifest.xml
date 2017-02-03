@@ -41,10 +41,13 @@
         <activity
             android:name=".activities.ActivityReport"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.TypeMachineActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.InstructionsActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.TypeMachineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.InstructionsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.SettingsActivity"></activity>
     </application>
 
 </manifest>
