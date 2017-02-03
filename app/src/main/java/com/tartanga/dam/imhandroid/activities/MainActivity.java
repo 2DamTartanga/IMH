@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, onFragmentInteractionListener {
 
     Button btn;
+    EditText username, pass;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
 
@@ -47,6 +50,9 @@ public class MainActivity extends AppCompatActivity
 
         btn = (Button) findViewById(R.id.btn_login);
         btn.setOnClickListener(this);
+
+        username = (EditText) findViewById(R.id.et_name);
+        pass = (EditText) findViewById(R.id.et_password);
 
     }
 
@@ -115,8 +121,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.btn_login){
+            if (username.getText().equals("") && pass.getText().equals("")){
+                Toast.makeText(this,"Must enter username and password", Toast.LENGTH_LONG).show();
+            }else {
+                Intent i = new Intent(this, MenuActivity.class);
+                startActivity(i);
+            }
             Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
+
         }
     }
 
