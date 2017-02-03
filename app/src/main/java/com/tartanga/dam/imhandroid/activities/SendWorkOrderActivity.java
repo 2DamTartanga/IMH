@@ -100,7 +100,7 @@ public class SendWorkOrderActivity extends AppCompatActivity {
         };
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spn_Availability.setAdapter(adapter);
+        spn_Availability.setAdapter(adapterAval);
     }
 
     public void onClickOK(View v) {
