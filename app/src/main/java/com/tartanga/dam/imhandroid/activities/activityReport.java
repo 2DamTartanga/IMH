@@ -93,7 +93,7 @@ public class ActivityReport extends AppCompatActivity {
         };
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sEquipmentAvailable.setAdapter(adapter);
+        sEquipmentAvailable.setAdapter(adapter1);
     }
 
     public void onClickSend(View v){

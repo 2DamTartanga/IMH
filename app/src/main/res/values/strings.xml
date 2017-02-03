@@ -41,7 +41,7 @@
         <item>Others</item>
     </string-array>
 
-    <string name="equipment_available">Equipment_available:</string>
+    <string name="equipment_available">Equipment available:</string>
     <string-array name="arr_equipment_available">
         <item>Choose availability</item>
         <item>Yes</item>
