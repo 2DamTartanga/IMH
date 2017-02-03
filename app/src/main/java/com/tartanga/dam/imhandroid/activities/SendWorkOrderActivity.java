@@ -39,12 +39,14 @@ public class SendWorkOrderActivity extends AppCompatActivity {
     }
 
     public void onClickClear(View v) {
-        et_time_spent.setText("");
-        spn_failure_localization.setSelection(0);
-        et_replacements.setText("");
-        et_tools.setText("");
-        et_repair_process.setText("");
-        sw_failure_repaired.setChecked(false);
-        sw_add_instructions.setChecked(false);
+        if(!et_time_spent.getText().toString().isEmpty() || !et_replacements.getText().toString().isEmpty() || !et_tools.getText().toString().isEmpty() || !et_repair_process.getText().toString().isEmpty() ) {
+            et_time_spent.setText("");
+            spn_failure_localization.setSelection(0);
+            et_replacements.setText("");
+            et_tools.setText("");
+            et_repair_process.setText("");
+            sw_failure_repaired.setChecked(false);
+            sw_add_instructions.setChecked(false);
+        }
     }
 }

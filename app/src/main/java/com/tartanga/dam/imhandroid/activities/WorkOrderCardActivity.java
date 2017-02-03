@@ -36,7 +36,6 @@ public class WorkOrderCardActivity extends AppCompatActivity {
 
         adapter = new WorkOrderAdapter(orders);
         recycler.setAdapter(adapter);
-
     }
 
     public void onClickWorkOrder(View v) {
