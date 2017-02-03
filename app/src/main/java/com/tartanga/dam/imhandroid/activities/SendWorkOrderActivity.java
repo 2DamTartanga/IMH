@@ -116,6 +116,7 @@ public class SendWorkOrderActivity extends AppCompatActivity {
             et_repair_process.setText("");
             sw_failure_repaired.setChecked(false);
             sw_add_instructions.setChecked(false);
+            spn_Availability.setSelection(0);
         }
     }
 }
