@@ -46,8 +46,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity(inst);
                 break;
             case R.id.btnSettings:
-                    Intent settings = new Intent(this, InstructionsActivity.class);
+                    Intent settings = new Intent(this, SettingsActivity.class);
                     startActivity(settings);
+                break;
+            case R.id.btnLogout:
+                    //TODO: MÉTODO BD PARA LOGOUT
                 break;
         }
     }
