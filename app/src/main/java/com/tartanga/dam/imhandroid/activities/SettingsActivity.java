@@ -19,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
         btnChangePass = (Button)findViewById(R.id.btnChangePass);
         btnChangePass.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //TODO: MÉTODOS BD PARA CAMBIAR CONTRASEÑA
+                //TODO: MÉTODO BD PARA CAMBIAR CONTRASEÑA
             }
         });
     }
