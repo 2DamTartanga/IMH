@@ -78,9 +78,5 @@ public class Repair implements Serializable {
 	public void setGroup(Group group) {
 		this.group = group;
 	}
-	
-	
-	
-	
-	
+
 }
