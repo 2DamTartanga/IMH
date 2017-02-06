@@ -1,4 +1,4 @@
-package com.tartanga.dam.imhandroid.model;
+package com.tartanga.dam.imhandroid.manager;
 
 import java.io.Serializable;
 

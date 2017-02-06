@@ -1,7 +1,6 @@
 package com.tartanga.dam.imhandroid.manager;
 
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
-import com.tartanga.dam.imhandroid.model.Message;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -32,10 +31,8 @@ public class ThreadSender extends Thread{
         ObjectOutputStream out;
         Object input;
         try {
-            System.out.println("try");
             out = new ObjectOutputStream(cs.getOutputStream());
             in = new ObjectInputStream(cs.getInputStream());
-            System.out.println("beforeWrite");
             out.writeObject(msg);
             input = in.readObject();
             listener.messageReceived(input);

@@ -17,9 +17,15 @@ import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 
+import com.tartanga.dam.imhandroid.manager.Main;
 import com.tartanga.dam.imhandroid.manager.Manager;
 
 import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
+import com.tartanga.dam.imhandroid.manager.Message;
+import com.tartanga.dam.imhandroid.model.GlobalUser;
+import com.tartanga.dam.imhandroid.model.User;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, onFragmentInteractionListener {
@@ -120,15 +126,27 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.btn_login){
-            if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()){
-                Toast.makeText(this,"Must enter username and password", Toast.LENGTH_LONG).show();
-            }else {
-                Intent i = new Intent(this, MenuActivity.class);
-                startActivity(i);
+        User u = new User(username.getText().toString(), pass.getText().toString());
+        User uServer = null;
+        try {
+            Main m = new Main(Message.LOGIN, null, u);
+            uServer = (User) m.getObj();
+            GlobalUser gU = new GlobalUser();
+            gU.setGlobalUser(uServer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (v.getId() == R.id.btn_login) {
+            if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Must enter username and password", Toast.LENGTH_LONG).show();
+            } else {
+                if (uServer == null) {
+                    Toast.makeText(this, "That user does not exist", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent i = new Intent(this, MenuActivity.class);
+                    startActivity(i);
+                }
             }
-            Intent i = new Intent(this, MenuActivity.class);
-            startActivity(i);
         }
     }
 
@@ -136,4 +154,7 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
+
 }
