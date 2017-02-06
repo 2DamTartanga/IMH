@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.model.Section;
@@ -21,10 +22,16 @@ public class WorkZonesAdapter extends RecyclerView.Adapter<WorkZonesAdapter.Work
     public static class WorkZonesViewHolder extends RecyclerView.ViewHolder {
 
         //TODO: AQUI DECLARAS LAS VARIABLES
+        private TextView tv_working;
+        private TextView tv_half_working;
+        private TextView tv_not_working;
 
         public WorkZonesViewHolder(View v) {
             super(v);
-            //TODO: INICIALIZAS LAS VARIABLES DE LA TARJETA
+            //TODO: INICIALIZAR LAS VARIABLES DE LA TARJETA
+            tv_working = (TextView)v.findViewById(R.id.tv_working);
+            tv_half_working = (TextView)v.findViewById(R.id.tv_working);
+            tv_not_working = (TextView)v.findViewById(R.id.tv_working);
         }
     }
 
