@@ -7,17 +7,23 @@ import android.view.View;
 import android.widget.Button;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.manager.VersionController;
 
 public class DetailsWorkOrderActivity extends AppCompatActivity {
 
     private Button btnStart;
     private Button btnNext;
     private Button btnCancel;
+    private VersionController vControl = new VersionController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_work_order);
+
+        if(vControl.olderVersions())
+            setContentView(R.layout.fragment_work_order_older_versions);
+        else
+            setContentView(R.layout.fragment_work_order);
 
         boolean ins = getIntent().getExtras().getBoolean("Instruct");
 

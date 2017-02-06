@@ -13,6 +13,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.manager.VersionController;
 
 public class SendWorkOrderActivity extends AppCompatActivity {
 
@@ -24,11 +25,16 @@ public class SendWorkOrderActivity extends AppCompatActivity {
     private Switch sw_failure_repaired;
     private Switch sw_add_instructions;
     private Spinner spn_Availability;
+    private VersionController vControl = new VersionController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.frame_repair);
+
+        if(vControl.olderVersions())
+            setContentView(R.layout.frame_repair_older_versions);
+        else
+            setContentView(R.layout.frame_repair);
 
         et_time_spent = (EditText) findViewById(R.id.et_time_spent);
         spn_failure_localization = (Spinner) findViewById(R.id.spn_failure_localization);

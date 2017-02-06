@@ -9,15 +9,21 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.manager.VersionController;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnZonas, btnOT, btnInstructions, btnSettings;
+    private VersionController vControl = new VersionController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        versionAdapter();
+
+        if(vControl.olderVersions())
+            setContentView(R.layout.content_navigation_older_versions);
+        else
+            setContentView(R.layout.content_navigation);
 
         btnZonas = (Button) findViewById(R.id.btnZones);
         btnZonas.setOnClickListener(this);
@@ -60,11 +66,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     private void versionAdapter() {
         if (android.os.Build.VERSION.SDK_INT > 19) {
-            setContentView(R.layout.content_navigation);
+
 
         }
         else {
-            setContentView(R.layout.content_navigation_older_versions);
+
 
         }
     }
