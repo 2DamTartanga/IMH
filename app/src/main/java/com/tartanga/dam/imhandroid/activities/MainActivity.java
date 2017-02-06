@@ -22,6 +22,7 @@ import com.tartanga.dam.imhandroid.manager.Manager;
 
 import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
 import com.tartanga.dam.imhandroid.manager.Message;
+import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.User;
 
 import java.io.IOException;
@@ -130,6 +131,8 @@ public class MainActivity extends AppCompatActivity
         try {
             Main m = new Main(Message.LOGIN, null, u);
             uServer = (User) m.getObj();
+            GlobalUser gU = new GlobalUser();
+            gU.setGlobalUser(uServer);
         } catch (IOException e) {
             e.printStackTrace();
         }

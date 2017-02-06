@@ -37,15 +37,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this, "PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
         switch (view.getId()) {
             case R.id.btnZones:
-<<<<<<< HEAD
-                    Intent zonas = new Intent(this, WorkZonesActivity.class);
-
-
-                    startActivity(zonas);
-=======
                 Intent zonas = new Intent(this, WorkZonesActivity.class);
                 startActivity(zonas);
->>>>>>> 010429e7035ee55a06d71a2689ed29263362f85e
                 break;
             case R.id.btnOT:
                 Intent ot = new Intent(this, WorkOrderCardActivity.class);
