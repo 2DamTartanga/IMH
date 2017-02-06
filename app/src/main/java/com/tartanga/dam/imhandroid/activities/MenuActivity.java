@@ -10,22 +10,34 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
+<<<<<<< HEAD
+=======
 import com.tartanga.dam.imhandroid.manager.VersionController;
+>>>>>>> 5d201462578ee07ef6386df9dd548f7a41f8bf8c
 import com.tartanga.dam.imhandroid.model.GlobalUser;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnZonas, btnOT, btnInstructions, btnSettings;
+<<<<<<< HEAD
+=======
     private VersionController vControl = new VersionController();
+
+>>>>>>> 5d201462578ee07ef6386df9dd548f7a41f8bf8c
     GlobalUser u;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         versionAdapter();
+=======
+
         if(vControl.olderVersions())
             setContentView(R.layout.content_navigation_older_versions);
         else
             setContentView(R.layout.content_navigation);
+
+>>>>>>> 5d201462578ee07ef6386df9dd548f7a41f8bf8c
         Log.d("Usuario", u.getGlobalUser().getName());
         btnZonas = (Button) findViewById(R.id.btnZones);
         btnZonas.setOnClickListener(this);
