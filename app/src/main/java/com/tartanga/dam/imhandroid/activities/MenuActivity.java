@@ -4,18 +4,27 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
+<<<<<<< HEAD
 import com.tartanga.dam.imhandroid.manager.VersionController;
+=======
+import com.tartanga.dam.imhandroid.model.GlobalUser;
+>>>>>>> 06a043fc32859f85ad83d36d7777761e83e208b4
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnZonas, btnOT, btnInstructions, btnSettings;
+<<<<<<< HEAD
     private VersionController vControl = new VersionController();
 
+=======
+    GlobalUser u;
+>>>>>>> 06a043fc32859f85ad83d36d7777761e83e208b4
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +34,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         else
             setContentView(R.layout.content_navigation);
 
+        Log.d("Usuario", u.getGlobalUser().getName());
         btnZonas = (Button) findViewById(R.id.btnZones);
         btnZonas.setOnClickListener(this);
         btnOT = (Button) findViewById(R.id.btnOT);
@@ -40,7 +50,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(this, "PULSADO NUMERO 1", Toast.LENGTH_LONG).show();
         switch (view.getId()) {
             case R.id.btnZones:
                 Intent zonas = new Intent(this, WorkZonesActivity.class);
