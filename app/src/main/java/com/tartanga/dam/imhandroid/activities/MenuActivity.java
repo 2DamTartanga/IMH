@@ -34,6 +34,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btnZones:
                     Intent zonas = new Intent(this, WorkZonesActivity.class);
+
+
                     startActivity(zonas);
                 break;
             case R.id.btnOT:

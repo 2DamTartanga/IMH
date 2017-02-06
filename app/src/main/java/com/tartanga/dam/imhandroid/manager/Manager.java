@@ -2,7 +2,7 @@ package com.tartanga.dam.imhandroid.manager;
 
 import android.support.v7.app.AppCompatActivity;
 
-public class  Manager {
+public class Manager {
     private static Manager manager = new Manager();
 
     public static Manager getInstance() {

@@ -17,9 +17,14 @@ import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 
+import com.tartanga.dam.imhandroid.manager.Main;
 import com.tartanga.dam.imhandroid.manager.Manager;
 
 import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
+import com.tartanga.dam.imhandroid.manager.Message;
+import com.tartanga.dam.imhandroid.model.User;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, onFragmentInteractionListener {
@@ -120,6 +125,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
+        User u = new User(username.getText().toString(),pass.getText().toString());
+        try {
+            Main m = new Main(Message.LOGIN,null,u);
+            User uServer = (User) m.getObj();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(v.getId()==R.id.btn_login){
             if (username.getText().equals("") && pass.getText().equals("")){
                 Toast.makeText(this,"Must enter username and password", Toast.LENGTH_LONG).show();
@@ -137,4 +149,7 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
+
 }
