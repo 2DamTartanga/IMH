@@ -125,22 +125,25 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        User u = new User(username.getText().toString(),pass.getText().toString());
+        User u = new User(username.getText().toString(), pass.getText().toString());
+        User uServer = null;
         try {
-            Main m = new Main(Message.LOGIN,null,u);
-            User uServer = (User) m.getObj();
+            Main m = new Main(Message.LOGIN, null, u);
+            uServer = (User) m.getObj();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if(v.getId()==R.id.btn_login){
-            if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()){
-                Toast.makeText(this,"Must enter username and password", Toast.LENGTH_LONG).show();
-            }else {
-                Intent i = new Intent(this, MenuActivity.class);
-                startActivity(i);
+        if (v.getId() == R.id.btn_login) {
+            if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Must enter username and password", Toast.LENGTH_LONG).show();
+            } else {
+                if (uServer == null) {
+                    Toast.makeText(this, "That user does not exist", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent i = new Intent(this, MenuActivity.class);
+                    startActivity(i);
+                }
             }
-            Intent i = new Intent(this, MenuActivity.class);
-            startActivity(i);
         }
     }
 
