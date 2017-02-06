@@ -10,21 +10,15 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
-<<<<<<< HEAD
 import com.tartanga.dam.imhandroid.manager.VersionController;
-=======
 import com.tartanga.dam.imhandroid.model.GlobalUser;
->>>>>>> 06a043fc32859f85ad83d36d7777761e83e208b4
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnZonas, btnOT, btnInstructions, btnSettings;
-<<<<<<< HEAD
     private VersionController vControl = new VersionController();
 
-=======
     GlobalUser u;
->>>>>>> 06a043fc32859f85ad83d36d7777761e83e208b4
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
