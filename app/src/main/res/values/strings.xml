@@ -39,13 +39,12 @@
         <item>Mechanical</item>
         <item>Others</item>
     </string-array>
-<<<<<<< HEAD
+
 
 
     <string name="equipment_available">Equipment available:</string>
-=======
-    <string name="equipment_available">Equipment_available:</string>
->>>>>>> 22531a20ec043c6765b057b40b8a83d3a65f2636
+
+
     <string-array name="arr_equipment_available">
         <item>Choose availability</item>
         <item>Yes</item>

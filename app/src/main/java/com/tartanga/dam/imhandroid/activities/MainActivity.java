@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         User u = new User(username.getText().toString(), pass.getText().toString());
-        User uServer = null;
+        User uServer = new User(username.getText().toString(), pass.getText().toString());
         try {
             Main m = new Main(Message.LOGIN, null, u);
             uServer = (User) m.getObj();
