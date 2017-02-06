@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.manager.VersionController;
 
 public class ActivityReport extends AppCompatActivity {
 
@@ -22,11 +23,16 @@ public class ActivityReport extends AppCompatActivity {
     EditText eSubject;
     EditText eDescription;
     Button btn;
+    private VersionController vControl = new VersionController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.maintenance_request);
+
+        if(vControl.olderVersions())
+            setContentView(R.layout.maintenance_request_older_versions);
+        else
+            setContentView(R.layout.maintenance_request);
 
         tMachineCode = (TextView) findViewById(R.id.tv_machine);
         sFailureType = (Spinner) findViewById(R.id.spn_failure_type);

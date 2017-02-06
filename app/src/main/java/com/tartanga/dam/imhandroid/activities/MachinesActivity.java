@@ -74,13 +74,14 @@ public class MachinesActivity extends AppCompatActivity {
     public void onClickWork (View v) {
         //Toast.makeText(this,"WORKING", Toast.LENGTH_SHORT).show();
         if (!workClicked) {
+               // btn_working.setBackgroundResource(R.color.colorGray);
+                //btn_working.getBackground().setAlpha(95);
             btn_working.setImageResource(R.drawable.ic_working_disabled);
-            /*btn_working.setBackgroundResource(R.color.colorGray);
-            btn_working.getBackground().setAlpha(95);*/
+
             workClicked=true;
         } else {
+                //btn_working.setBackgroundResource(R.color.colorWhite);
             btn_working.setImageResource(R.drawable.ic_working);
-            //btn_working.setBackgroundResource(R.color.colorWhite);
             workClicked=false;
         }
     }
@@ -88,13 +89,16 @@ public class MachinesActivity extends AppCompatActivity {
     public void onClickHalfWork (View v) {
         //Toast.makeText(this,"WORKING", Toast.LENGTH_SHORT).show();
         if (!halfWorkClicked) {
+
             btn_half_working.setImageResource(R.drawable.ic_half_working_disabled);
-            /*btn_half_working.setBackgroundResource(R.color.colorGray);
-            btn_half_working.getBackground().setAlpha(95);*/
+                //btn_half_working.setBackgroundResource(R.color.colorGray);
+                //btn_half_working.getBackground().setAlpha(95);
+
+
             halfWorkClicked=true;
         } else {
             btn_half_working.setImageResource(R.drawable.ic_half_working);
-            //btn_half_working.setBackgroundResource(R.color.colorWhite);
+                //btn_half_working.setBackgroundResource(R.color.colorWhite);
             halfWorkClicked=false;
         }
     }
@@ -103,12 +107,13 @@ public class MachinesActivity extends AppCompatActivity {
         //Toast.makeText(this,"WORKING", Toast.LENGTH_SHORT).show();
         if (!notWorkClicked) {
             btn_not_working.setImageResource(R.drawable.ic_not_working_disabled);
-            /*btn_not_working.setBackgroundResource(R.color.colorGray);
-            btn_not_working.getBackground().setAlpha(95);*/
+                //btn_not_working.setBackgroundResource(R.color.colorGray);
+                //btn_not_working.getBackground().setAlpha(95);
+
             notWorkClicked=true;
         } else {
             btn_not_working.setImageResource(R.drawable.ic_not_working);
-            //btn_not_working.setBackgroundResource(R.color.colorWhite);
+               // btn_not_working.setBackgroundResource(R.color.colorWhite);
             notWorkClicked=false;
         }
     }
@@ -126,4 +131,12 @@ public class MachinesActivity extends AppCompatActivity {
     public void onClickNot(View v){
         Toast.makeText(this,"NOT WORKING", Toast.LENGTH_LONG).show();
     }
+/*
+    private boolean oldVersion() {
+        if (android.os.Build.VERSION.SDK_INT > 19) {
+            return false;
+        } else
+            return true;
+    }
+    */
 }
