@@ -1,5 +1,7 @@
 package com.tartanga.dam.imhandroid.manager;
 
+import android.util.Log;
+
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 
 import java.io.IOException;
@@ -9,6 +11,7 @@ public class Main implements MessageListener {
 
     private final int PORT = 8008;
     private final String IP = "10.22.82.173";
+    //private final String IP = "10.22.87.157";
     private Socket cs;
     private Object obj;
 
@@ -20,7 +23,7 @@ public class Main implements MessageListener {
         this.obj = obj;
     }
 
-    Manager manager;
+    //Manager manager;
 
     /*public static void main(){
         try {
@@ -31,13 +34,12 @@ public class Main implements MessageListener {
     }*/
 
     public Main(String accion, String object, Object content) throws IOException {
+        Log.d("MENSAJE","ENTRA AL MAIN MANAGER");
         cs = new Socket(IP,PORT);
         Message msg = new Message(accion, object, content);
         ThreadSender ts = new ThreadSender(this, cs, msg);
         ts.start();
     }
-
-
 
     @Override
     public void messageReceived(Object obj) {

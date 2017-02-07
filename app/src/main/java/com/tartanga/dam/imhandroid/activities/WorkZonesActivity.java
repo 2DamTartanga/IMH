@@ -50,4 +50,8 @@ public class WorkZonesActivity extends AppCompatActivity{
         startActivity(i);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

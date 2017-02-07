@@ -48,4 +48,9 @@ public class MachineDetails extends AppCompatActivity {
         //AÑADIR PUTEXTRA CON EL DATO DEL INTENT ANTERIOR
         startActivity(i);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

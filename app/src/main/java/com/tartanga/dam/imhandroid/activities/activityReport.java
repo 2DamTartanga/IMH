@@ -110,4 +110,9 @@ public class ActivityReport extends AppCompatActivity {
         String description = eDescription.getText().toString();
         Toast.makeText(this,"ENVIAR DATOS", Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

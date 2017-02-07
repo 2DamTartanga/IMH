@@ -59,13 +59,7 @@ public class User {
 		return course;
 	}
 
-
 	public Group getGroup() {
 		return group;
 	}
-	
-	
-	
-	
-	
 }

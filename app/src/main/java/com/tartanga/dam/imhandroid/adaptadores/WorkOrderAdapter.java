@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.model.WorkOrder;
@@ -18,9 +19,19 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
 
         //TODO: AQUI DECLARAS LAS VARIABLES
 
+        public TextView tv_breakdown;
+        public TextView tv_machine;
+        public TextView tv_priority;
+        public TextView tv_code;
+
         public WorkOrderViewHolder(View v) {
             super(v);
-            //TODO: INICIALIZAS LAS VARIABLES DE LA TARJETA
+            tv_breakdown = (TextView)v.findViewById(R.id.tv_breakdown);
+            tv_machine = (TextView)v.findViewById(R.id.tv_machine);
+            tv_priority = (TextView)v.findViewById(R.id.tv_priority);
+            tv_code = (TextView)v.findViewById(R.id.tv_code);
+
+
         }
     }
 
@@ -39,6 +50,12 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
     @Override
     public void onBindViewHolder(WorkOrderViewHolder holder, int position) {
         //TODO: AQUI ES DONDE CARGAS LOS DATOS A LOS ELEMTOS DE LAS TARJETAS
+
+        holder.tv_breakdown.setText("BEREAKDON" + position);
+        holder.tv_machine.setText("MACHINE" + position);
+        //TODO: PRIORITY
+        holder.tv_priority.setText("PRI"+position);
+        holder.tv_code.setText("CODE"+position);
     }
 
     @Override
@@ -46,7 +63,7 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
 
         //TODO: UN COUNT DEL NUMERO DE WORK ORDERS QUE HAY EN LA BD
 
-        return 55;
+        return 20;
     }
 
 }

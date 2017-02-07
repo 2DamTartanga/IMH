@@ -139,4 +139,9 @@ public class MachinesActivity extends AppCompatActivity {
             return true;
     }
     */
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

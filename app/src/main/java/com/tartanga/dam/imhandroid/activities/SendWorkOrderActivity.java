@@ -125,4 +125,9 @@ public class SendWorkOrderActivity extends AppCompatActivity {
             spn_Availability.setSelection(0);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

@@ -1,5 +1,7 @@
 package com.tartanga.dam.imhandroid.manager;
 
+import android.util.Log;
+
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 
 import java.io.EOFException;
@@ -15,7 +17,6 @@ import java.net.SocketException;
 
 public class ThreadSender extends Thread{
 
-
     private MessageListener listener;
     private Socket cs;
     private Message msg;
@@ -27,6 +28,7 @@ public class ThreadSender extends Thread{
 
     @Override
     public void run() {
+        Log.d("MENSAJE","INICIA EL HILO");
         ObjectInputStream in;
         ObjectOutputStream out;
         Object input;
@@ -44,6 +46,7 @@ public class ThreadSender extends Thread{
             e.printStackTrace();
         }
     }
+
     private void connectionLost() {
     }
 }

@@ -69,12 +69,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
+        }*/
+        this.finish();
     }
 
     @Override
@@ -127,10 +128,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         User u = new User(username.getText().toString(), pass.getText().toString());
-        User uServer = new User(username.getText().toString(), pass.getText().toString());
+        User uServer = null;
+        //Toast.makeText(this, username.getText(), Toast.LENGTH_SHORT).show();
         try {
             Main m = new Main(Message.LOGIN, null, u);
             uServer = (User) m.getObj();
+            Toast.makeText(this, Message.LOGIN, Toast.LENGTH_SHORT).show();
             GlobalUser gU = new GlobalUser();
             gU.setGlobalUser(uServer);
         } catch (IOException e) {
@@ -138,12 +141,57 @@ public class MainActivity extends AppCompatActivity
         }
         if (v.getId() == R.id.btn_login) {
             if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
+                /*
+                User u = new User(username.getText().toString(), pass.getText().toString());
+                User uServer = null;
+                String nombreUsu ="";
+                String nombre = "";
+                int grupo = 0;
+                try {
+                    Main m = new Main(Message.LOGIN, null, u);
+                    uServer = (User) m.getObj();
+                    //Log.d("MENSAJE", uServer.getUsername());
+                    nombreUsu = uServer.getUsername();
+                    nombre = uServer.getName();
+                    grupo = uServer.getGroup().getId();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (v.getId() == R.id.btn_login) {
+                    if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
+                        Toast.makeText(this, "Must enter username and password", Toast.LENGTH_LONG).show();
+                    } else {
+                        if (uServer == null) {
+                            Toast.makeText(this, "That user does not exist", Toast.LENGTH_LONG).show();
+                        } else {
+                            Intent i = new Intent(this, MenuActivity.class);
+                            i.putExtra("NombreUsuario", nombreUsu);
+                            i.putExtra("Nombre", nombre);
+                            i.putExtra("Grupo", grupo);
+                            Toast.makeText(this, nombreUsu + " " + nombre + " " + grupo, Toast.LENGTH_LONG).show();
+                            startActivity(i);
+                        }
+                    }
+                }
+                */
                 Toast.makeText(this, "Must enter username and password", Toast.LENGTH_LONG).show();
+                //Main m = null;
+                try {
+                    Main m = new Main(Message.LOGIN, null, u);
+                    uServer = (User) m.getObj();
+                    Toast.makeText(this, Message.LOGIN, Toast.LENGTH_SHORT).show();
+                    GlobalUser gU = new GlobalUser();
+                    gU.setGlobalUser(uServer);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 if (uServer == null) {
                     Toast.makeText(this, "That user does not exist", Toast.LENGTH_LONG).show();
                 } else {
+                    String nombreUsu = username.getText().toString();
                     Intent i = new Intent(this, MenuActivity.class);
+                    i.putExtra("NombreUsuario", nombreUsu);
                     startActivity(i);
                 }
             }
@@ -154,7 +202,4 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
-
-
-
 }
