@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 public class Machine implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	//TODO esto es seguramente va a cambiar
 	private String id;

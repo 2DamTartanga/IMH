@@ -42,4 +42,9 @@ public class TypeMachineActivity extends AppCompatActivity {
         i.putExtra("zone", txt.getText());
         startActivity(i);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

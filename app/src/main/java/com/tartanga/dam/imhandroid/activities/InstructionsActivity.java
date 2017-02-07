@@ -41,6 +41,11 @@ public class InstructionsActivity extends AppCompatActivity {
         i.putExtra("Instruct", true);
         startActivity(i);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
 
 

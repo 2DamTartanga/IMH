@@ -12,6 +12,8 @@ import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
 import com.tartanga.dam.imhandroid.fragments.WorkOrderFragment;
 import com.tartanga.dam.imhandroid.fragments.fragmento_Zonas;
+import com.tartanga.dam.imhandroid.model.Breakdown;
+import com.tartanga.dam.imhandroid.model.WorkOrder;
 
 import java.util.List;
 
@@ -27,6 +29,23 @@ public class WorkOrderCardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_order);
+
+        /*
+
+        public TextView tv_breakdown;
+        public TextView tv_machine;
+        public TextView tv_priority;
+        public TextView tv_code;
+
+        private static final long serialVersionUID = 1L;
+        private int severity;
+        private String others;
+        private String typeOfMaintenance;
+        private Date creationDate;
+        private ArrayList<Repair> repairs;
+        private Breakdown breakdown;
+
+         */
 
         recycler = (RecyclerView) findViewById(R.id.container);
         recycler.setHasFixedSize(true);

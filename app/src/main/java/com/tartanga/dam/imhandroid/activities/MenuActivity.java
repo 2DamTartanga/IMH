@@ -18,9 +18,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     Button btnZonas, btnOT, btnInstructions, btnSettings;
     private VersionController vControl = new VersionController();
+
     private String nombreUsu ="";
     private String nombre = "";
     private int grupo = 0;
+
+    GlobalUser u;
+
+
     //GlobalUser u;
 
     @Override
@@ -41,8 +46,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.content_navigation_older_versions);
         else
             setContentView(R.layout.content_navigation);
-
         //Log.d("Usuario", us.getUsername());
+
+        Intent i = getIntent();
+        String nombreUsuario = i.getStringExtra("NombreUsuario");
+        Toast.makeText(this, nombreUsuario, Toast.LENGTH_SHORT).show();
+        //Log.d("Usuario", u.getGlobalUser().getName());
+
+
         //Log.d("Usuario", u.getGlobalUser().getName());
 
         btnZonas = (Button) findViewById(R.id.btnZones);
@@ -90,6 +101,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         else {
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 */
 }
