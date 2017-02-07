@@ -19,16 +19,30 @@ public class ThreadSender extends Thread{
 
     private MessageListener listener;
     private Socket cs;
+    private final String IP;
+    private final int PORT;
     private Message msg;
-    public ThreadSender(Object listener, Socket cs, Message msg) {
+    /*public ThreadSender(Object listener, Socket cs, Message msg) {
         this.listener = ((MessageListener) listener);
         this.cs = cs;
+        this.msg = msg;
+    }*/
+
+    public ThreadSender(Object listener, String IP, int PORT, Message msg){
+        this.listener = ((MessageListener) listener);
+        this.IP = IP;
+        this.PORT = PORT;
         this.msg = msg;
     }
 
     @Override
     public void run() {
         Log.d("MENSAJE","INICIA EL HILO");
+        try {
+            cs = new Socket(IP,PORT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ObjectInputStream in;
         ObjectOutputStream out;
         Object input;

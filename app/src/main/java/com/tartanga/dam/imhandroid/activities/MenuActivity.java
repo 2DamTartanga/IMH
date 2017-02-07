@@ -17,35 +17,24 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     Button btnZonas, btnOT, btnInstructions, btnSettings;
     private VersionController vControl = new VersionController();
-<<<<<<< HEAD
     GlobalUser u;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        versionAdapter();
-=======
 
     //GlobalUser u;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
->>>>>>> 4838b82ac87a4de35d9d0b9f37e1d8aa840481db
 
         if(vControl.olderVersions())
             setContentView(R.layout.content_navigation_older_versions);
         else
             setContentView(R.layout.content_navigation);
 
-<<<<<<< HEAD
         Intent i = getIntent();
         String nombreUsuario = i.getStringExtra("NombreUsuario");
         Toast.makeText(this, nombreUsuario, Toast.LENGTH_SHORT).show();
         //Log.d("Usuario", u.getGlobalUser().getName());
 
-=======
         //Log.d("Usuario", u.getGlobalUser().getName());
->>>>>>> 4838b82ac87a4de35d9d0b9f37e1d8aa840481db
         btnZonas = (Button) findViewById(R.id.btnZones);
         btnZonas.setOnClickListener(this);
         btnOT = (Button) findViewById(R.id.btnOT);
@@ -92,13 +81,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
-<<<<<<< HEAD
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
-=======
 */
->>>>>>> 4838b82ac87a4de35d9d0b9f37e1d8aa840481db
 }

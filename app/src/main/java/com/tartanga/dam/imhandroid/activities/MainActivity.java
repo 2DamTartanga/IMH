@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity
         try {
             Main m = new Main(Message.LOGIN, null, u);
             uServer = (User) m.getObj();
-            Toast.makeText(this, Message.LOGIN, Toast.LENGTH_SHORT).show();
             GlobalUser gU = new GlobalUser();
             gU.setGlobalUser(uServer);
         } catch (IOException e) {
