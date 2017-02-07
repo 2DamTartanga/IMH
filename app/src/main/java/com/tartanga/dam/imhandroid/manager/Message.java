@@ -1,6 +1,5 @@
 package com.tartanga.dam.imhandroid.manager;
 
-import android.util.Log;
 
 import java.io.Serializable;
 
@@ -43,7 +42,6 @@ public class Message implements Serializable{
 	*/
 	public Message(String action, String object, Object content) {
 		//language = ENGLISH;
-		Log.d("MENSAJE","ENTRA AL MENSAJE");
 		this.action = action;
 		this.object = object;
 		this.content = content;
