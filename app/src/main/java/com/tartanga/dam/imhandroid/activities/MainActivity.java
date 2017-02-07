@@ -142,9 +142,11 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }*/
         if (v.getId() == R.id.btn_login) {
+            ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN,null,new User("unaisainz","unaisainz")));
+            ts.execute();
             if (!username.getText().toString().isEmpty() && !pass.getText().toString().isEmpty()) {
-                ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN,null,new User(username.getText().toString(),pass.getText().toString())));
-                ts.execute();
+                //ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN,null,new User(username.getText().toString(),pass.getText().toString())));
+                //ts.execute();
             }
         }
     }

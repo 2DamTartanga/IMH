@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.MachineAdapter;
+import com.tartanga.dam.imhandroid.manager.ThreadSender;
+import com.tartanga.dam.imhandroid.model.Message;
+import com.tartanga.dam.imhandroid.model.Section;
 
 import java.util.List;
 
@@ -38,16 +41,10 @@ public class MachinesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_machines);
 
-        recycler = (RecyclerView) findViewById(R.id.machineList);
-        recycler.setHasFixedSize(true);
+        String sectionId = getIntent().getExtras().getString("zone");
 
-        lManager = new LinearLayoutManager(this);
-        recycler.setLayoutManager(lManager);
+        ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.WORK_ZONE, new Section(sectionId)));
 
-        adapter = new MachineAdapter(machines);
-        recycler.setAdapter(adapter);
-
-        linear = (LinearLayout) findViewById(R.id.layout);
 
         //BOTONES FRAGMENTO
         /*btn_working = (ImageButton) findViewById(R.id.btn_working);
