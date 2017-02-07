@@ -11,7 +11,7 @@ public class GlobalUser extends Application{
     private static User globalUser;
 
 
-    public User getGlobalUser() {
+    public static User getGlobalUser() {
         return globalUser;
     }
 

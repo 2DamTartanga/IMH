@@ -31,7 +31,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //versionAdapter();
-        
+
         if(vControl.olderVersions())
             setContentView(R.layout.content_navigation_older_versions);
         else
