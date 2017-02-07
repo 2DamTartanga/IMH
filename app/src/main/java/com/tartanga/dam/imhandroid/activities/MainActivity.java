@@ -147,12 +147,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void messageReceived(Object obj) {
-        Log.d("",obj+"");
-
-    }
-
-    @Override
-    public void messageReceived(Object obj) {
         this.obj = obj;
+        Log.d("",obj+"");
     }
 }

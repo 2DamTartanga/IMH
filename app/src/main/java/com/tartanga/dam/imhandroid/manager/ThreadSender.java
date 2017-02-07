@@ -1,6 +1,7 @@
 package com.tartanga.dam.imhandroid.manager;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.model.Message;
@@ -22,9 +23,8 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
     private final String HOST = "10.22.82.173";
     private MessageListener listener;
     private Socket cs;
-    private final String IP;
-    private final int PORT;
     private Message msg;
+
     public ThreadSender(Object listener, /*Socket cs,*/ Message msg) {
         Socket cs = null;
         try {
@@ -34,13 +34,6 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
         }
         this.listener = ((MessageListener) listener);
         this.cs = cs;
-        this.msg = msg;
-    }*/
-
-    public ThreadSender(Object listener, String IP, int PORT, Message msg){
-        this.listener = ((MessageListener) listener);
-        this.IP = IP;
-        this.PORT = PORT;
         this.msg = msg;
     }
 
