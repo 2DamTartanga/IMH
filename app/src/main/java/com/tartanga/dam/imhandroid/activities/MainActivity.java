@@ -1,34 +1,30 @@
 package com.tartanga.dam.imhandroid.activities;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 
-import com.tartanga.dam.imhandroid.manager.Main;
+import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.Manager;
 
-import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
-import com.tartanga.dam.imhandroid.manager.Message;
-import com.tartanga.dam.imhandroid.model.GlobalUser;
+import com.tartanga.dam.imhandroid.model.Message;
+import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.model.User;
 
-import java.io.IOException;
-
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, onFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, MessageListener {
 
     Button btn;
     EditText username, pass;
@@ -38,7 +34,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        StrictMode.ThreadPolicy p = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(p);
         setContentView(R.layout.fragment_login);
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -130,7 +127,7 @@ public class MainActivity extends AppCompatActivity
         User u = new User(username.getText().toString(), pass.getText().toString());
         User uServer = null;
         //Toast.makeText(this, username.getText(), Toast.LENGTH_SHORT).show();
-        try {
+        /*try {
             Main m = new Main(Message.LOGIN, null, u);
             uServer = (User) m.getObj();
             Toast.makeText(this, Message.LOGIN, Toast.LENGTH_SHORT).show();
@@ -138,68 +135,18 @@ public class MainActivity extends AppCompatActivity
             gU.setGlobalUser(uServer);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         if (v.getId() == R.id.btn_login) {
             if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
-                /*
-                User u = new User(username.getText().toString(), pass.getText().toString());
-                User uServer = null;
-                String nombreUsu ="";
-                String nombre = "";
-                int grupo = 0;
-                try {
-                    Main m = new Main(Message.LOGIN, null, u);
-                    uServer = (User) m.getObj();
-                    //Log.d("MENSAJE", uServer.getUsername());
-                    nombreUsu = uServer.getUsername();
-                    nombre = uServer.getName();
-                    grupo = uServer.getGroup().getId();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if (v.getId() == R.id.btn_login) {
-                    if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
-                        Toast.makeText(this, "Must enter username and password", Toast.LENGTH_LONG).show();
-                    } else {
-                        if (uServer == null) {
-                            Toast.makeText(this, "That user does not exist", Toast.LENGTH_LONG).show();
-                        } else {
-                            Intent i = new Intent(this, MenuActivity.class);
-                            i.putExtra("NombreUsuario", nombreUsu);
-                            i.putExtra("Nombre", nombre);
-                            i.putExtra("Grupo", grupo);
-                            Toast.makeText(this, nombreUsu + " " + nombre + " " + grupo, Toast.LENGTH_LONG).show();
-                            startActivity(i);
-                        }
-                    }
-                }
-                */
-                Toast.makeText(this, "Must enter username and password", Toast.LENGTH_LONG).show();
-                //Main m = null;
-                try {
-                    Main m = new Main(Message.LOGIN, null, u);
-                    uServer = (User) m.getObj();
-                    Toast.makeText(this, Message.LOGIN, Toast.LENGTH_SHORT).show();
-                    GlobalUser gU = new GlobalUser();
-                    gU.setGlobalUser(uServer);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                if (uServer == null) {
-                    Toast.makeText(this, "That user does not exist", Toast.LENGTH_LONG).show();
-                } else {
-                    String nombreUsu = username.getText().toString();
-                    Intent i = new Intent(this, MenuActivity.class);
-                    i.putExtra("NombreUsuario", nombreUsu);
-                    startActivity(i);
-                }
+                ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN,null,new User("unaisainz","unaisainz")));
+                ts.execute();
             }
         }
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void messageReceived(Object obj) {
+        Log.d("",obj+"");
 
     }
 }

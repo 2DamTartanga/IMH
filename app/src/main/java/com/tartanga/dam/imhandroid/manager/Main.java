@@ -3,6 +3,7 @@ package com.tartanga.dam.imhandroid.manager;
 import android.util.Log;
 
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
+import com.tartanga.dam.imhandroid.model.Message;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -37,8 +38,8 @@ public class Main implements MessageListener {
         Log.d("MENSAJE","ENTRA AL MAIN MANAGER");
         cs = new Socket(IP,PORT);
         Message msg = new Message(accion, object, content);
-        ThreadSender ts = new ThreadSender(this, cs, msg);
-        ts.start();
+        //ThreadSender ts = new ThreadSender(this msg);
+        //ts.start();
     }
 
     @Override
