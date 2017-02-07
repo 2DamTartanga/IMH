@@ -6,7 +6,8 @@ import android.app.Application;
  * Created by 2dam on 06/02/2017.
  */
 
-public class GlobalUser{
+
+public class GlobalUser extends Application{
     private static GlobalUser instance;
     private User globalUser;
 

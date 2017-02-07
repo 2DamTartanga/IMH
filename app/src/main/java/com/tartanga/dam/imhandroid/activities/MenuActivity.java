@@ -27,10 +27,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
 
     //GlobalUser u;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //versionAdapter();
 
         //versionAdapter();
         GlobalUser u = GlobalUser.getInstance();
@@ -48,10 +48,12 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.content_navigation);
         //Log.d("Usuario", us.getUsername());
 
+
         Intent i = getIntent();
         String nombreUsuario = i.getStringExtra("NombreUsuario");
         Toast.makeText(this, nombreUsuario, Toast.LENGTH_SHORT).show();
         //Log.d("Usuario", u.getGlobalUser().getName());
+
 
 
         //Log.d("Usuario", u.getGlobalUser().getName());
@@ -93,19 +95,4 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-/*
-    private void versionAdapter() {
-        if (android.os.Build.VERSION.SDK_INT > 19) {
-
-        }
-        else {
-
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-*/
 }

@@ -1,9 +1,11 @@
 package com.tartanga.dam.imhandroid.activities;
 
+
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,16 +25,15 @@ import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.Main;
 import com.tartanga.dam.imhandroid.manager.Manager;
 
-import com.tartanga.dam.imhandroid.interfaces.onFragmentInteractionListener;
-import com.tartanga.dam.imhandroid.manager.Message;
-import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
+import com.tartanga.dam.imhandroid.model.Message;
+import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.model.User;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, onFragmentInteractionListener, MessageListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, MessageListener {
 
     Button btn;
     EditText username, pass;
@@ -43,11 +44,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        StrictMode.ThreadPolicy p = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(p);
         setContentView(R.layout.fragment_login);
 
 
-        checkInternetConnection();
 
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -139,12 +140,11 @@ public class MainActivity extends AppCompatActivity
         User u = new User(username.getText().toString(), pass.getText().toString());
         User uServer = null;
 
-        String nombreUsu ="";
+        String nombreUsu = "";
         String nombre = "";
         int grupo = 0;
         //Toast.makeText(this, username.getText(), Toast.LENGTH_SHORT).show();
-
-        try {
+       /* try {
             Main m = new Main(Message.LOGIN, null, u);
             uServer = (User) m.getObj();
             Log.d("MENSAJE", uServer.getUsername());
@@ -153,103 +153,22 @@ public class MainActivity extends AppCompatActivity
             grupo = uServer.getGroup().getId();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        Message msg = new Message(Message.LOGIN, null, u);
-        ThreadSender ts = new ThreadSender(this, "10.22.82.173", 8008, msg);
-        ts.start();
-        uServer = (User) obj;
-        
-        Log.d("MENSAJE", uServer.getUsername().toString());
-        GlobalUser gU = new GlobalUser();
-        gU.setGlobalUser(uServer);
-
+        }*/
         if (v.getId() == R.id.btn_login) {
             if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
-                /*
-                User u = new User(username.getText().toString(), pass.getText().toString());
-                User uServer = null;
-                String nombreUsu ="";
-                String nombre = "";
-                int grupo = 0;
-                try {
-                    Main m = new Main(Message.LOGIN, null, u);
-                    uServer = (User) m.getObj();
-                    //Log.d("MENSAJE", uServer.getUsername());
-                    nombreUsu = uServer.getUsername();
-                    nombre = uServer.getName();
-                    grupo = uServer.getGroup().getId();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if (v.getId() == R.id.btn_login) {
-                    if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
-                        Toast.makeText(this, "Must enter username and password", Toast.LENGTH_LONG).show();
-                    } else {
-                        if (uServer == null) {
-                            Toast.makeText(this, "That user does not exist", Toast.LENGTH_LONG).show();
-                        } else {
-                            Intent i = new Intent(this, MenuActivity.class);
-                            i.putExtra("NombreUsuario", nombreUsu);
-                            i.putExtra("Nombre", nombre);
-                            i.putExtra("Grupo", grupo);
-                            Toast.makeText(this, nombreUsu + " " + nombre + " " + grupo, Toast.LENGTH_LONG).show();
-                            startActivity(i);
-                        }
-                    }
-                }
-                */
-                Toast.makeText(this, "Must enter username and password", Toast.LENGTH_LONG).show();
-                //Main m = null;
-            } else {
-                if (uServer == null) {
-                    Toast.makeText(this, "That user does not exist", Toast.LENGTH_LONG).show();
-                } else {
-                    //String nombreUsu = username.getText().toString();
-                    Intent i = new Intent(this, MenuActivity.class);
-                    i.putExtra("NombreUsuario", nombreUsu);
-                    i.putExtra("Nombre", nombre);
-                    i.putExtra("Grupo", grupo);
-                    Toast.makeText(this, nombreUsu + " " + nombre + " " + grupo, Toast.LENGTH_LONG).show();
-                    startActivity(i);
-                }
+                ThreadSender ts = new ThreadSender(this, new Message(Message.LOGIN, null, new User("unaisainz", "unaisainz")));
+                ts.execute();
             }
         }
     }
 
-    private boolean checkInternetConnection() {
-        // get Connectivity Manager object to check connection
-        ConnectivityManager connec
-                =(ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
-        // Check for network connections
-        if ( connec.getNetworkInfo(0).getState() ==
-                android.net.NetworkInfo.State.CONNECTED ||
-                connec.getNetworkInfo(0).getState() ==
-                        android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() ==
-                        android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
-            Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
-            return true;
-        }else if (
-                connec.getNetworkInfo(0).getState() ==
-                        android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() ==
-                                android.net.NetworkInfo.State.DISCONNECTED  ) {
-            Toast.makeText(this, " Not Connected ", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        return false;
-    }
+
+
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
-    @Override
-    public void messageReceived(Object obj) {
+    public void messageReceived (Object obj){
         this.obj = obj;
+        Log.d("", obj + "");
     }
 }
