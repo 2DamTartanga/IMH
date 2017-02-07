@@ -10,35 +10,40 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
-<<<<<<< HEAD
-=======
 import com.tartanga.dam.imhandroid.manager.VersionController;
->>>>>>> 5d201462578ee07ef6386df9dd548f7a41f8bf8c
 import com.tartanga.dam.imhandroid.model.GlobalUser;
+import com.tartanga.dam.imhandroid.model.User;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnZonas, btnOT, btnInstructions, btnSettings;
-<<<<<<< HEAD
-=======
-    private VersionController vControl = new VersionController();
 
->>>>>>> 5d201462578ee07ef6386df9dd548f7a41f8bf8c
-    GlobalUser u;
+
+    private VersionController vControl = new VersionController();
+    private String nombreUsu ="";
+    private String nombre = "";
+    private int grupo = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
-        versionAdapter();
-=======
 
+        versionAdapter();
+        GlobalUser u = GlobalUser.getInstance();
+        User us = u.getGlobalUser();
+        //String nombre = u.getGlobalUser().getUsername();
+        nombreUsu = getIntent().getStringExtra("NombreUsuario");
+        nombre = getIntent().getStringExtra("Nombre");
+        grupo = getIntent().getIntExtra("Grupo", 0);
+        Log.d("Usuario", nombreUsu);
+        Log.d("Nombre", nombre);
+        Log.d("Grupo", nombreUsu);
         if(vControl.olderVersions())
             setContentView(R.layout.content_navigation_older_versions);
         else
             setContentView(R.layout.content_navigation);
 
->>>>>>> 5d201462578ee07ef6386df9dd548f7a41f8bf8c
-        Log.d("Usuario", u.getGlobalUser().getName());
+        //Log.d("Usuario", us.getUsername());
         btnZonas = (Button) findViewById(R.id.btnZones);
         btnZonas.setOnClickListener(this);
         btnOT = (Button) findViewById(R.id.btnOT);

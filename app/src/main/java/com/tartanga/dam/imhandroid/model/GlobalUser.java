@@ -6,8 +6,12 @@ import android.app.Application;
  * Created by 2dam on 06/02/2017.
  */
 
-public class GlobalUser extends Application{
+public class GlobalUser{
+    private static GlobalUser instance;
     private User globalUser;
+
+    private GlobalUser(){}
+
 
     public User getGlobalUser() {
         return globalUser;
@@ -15,5 +19,12 @@ public class GlobalUser extends Application{
 
     public void setGlobalUser(User globalUser) {
         this.globalUser = globalUser;
+    }
+
+    public static synchronized GlobalUser getInstance(){
+        if(instance==null){
+            instance = new GlobalUser();
+        }
+        return instance;
     }
 }

@@ -35,6 +35,10 @@ public class User {
 		this.group = group;
 	}
 
+	public User() {
+
+	}
+
 	public String getUsername() {
 		return username;
 	}

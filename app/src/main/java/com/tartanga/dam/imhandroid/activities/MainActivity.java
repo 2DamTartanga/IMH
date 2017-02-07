@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -127,12 +128,17 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         User u = new User(username.getText().toString(), pass.getText().toString());
-        User uServer = new User(username.getText().toString(), pass.getText().toString());
+        User uServer = null;
+        String nombreUsu ="";
+        String nombre = "";
+        int grupo = 0;
         try {
             Main m = new Main(Message.LOGIN, null, u);
             uServer = (User) m.getObj();
-            GlobalUser gU = new GlobalUser();
-            gU.setGlobalUser(uServer);
+            Log.d("MENSAJE", uServer.getUsername());
+            nombreUsu = uServer.getUsername();
+            nombre = uServer.getName();
+            grupo = uServer.getGroup().getId();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -144,6 +150,10 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(this, "That user does not exist", Toast.LENGTH_LONG).show();
                 } else {
                     Intent i = new Intent(this, MenuActivity.class);
+                    i.putExtra("NombreUsuario", nombreUsu);
+                    i.putExtra("Nombre", nombre);
+                    i.putExtra("Grupo", grupo);
+                    Toast.makeText(this, nombreUsu + " " + nombre + " " + grupo, Toast.LENGTH_LONG).show();
                     startActivity(i);
                 }
             }
