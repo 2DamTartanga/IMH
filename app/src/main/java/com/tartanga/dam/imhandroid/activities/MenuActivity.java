@@ -17,18 +17,17 @@ import com.tartanga.dam.imhandroid.model.User;
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnZonas, btnOT, btnInstructions, btnSettings;
-
-
     private VersionController vControl = new VersionController();
     private String nombreUsu ="";
     private String nombre = "";
     private int grupo = 0;
+    //GlobalUser u;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        versionAdapter();
+        //versionAdapter();
         GlobalUser u = GlobalUser.getInstance();
         User us = u.getGlobalUser();
         //String nombre = u.getGlobalUser().getUsername();
@@ -44,6 +43,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.content_navigation);
 
         //Log.d("Usuario", us.getUsername());
+        //Log.d("Usuario", u.getGlobalUser().getName());
+
         btnZonas = (Button) findViewById(R.id.btnZones);
         btnZonas.setOnClickListener(this);
         btnOT = (Button) findViewById(R.id.btnOT);
@@ -53,8 +54,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         btnSettings = (Button) findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(this);
 
-        int i = Build.VERSION.SDK_INT;
-        Toast.makeText(this, String.valueOf(i), Toast.LENGTH_LONG).show();
+        //int i = Build.VERSION.SDK_INT;
+        //Toast.makeText(this, String.valueOf(i), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -81,16 +82,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-
+/*
     private void versionAdapter() {
         if (android.os.Build.VERSION.SDK_INT > 19) {
-
 
         }
         else {
 
-
         }
     }
+*/
 }
-
