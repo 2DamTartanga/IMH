@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity
 
     Button btn;
     EditText username, pass;
+    Object obj = null;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
 
@@ -148,5 +149,10 @@ public class MainActivity extends AppCompatActivity
     public void messageReceived(Object obj) {
         Log.d("",obj+"");
 
+    }
+
+    @Override
+    public void messageReceived(Object obj) {
+        this.obj = obj;
     }
 }

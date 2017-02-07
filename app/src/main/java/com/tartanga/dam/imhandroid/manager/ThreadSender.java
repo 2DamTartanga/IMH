@@ -22,6 +22,8 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
     private final String HOST = "10.22.82.173";
     private MessageListener listener;
     private Socket cs;
+    private final String IP;
+    private final int PORT;
     private Message msg;
     public ThreadSender(Object listener, /*Socket cs,*/ Message msg) {
         Socket cs = null;
@@ -32,6 +34,13 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
         }
         this.listener = ((MessageListener) listener);
         this.cs = cs;
+        this.msg = msg;
+    }*/
+
+    public ThreadSender(Object listener, String IP, int PORT, Message msg){
+        this.listener = ((MessageListener) listener);
+        this.IP = IP;
+        this.PORT = PORT;
         this.msg = msg;
     }
 
@@ -46,7 +55,9 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
         try {
             out = new ObjectOutputStream(cs.getOutputStream());
             in = new ObjectInputStream(cs.getInputStream());
+            Log.d("MENSAJE", "Enviando mensaje");
             out.writeObject(msg);
+            Log.d("MENSAJE", "Mensaje enviado");
             input = in.readObject();
             publishProgress(input);
         }catch (SocketException | EOFException e) {
