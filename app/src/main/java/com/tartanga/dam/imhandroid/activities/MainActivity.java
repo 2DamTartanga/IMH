@@ -1,9 +1,13 @@
 package com.tartanga.dam.imhandroid.activities;
 
+<<<<<<< HEAD
 
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+=======
+import android.content.Intent;
+>>>>>>> 66c50ce46f06e911378b3f8e6195ec52ad11fb6c
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
@@ -17,6 +21,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+<<<<<<< HEAD
+=======
+import android.widget.TextView;
+>>>>>>> 66c50ce46f06e911378b3f8e6195ec52ad11fb6c
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
@@ -155,13 +163,19 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }*/
         if (v.getId() == R.id.btn_login) {
+<<<<<<< HEAD
             if (username.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
                 ThreadSender ts = new ThreadSender(this, new Message(Message.LOGIN, null, new User("unaisainz", "unaisainz")));
+=======
+            if (!username.getText().toString().isEmpty() && !pass.getText().toString().isEmpty()) {
+                ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN,null,new User(username.getText().toString(),pass.getText().toString())));
+>>>>>>> 66c50ce46f06e911378b3f8e6195ec52ad11fb6c
                 ts.execute();
             }
         }
     }
 
+<<<<<<< HEAD
 
 
 
@@ -170,5 +184,16 @@ public class MainActivity extends AppCompatActivity
     public void messageReceived (Object obj){
         this.obj = obj;
         Log.d("", obj + "");
+=======
+    @Override
+    public void messageReceived(Object obj) {
+        GlobalUser.setGlobalUser(((User) obj));
+        if(obj == null){
+            Toast.makeText(this,"Login invalid", Toast.LENGTH_LONG).show();
+        }else {
+            startActivity(new Intent(this, MenuActivity.class));
+            this.finish();//TODO cerrar esto?
+        }
+>>>>>>> 66c50ce46f06e911378b3f8e6195ec52ad11fb6c
     }
 }
