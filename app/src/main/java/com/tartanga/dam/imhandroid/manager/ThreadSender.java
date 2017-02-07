@@ -36,7 +36,6 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
         this.cs = cs;
         this.msg = msg;
     }
-<<<<<<< HEAD
 
     /*public ThreadSender(Object listener, String IP, int PORT, Message msg){
         this.listener = ((MessageListener) listener);
@@ -44,8 +43,7 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
         this.PORT = PORT;
         this.msg = msg;
     }*/
-=======
->>>>>>> 66c50ce46f06e911378b3f8e6195ec52ad11fb6c
+
 
     private void connectionLost() {
     }

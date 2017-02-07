@@ -8,24 +8,15 @@ import android.app.Application;
 
 
 public class GlobalUser extends Application{
-    private static GlobalUser instance;
-    private User globalUser;
-
-    public GlobalUser(){}
+    private static User globalUser;
 
 
     public User getGlobalUser() {
         return globalUser;
     }
 
-    public void setGlobalUser(User globalUser) {
-        this.globalUser = globalUser;
+    public static void setGlobalUser(User globalUser) {
+        GlobalUser.globalUser = globalUser;
     }
 
-    public static synchronized GlobalUser getInstance(){
-        if(instance==null){
-            instance = new GlobalUser();
-        }
-        return instance;
-    }
 }

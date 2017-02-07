@@ -31,17 +31,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //versionAdapter();
-
-        //versionAdapter();
-        GlobalUser u = GlobalUser.getInstance();
-        User us = u.getGlobalUser();
-        //String nombre = u.getGlobalUser().getUsername();
-        nombreUsu = getIntent().getStringExtra("NombreUsuario");
-        nombre = getIntent().getStringExtra("Nombre");
-        grupo = getIntent().getIntExtra("Grupo", 0);
-        Log.d("Usuario", nombreUsu);
-        Log.d("Nombre", nombre);
-        Log.d("Grupo", nombreUsu);
+        
         if(vControl.olderVersions())
             setContentView(R.layout.content_navigation_older_versions);
         else
