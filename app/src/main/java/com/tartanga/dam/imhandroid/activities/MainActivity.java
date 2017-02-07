@@ -1,6 +1,7 @@
 package com.tartanga.dam.imhandroid.activities;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.fragment_login);
+
+
+        checkInternetConnection();
+
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -196,7 +201,7 @@ public class MainActivity extends AppCompatActivity
                 if (uServer == null) {
                     Toast.makeText(this, "That user does not exist", Toast.LENGTH_LONG).show();
                 } else {
-                    String nombreUsu = username.getText().toString();
+                    //String nombreUsu = username.getText().toString();
                     Intent i = new Intent(this, MenuActivity.class);
                     i.putExtra("NombreUsuario", nombreUsu);
                     i.putExtra("Nombre", nombre);
@@ -206,6 +211,32 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         }
+    }
+
+    private boolean checkInternetConnection() {
+        // get Connectivity Manager object to check connection
+        ConnectivityManager connec
+                =(ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+
+        // Check for network connections
+        if ( connec.getNetworkInfo(0).getState() ==
+                android.net.NetworkInfo.State.CONNECTED ||
+                connec.getNetworkInfo(0).getState() ==
+                        android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() ==
+                        android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+            Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
+            return true;
+        }else if (
+                connec.getNetworkInfo(0).getState() ==
+                        android.net.NetworkInfo.State.DISCONNECTED ||
+                        connec.getNetworkInfo(1).getState() ==
+                                android.net.NetworkInfo.State.DISCONNECTED  ) {
+            Toast.makeText(this, " Not Connected ", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return false;
     }
 
     @Override

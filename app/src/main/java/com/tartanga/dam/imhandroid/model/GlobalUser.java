@@ -10,7 +10,7 @@ public class GlobalUser{
     private static GlobalUser instance;
     private User globalUser;
 
-    private GlobalUser(){}
+    public GlobalUser(){}
 
 
     public User getGlobalUser() {
