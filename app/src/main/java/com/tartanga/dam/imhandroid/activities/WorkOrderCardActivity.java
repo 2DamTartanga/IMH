@@ -46,7 +46,7 @@ public class WorkOrderCardActivity extends AppCompatActivity {
         private Breakdown breakdown;
 
          */
-
+        
         recycler = (RecyclerView) findViewById(R.id.container);
         recycler.setHasFixedSize(true);
 

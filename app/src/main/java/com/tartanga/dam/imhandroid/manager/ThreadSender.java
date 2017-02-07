@@ -49,9 +49,12 @@ public class ThreadSender extends Thread{
         try {
             out = new ObjectOutputStream(cs.getOutputStream());
             in = new ObjectInputStream(cs.getInputStream());
+            Log.d("MENSAJE", "Enviando mensaje");
             out.writeObject(msg);
+            Log.d("MENSAJE", "Mensaje enviado");
             input = in.readObject();
             listener.messageReceived(input);
+
         }catch (SocketException | EOFException e) {
             connectionLost();
         } catch (IOException e) {
