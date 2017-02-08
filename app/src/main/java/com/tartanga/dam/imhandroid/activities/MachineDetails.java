@@ -9,10 +9,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
+import com.tartanga.dam.imhandroid.fragments.AddBreakdownFragment;
+import com.tartanga.dam.imhandroid.fragments.BreakdownFragment;
 import com.tartanga.dam.imhandroid.fragments.FragmentAddReport;
 import com.tartanga.dam.imhandroid.fragments.MachineFragment;
 import com.tartanga.dam.imhandroid.fragments.WorkOrderFragment;
@@ -47,7 +50,7 @@ public class MachineDetails extends AppCompatActivity implements MessageListener
     }
     public void onClickAddRequest(View v){
         Intent i = new Intent(this, ActivityReport.class);
-        //AÑADIR PUTEXTRA CON EL DATO DEL INTENT ANTERIOR
+        i.putExtra("id", machine.getId());
         startActivity(i);
     }
 
@@ -66,16 +69,19 @@ public class MachineDetails extends AppCompatActivity implements MessageListener
 
     private void loadUI() {
         ArrayList<Breakdown> breakdowns = machine.getBreakdowns();
-        LinearLayout ll = (LinearLayout)(findViewById(R.id.scroll_view)).findViewById(R.id.layout);
+        ScrollView sv = (ScrollView) findViewById(R.id.scroll_view);
+        LinearLayout ll = (LinearLayout)sv.findViewById(R.id.layout);
         FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
         for (Breakdown br: breakdowns){
-            WorkOrderFragment mf = WorkOrderFragment.newInstance(br.getSubject(),br.getMachine().getId(), br.getEquipmentAvailable());
+            BreakdownFragment mf = BreakdownFragment.newInstance(br.getSubject(),machine.getId(), br.getEquipmentAvailable());
             //mf.setOnClickListener(this);//TODO quitar todos estos?
             ft.add(ll.getId(),mf);
         }
 
+        AddBreakdownFragment bf = AddBreakdownFragment.newInstance();
+        ft.add(ll.getId(),bf);
 
 
         ft.commit();

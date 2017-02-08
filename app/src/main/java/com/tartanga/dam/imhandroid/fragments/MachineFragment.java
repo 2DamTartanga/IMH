@@ -67,6 +67,7 @@ public class MachineFragment extends Fragment {
         ConstraintLayout cl = (ConstraintLayout) v.findViewById(R.id.layout);
         TextView txtId = ((TextView) cl.findViewById(R.id.tv_machine_name));
         ImageView imgStatus = ((ImageView) cl.findViewById(R.id.iv_machine_status));
+        txtId.setText(id);
         status = Character.toLowerCase(status);
         switch (status){
             case 'a':

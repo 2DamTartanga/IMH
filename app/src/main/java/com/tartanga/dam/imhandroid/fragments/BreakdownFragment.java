@@ -17,7 +17,7 @@ import com.tartanga.dam.imhandroid.R;
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
- * Use the {@link WorkOrderFragment#newInstance} factory method to
+ * Use the {@link BreakdownFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class BreakdownFragment extends Fragment {
@@ -45,11 +45,11 @@ public class BreakdownFragment extends Fragment {
      *
      * @param subject Parameter 1.
      * @param id Parameter 2.
-     * @return A new instance of fragment WorkOrderFragment.
+     * @return A new instance of fragment BreakdownFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static WorkOrderFragment newInstance(String subject, String id, String severity) {
-        WorkOrderFragment fragment = new WorkOrderFragment();
+    public static BreakdownFragment newInstance(String subject, String id, String severity) {
+        BreakdownFragment fragment = new BreakdownFragment();
         Bundle args = new Bundle();
         args.putString(ARG_SUBJECT, subject);
         args.putString(ARG_ID, id);
@@ -58,8 +58,8 @@ public class BreakdownFragment extends Fragment {
         return fragment;
     }
 
-    public static WorkOrderFragment newInstance(){
-        return new WorkOrderFragment();
+    public static BreakdownFragment newInstance(){
+        return new BreakdownFragment();
     }
 
     @Override

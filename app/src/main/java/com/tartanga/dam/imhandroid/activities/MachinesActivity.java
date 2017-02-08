@@ -22,13 +22,15 @@ import com.tartanga.dam.imhandroid.model.Machine;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.Section;
 
+import java.util.HashMap;
+
 public class MachinesActivity extends AppCompatActivity implements MessageListener {
 
     Section section;
     private ImageButton btn_working;
     private ImageButton btn_half_working;
     private ImageButton btn_not_working;
-
+    private HashMap<Character, Boolean> filter = new HashMap<>();
 
     private boolean workClicked=false;
     private boolean halfWorkClicked=false;
@@ -41,6 +43,9 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
         Intent i = getIntent();
         String sectionId = getIntent().getExtras().getString("zone");
 
+        filter.put('V',true);
+        filter.put('A',true);
+        filter.put('R',true);
         ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.WORK_ZONE, new Section(sectionId)));
         ts.execute();
 
@@ -53,6 +58,8 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
         btn_working = (ImageButton) findViewById(R.id.btnWorking);
         btn_half_working = (ImageButton) findViewById(R.id.btnHalfWorking);
         btn_not_working = (ImageButton) findViewById(R.id.btnNotWorking);
+
+
     }
 
     //MACHINE
@@ -74,11 +81,21 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
             btn_working.setImageResource(R.drawable.ic_working_disabled);
 
             workClicked=true;
+
         } else {
                 //btn_working.setBackgroundResource(R.color.colorWhite);
             btn_working.setImageResource(R.drawable.ic_working);
             workClicked=false;
         }
+        refreshFilter();
+    }
+
+    private void refreshFilter() {
+        filter.put('V',!workClicked);
+        filter.put('A',!halfWorkClicked);
+        filter.put('R',!notWorkClicked);
+
+        loadUi();
     }
 
     public void onClickHalfWork (View v) {
@@ -96,6 +113,7 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
                 //btn_half_working.setBackgroundResource(R.color.colorWhite);
             halfWorkClicked=false;
         }
+        refreshFilter();
     }
 
     public void onClickNotWork (View v) {
@@ -111,6 +129,7 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
                // btn_not_working.setBackgroundResource(R.color.colorWhite);
             notWorkClicked=false;
         }
+        refreshFilter();
     }
 
     //TODO: ONCLICK BOTONES DEL FRAGMENTO
@@ -150,13 +169,17 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
 
     private void loadUi() {
         LinearLayout ll = (LinearLayout)(findViewById(R.id.scroll_view)).findViewById(R.id.layout);
+        ll.removeAllViews();
         FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
         for (Machine m: section.getMachines()){
-            MachineFragment mf = MachineFragment.newInstance(m.getId(),m.getStatus());
-            mf.setOnClickListener(this);//TODO quitar todos estos?
-            ft.add(ll.getId(),mf);
+
+            if(filter.get(Character.toUpperCase(m.getStatus()))){
+                MachineFragment mf = MachineFragment.newInstance(m.getId(), m.getStatus());
+                mf.setOnClickListener(this);//TODO quitar todos estos?
+                ft.add(ll.getId(), mf);
+            }
         }
 
 
