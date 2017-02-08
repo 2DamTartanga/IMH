@@ -1,19 +1,25 @@
 package com.tartanga.dam.imhandroid.adaptadores;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.model.WorkOrder;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.WorkOrderViewHolder>{
+public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.WorkOrderViewHolder> {
 
     private List<WorkOrder> orders;
+
+
+
 
     public static class WorkOrderViewHolder extends RecyclerView.ViewHolder {
 
@@ -33,6 +39,8 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
 
 
         }
+
+
     }
 
     public WorkOrderAdapter(List<WorkOrder> orders) {
@@ -49,13 +57,14 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
 
     @Override
     public void onBindViewHolder(WorkOrderViewHolder holder, int position) {
-        //TODO: AQUI ES DONDE CARGAS LOS DATOS A LOS ELEMTOS DE LAS TARJETAS
+        //TODO: AQUI ES DONDE CARGAS LOS DATOS A LOS ELEMENTOS DE LAS TARJETAS
 
-        holder.tv_breakdown.setText("BEREAKDON" + position);
-        holder.tv_machine.setText("MACHINE" + position);
+        holder.tv_breakdown.setText(orders.get(position).getBreakdown().getSubject());
+        Log.d("MACHINEEEEEEEEEEEEEEEEE", orders.get(position).getBreakdown().getMachine().toString());
+        holder.tv_machine.setText((CharSequence) orders.get(position).getBreakdown().getMachine().getId());
         //TODO: PRIORITY
-        holder.tv_priority.setText("PRI"+position);
-        holder.tv_code.setText("CODE"+position);
+        holder.tv_priority.setText(orders.get(position).getSeverity()+"");
+        holder.tv_code.setText(orders.get(position).getBreakdown().getId()+"");
     }
 
     @Override
@@ -63,7 +72,9 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
 
         //TODO: UN COUNT DEL NUMERO DE WORK ORDERS QUE HAY EN LA BD
 
-        return 20;
+        return orders.size();
     }
+
+
 
 }

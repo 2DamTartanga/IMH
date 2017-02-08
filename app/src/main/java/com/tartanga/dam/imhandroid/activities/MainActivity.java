@@ -1,5 +1,9 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import com.tartanga.dam.imhandroid.model.User;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -14,18 +18,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
 import android.widget.TextView;
+
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
+import com.tartanga.dam.imhandroid.manager.Main;
 import com.tartanga.dam.imhandroid.manager.Manager;
 
 import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.model.User;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, MessageListener {
@@ -42,6 +51,9 @@ public class MainActivity extends AppCompatActivity
         StrictMode.ThreadPolicy p = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(p);
         setContentView(R.layout.fragment_login);
+
+
+
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -131,13 +143,19 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View v) {
         User u = new User(username.getText().toString(), pass.getText().toString());
         User uServer = null;
+
+        String nombreUsu = "";
+        String nombre = "";
+        int grupo = 0;
+
         //Toast.makeText(this, username.getText(), Toast.LENGTH_SHORT).show();
-        /*try {
+       /* try {
             Main m = new Main(Message.LOGIN, null, u);
             uServer = (User) m.getObj();
-            Toast.makeText(this, Message.LOGIN, Toast.LENGTH_SHORT).show();
-            GlobalUser gU = new GlobalUser();
-            gU.setGlobalUser(uServer);
+            Log.d("MENSAJE", uServer.getUsername());
+            nombreUsu = uServer.getUsername();
+            nombre = uServer.getName();
+            grupo = uServer.getGroup().getId();
         } catch (IOException e) {
             e.printStackTrace();
         }*/
@@ -149,6 +167,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     @Override
     public void messageReceived(Object obj) {
         GlobalUser.setGlobalUser(((User) obj));
@@ -158,5 +177,6 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, MenuActivity.class));
             this.finish();//TODO cerrar esto?
         }
+
     }
 }
