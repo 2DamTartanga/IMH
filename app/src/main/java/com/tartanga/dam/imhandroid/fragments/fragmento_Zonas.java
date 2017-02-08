@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
 
-import org.w3c.dom.Text;
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the

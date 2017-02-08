@@ -1,18 +1,14 @@
 package com.tartanga.dam.imhandroid.activities;
 
 import android.content.Intent;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.manager.VersionController;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
-import com.tartanga.dam.imhandroid.model.User;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 

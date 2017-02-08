@@ -3,15 +3,12 @@ package com.tartanga.dam.imhandroid.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ActivityChooserView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
-import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
 import com.tartanga.dam.imhandroid.adaptadores.WorkZonesAdapter;
 import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
 

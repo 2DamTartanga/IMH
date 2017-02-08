@@ -1,17 +1,14 @@
 package com.tartanga.dam.imhandroid.adaptadores;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
-import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.model.WorkOrder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.WorkOrderViewHolder> {

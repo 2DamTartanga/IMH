@@ -1,9 +1,7 @@
 package com.tartanga.dam.imhandroid.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 
 public class  Repair implements Serializable {

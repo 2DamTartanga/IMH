@@ -6,7 +6,6 @@ import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.model.Message;
 
 import java.io.IOException;
-import java.net.Socket;
 
 public class Main implements MessageListener {
 
