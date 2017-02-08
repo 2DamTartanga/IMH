@@ -13,7 +13,7 @@ public class GlobalUser extends Application{
         return globalUser;
     }
 
-    public void setGlobalUser(User globalUser) {
-        this.globalUser = globalUser;
+    public static void setGlobalUser(User globalUser) {
+        GlobalUser.globalUser = globalUser;
     }
 }
