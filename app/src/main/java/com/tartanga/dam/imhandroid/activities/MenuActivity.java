@@ -12,7 +12,7 @@ import com.tartanga.dam.imhandroid.model.GlobalUser;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnZonas, btnOT, btnInstructions, btnSettings;
+    Button btnZonas, btnOT, btnInstructions, btnSettings, btnLogout;
     private VersionController vControl = new VersionController();
 
     private String nombreUsu ="";
@@ -51,6 +51,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         btnInstructions.setOnClickListener(this);
         btnSettings = (Button) findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(this);
+        btnLogout = (Button) findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(this);
 
         //int i = Build.VERSION.SDK_INT;
         //Toast.makeText(this, String.valueOf(i), Toast.LENGTH_LONG).show();
@@ -78,6 +80,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnLogout:
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
+                finish();
                 break;
         }
     }
