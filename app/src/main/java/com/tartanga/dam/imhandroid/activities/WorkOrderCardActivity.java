@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
@@ -34,6 +35,8 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
     private TextView code;
+    private TextView machine;
+    private TextView sev;
 
 
     @Override
@@ -65,31 +68,36 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
         recycler.setLayoutManager(lManager);
 
 
-        Log.d("GROUP", GlobalUser.getGlobalUser().getGroup().getId()+"");
+        //Log.d("GROUP", GlobalUser.getGlobalUser().getGroup().getId()+"");
         ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.WORK_ORDER, GlobalUser.getGlobalUser().getGroup()));
         ts.execute();
-
-
     }
 
-    public void onClickWorkOrder(View v) {
+    public void onClickOrder(View v) {
         code = (TextView) v.findViewById(R.id.tv_code);
         Log.d("Mensaje", code.getText().toString());
-        Intent i = new Intent(this, DetailsWorkOrderActivity.class); //Mandar codigo de averia
-        i.putExtra("Codigo", code.getText().toString());
+        machine = (TextView) v.findViewById(R.id.tv_machine);
+        Log.d("Mensaje", machine.getText().toString());
+        sev = (TextView) v.findViewById(R.id.tv_priority);
+        Log.d("Mensaje", sev.getText().toString());
+        Intent i = new Intent(this, DetailsWorkOrderActivity.class);
+        String codigo = code.getText().toString().substring(3);
+        i.putExtra("Codigo", codigo);
+        i.putExtra("Maquina", machine.getText().toString());
+        i.putExtra("Sev", sev.getText().toString());
         startActivity(i);
     }
 
     @Override
     public void messageReceived(Object obj) {
-        Log.d("ArrayList de Ots", String.valueOf(obj));
         ArrayList<WorkOrder> obj2= ((ArrayList<WorkOrder>) obj);
-        Log.d("ArrayList de Ots", obj2.size()+"");
         orders=obj2;
-
-        adapter = new WorkOrderAdapter(orders);
-        recycler.setAdapter(adapter);
-
+        if(obj2==null){
+            Toast.makeText(this, "NO WORK ORDERS ASIGNED", Toast.LENGTH_SHORT).show();
+        }else{
+            adapter = new WorkOrderAdapter(orders);
+            recycler.setAdapter(adapter);
+        }
     }
 
 }

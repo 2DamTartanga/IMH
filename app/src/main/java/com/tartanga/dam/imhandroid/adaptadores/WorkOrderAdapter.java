@@ -59,8 +59,15 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
         //Log.d("MACHINEEEEEEEEEEEEEEEEE", orders.get(position).getBreakdown().getMachine().toString());
         holder.tv_machine.setText((CharSequence) orders.get(position).getBreakdown().getMachine().getId());
         //TODO: PRIORITY
-        holder.tv_priority.setText(orders.get(position).getSeverity()+"");
-        holder.tv_code.setText(orders.get(position).getBreakdown().getId()+"");
+        if(orders.get(position).getSeverity()==0){
+            holder.tv_priority.setText("Low");
+        }else if(orders.get(position).getSeverity()==1){
+            holder.tv_priority.setText("Medium");
+        }else if(orders.get(position).getSeverity()==2){
+            holder.tv_priority.setText("High");
+        }
+
+        holder.tv_code.setText("OT-" + orders.get(position).getBreakdown().getId());
     }
 
     @Override
