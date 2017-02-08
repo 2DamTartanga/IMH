@@ -41,7 +41,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent i = getIntent();
         String nombreUsuario = i.getStringExtra("NombreUsuario");
-        Toast.makeText(this, nombreUsuario, Toast.LENGTH_SHORT).show();
         //Log.d("Usuario", u.getGlobalUser().getName());
 
 

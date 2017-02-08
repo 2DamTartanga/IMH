@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:text="Breakdown: \nBroken screw"
+        android:text="Breakdown: \n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_breakdown"

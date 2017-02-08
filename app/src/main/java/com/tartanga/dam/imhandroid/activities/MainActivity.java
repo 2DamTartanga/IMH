@@ -142,14 +142,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         User u = new User(username.getText().toString(), pass.getText().toString());
-        User uServer = null;
+        ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN, null, u));
+        ts.execute();
+       /* User uServer = null;
 
         String nombreUsu = "";
         String nombre = "";
         int grupo = 0;
 
         //Toast.makeText(this, username.getText(), Toast.LENGTH_SHORT).show();
-       /* try {
+       /try {
             Main m = new Main(Message.LOGIN, null, u);
             uServer = (User) m.getObj();
             Log.d("MENSAJE", uServer.getUsername());
@@ -158,18 +160,21 @@ public class MainActivity extends AppCompatActivity
             grupo = uServer.getGroup().getId();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
         if (v.getId() == R.id.btn_login) {
             if (!username.getText().toString().isEmpty() && !pass.getText().toString().isEmpty()) {
                 ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN,null,new User(username.getText().toString(),pass.getText().toString())));
                 ts.execute();
+<<<<<<< HEAD
             }
             /*
             Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
             */
+=======
+            }*/
+>>>>>>> e343e477a72a239ca7ad32dc46e9354c2bead45b
         }
-    }
 
 
     @Override

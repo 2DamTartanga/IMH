@@ -19,8 +19,6 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
     private List<WorkOrder> orders;
 
 
-
-
     public static class WorkOrderViewHolder extends RecyclerView.ViewHolder {
 
         //TODO: AQUI DECLARAS LAS VARIABLES
@@ -37,9 +35,7 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
             tv_priority = (TextView)v.findViewById(R.id.tv_priority);
             tv_code = (TextView)v.findViewById(R.id.tv_code);
 
-
         }
-
 
     }
 
@@ -60,11 +56,18 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
         //TODO: AQUI ES DONDE CARGAS LOS DATOS A LOS ELEMENTOS DE LAS TARJETAS
 
         holder.tv_breakdown.setText(orders.get(position).getBreakdown().getSubject());
-        Log.d("MACHINEEEEEEEEEEEEEEEEE", orders.get(position).getBreakdown().getMachine().toString());
+        //Log.d("MACHINEEEEEEEEEEEEEEEEE", orders.get(position).getBreakdown().getMachine().toString());
         holder.tv_machine.setText((CharSequence) orders.get(position).getBreakdown().getMachine().getId());
         //TODO: PRIORITY
-        holder.tv_priority.setText(orders.get(position).getSeverity()+"");
-        holder.tv_code.setText(orders.get(position).getBreakdown().getId()+"");
+        if(orders.get(position).getSeverity()==0){
+            holder.tv_priority.setText("Low");
+        }else if(orders.get(position).getSeverity()==1){
+            holder.tv_priority.setText("Medium");
+        }else if(orders.get(position).getSeverity()==2){
+            holder.tv_priority.setText("High");
+        }
+
+        holder.tv_code.setText("OT-" + orders.get(position).getBreakdown().getId());
     }
 
     @Override
