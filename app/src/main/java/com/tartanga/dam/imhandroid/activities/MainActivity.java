@@ -160,13 +160,14 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }*/
         if (v.getId() == R.id.btn_login) {
-            /*
             if (!username.getText().toString().isEmpty() && !pass.getText().toString().isEmpty()) {
                 ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN,null,new User(username.getText().toString(),pass.getText().toString())));
                 ts.execute();
-            }*/
+            }
+            /*
             Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
+            */
         }
     }
 

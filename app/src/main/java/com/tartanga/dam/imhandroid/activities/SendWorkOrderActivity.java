@@ -19,6 +19,7 @@ import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.manager.VersionController;
+import com.tartanga.dam.imhandroid.model.Breakdown;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.Repair;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -46,10 +48,16 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     private boolean repairDate;
     private String formattedDate;
     private Date date;
-    private HashMap<Integer,String> tools;
+    private HashMap<Integer,String> tools = new HashMap<>();
+    private WorkOrder workOrder;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Breakdown breakdown = (Breakdown) getIntent().getSerializableExtra(("Breakdown");
+        workOrder = new WorkOrder(breakdown, 0, null, null, null);
 
         if(vControl.olderVersions())
             setContentView(R.layout.frame_repair_older_versions);
@@ -133,7 +141,9 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
         ts.execute();
 
-        String
+        ThreadSender ts2 = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, workOrder));
+        ts2.execute();
+
     }
 
     public void onSetRepairDate(View v) {
@@ -197,7 +207,25 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
 
     @Override
     public void messageReceived(Object obj) {
-        tools = ((HashMap<Integer, String>) obj);
+        tools.putAll((HashMap<Integer, String>) obj);
+        Log.d("TOOLS",tools.size()+"");
+        String[] toolsString = new String[tools.size()];
+
+        int i = 0;
+
+        for (Map.Entry<Integer, String> tool: tools.entrySet()) {
+            toolsString[i] = tool.getValue();
+            Log.d("TOOLSSIZE",tool.getValue()+"");
+            i++;
+        }
+
+        ArrayAdapter<String> adapterTools = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, toolsString);
+        adapterTools.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_tools.setAdapter(adapterTools);
+    }
+
+    public void onClickUndo(View v) {
+
     }
 
     /*
