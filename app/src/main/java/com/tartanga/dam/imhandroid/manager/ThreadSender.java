@@ -20,7 +20,7 @@ import java.net.SocketException;
 public class ThreadSender extends AsyncTask<Object, Object, Object>{
 
     private final int PORT = 8008;
-    private final String HOST = "10.22.82.173";
+    private final String HOST = "192.168.0.18";
     private MessageListener listener;
     private Socket cs;
     private Message msg;

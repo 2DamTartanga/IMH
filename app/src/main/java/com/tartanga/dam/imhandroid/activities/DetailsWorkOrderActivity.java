@@ -42,7 +42,7 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
         sev = getIntent().getStringExtra("Sev");
         codeInt = Integer.parseInt(code);
         Group group= GlobalUser.getGlobalUser().getGroup();
-        b = new Breakdown(codeInt,null,null,null,null,null,null,null);
+        b = new Breakdown(codeInt, null, null, null, null, null, null, null);
         Repair r = new Repair();
         r.setGroup(group);
         ArrayList<Repair> aR = new ArrayList<Repair>();

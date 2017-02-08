@@ -1,12 +1,14 @@
 package com.tartanga.dam.imhandroid.adaptadores;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.model.Breakdown;
 import com.tartanga.dam.imhandroid.model.WorkOrder;
 
 import java.util.List;
@@ -53,8 +55,9 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
         //TODO: AQUI ES DONDE CARGAS LOS DATOS A LOS ELEMENTOS DE LAS TARJETAS
 
         holder.tv_breakdown.setText(orders.get(position).getBreakdown().getSubject());
-        //Log.d("MACHINEEEEEEEEEEEEEEEEE", orders.get(position).getBreakdown().getMachine().toString());
-        holder.tv_machine.setText((CharSequence) orders.get(position).getBreakdown().getMachine().getId());
+        Breakdown d = orders.get(position).getBreakdown();
+
+        holder.tv_machine.setText(orders.get(position).getBreakdown().getMachine().getId());
         //TODO: PRIORITY
         if(orders.get(position).getSeverity()==0){
             holder.tv_priority.setText("Low");

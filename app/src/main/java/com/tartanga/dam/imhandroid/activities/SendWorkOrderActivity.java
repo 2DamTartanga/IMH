@@ -51,7 +51,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Breakdown breakdown = (Breakdown) getIntent().getSerializableExtra(("Breakdown");
+        Breakdown breakdown = (Breakdown) getIntent().getSerializableExtra(("Breakdown"));
         workOrder = new WorkOrder(breakdown, 0, null, null, null);
 
         if(vControl.olderVersions())

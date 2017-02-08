@@ -1,6 +1,7 @@
 package com.tartanga.dam.imhandroid.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
@@ -84,10 +86,14 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
 
     @Override
     public void messageReceived(Object obj) {
-        ArrayList<WorkOrder> obj2= ((ArrayList<WorkOrder>) obj);
-        orders=obj2;
+        ArrayList<WorkOrder> obj2 = ((ArrayList<WorkOrder>) obj);
+        orders = obj2;
         if(obj2==null){
-            Toast.makeText(this, "NO WORK ORDERS ASIGNED", Toast.LENGTH_SHORT).show();
+            StyleableToast st = new StyleableToast(this, "No Work Orders Assigned.", Toast.LENGTH_SHORT);
+            st.setBackgroundColor(Color.parseColor("#ff5a5f"));
+            st.setTextColor(Color.WHITE);
+            st.setMaxAlpha();
+            st.show();
         }else{
             adapter = new WorkOrderAdapter(orders);
             recycler.setAdapter(adapter);
