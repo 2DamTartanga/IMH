@@ -28,19 +28,12 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         //versionAdapter();
 
-        if(vControl.olderVersions())
-            setContentView(R.layout.content_navigation_older_versions);
-        else
-            setContentView(R.layout.content_navigation);
+        setContentView(vControl.olderVersions() ? (R.layout.content_navigation_older_versions) : (R.layout.content_navigation));
         //Log.d("Usuario", us.getUsername());
-
 
         Intent i = getIntent();
         String nombreUsuario = i.getStringExtra("NombreUsuario");
         //Log.d("Usuario", u.getGlobalUser().getName());
-
-
-
         //Log.d("Usuario", u.getGlobalUser().getName());
 
         btnZonas = (Button) findViewById(R.id.btnZones);
