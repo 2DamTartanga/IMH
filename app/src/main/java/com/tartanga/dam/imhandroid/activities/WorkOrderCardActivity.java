@@ -31,7 +31,6 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
 
-    private int countObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +70,7 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
 
     public void onClickWorkOrder(View v) {
         Intent i = new Intent(this, DetailsWorkOrderActivity.class);
-        i.putExtra("Instruct", false);
+        i.putExtra("Instruct", false);      //Mandar codigo de averia
         startActivity(i);
     }
 
@@ -86,6 +85,5 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
         recycler.setAdapter(adapter);
 
     }
-
 
 }
