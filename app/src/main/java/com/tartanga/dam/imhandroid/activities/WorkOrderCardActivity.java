@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
@@ -20,6 +21,8 @@ import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.WorkOrder;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,7 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
+    private TextView code;
 
 
     @Override
@@ -69,8 +73,13 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
     }
 
     public void onClickWorkOrder(View v) {
+        code = (TextView) v.findViewById(R.id.tv_code);
         Intent i = new Intent(this, DetailsWorkOrderActivity.class);
+<<<<<<< HEAD
         i.putExtra("Instruct", false);      //Mandar codigo de averia
+=======
+        i.putExtra("Codigo", code.getText().toString());
+>>>>>>> 1f55a3fe48db95f85c40c40481539db69635addf
         startActivity(i);
     }
 

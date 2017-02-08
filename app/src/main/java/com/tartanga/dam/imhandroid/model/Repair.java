@@ -6,7 +6,7 @@ import java.util.Date;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class Repair implements Serializable {
+public class  Repair implements Serializable {
 
 	/**
 	 * 
