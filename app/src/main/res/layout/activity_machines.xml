@@ -12,11 +12,18 @@
     tools:context="com.tartanga.dam.imhandroid.activities.MachinesActivity"
     android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-        android:id="@+id/machineList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-            android:layout_weight="30"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:id="@+id/scroll_view">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/layout" />
+        </ScrollView>
 
         <LinearLayout
             android:background="@android:drawable/editbox_background_normal"

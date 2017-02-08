@@ -10,16 +10,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.tartanga.dam.imhandroid.activities.MachineDetails"
     android:orientation="vertical">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="30"/>
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/container2"
-        android:layout_weight="0.5">
 
-    </android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/card_add_request" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -1,36 +1,34 @@
 package com.tartanga.dam.imhandroid.activities;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
-import com.tartanga.dam.imhandroid.adaptadores.MachineAdapter;
+import com.tartanga.dam.imhandroid.fragments.MachineFragment;
+import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
+import com.tartanga.dam.imhandroid.fragments.fragmento_Zonas;
+import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
+import com.tartanga.dam.imhandroid.model.Machine;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.Section;
 
-import java.util.List;
+public class MachinesActivity extends AppCompatActivity implements MessageListener {
 
-public class MachinesActivity extends AppCompatActivity {
-
-    List machines;
-    LinearLayout linear;
-
+    Section section;
     private ImageButton btn_working;
     private ImageButton btn_half_working;
     private ImageButton btn_not_working;
 
-    private RecyclerView recycler;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager lManager;
 
     private boolean workClicked=false;
     private boolean halfWorkClicked=false;
@@ -40,11 +38,11 @@ public class MachinesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_machines);
-
+        Intent i = getIntent();
         String sectionId = getIntent().getExtras().getString("zone");
 
         ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.WORK_ZONE, new Section(sectionId)));
-
+        ts.execute();
 
         //BOTONES FRAGMENTO
         /*btn_working = (ImageButton) findViewById(R.id.btn_working);
@@ -140,5 +138,29 @@ public class MachinesActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public void messageReceived(Object obj) {
+        if(obj instanceof Section){
+            this.section = ((Section) obj);
+            loadUi();
+        }
+    }
+
+    private void loadUi() {
+        LinearLayout ll = (LinearLayout)(findViewById(R.id.scroll_view)).findViewById(R.id.layout);
+        FragmentManager fm = this.getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        for (Machine m: section.getMachines()){
+            MachineFragment mf = MachineFragment.newInstance(m.getId(),m.getStatus());
+            mf.setOnClickListener(this);//TODO quitar todos estos?
+            ft.add(ll.getId(),mf);
+        }
+
+
+
+        ft.commit();
     }
 }
