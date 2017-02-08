@@ -72,9 +72,9 @@
     <string name="title">Change password</string>
     <string name="username">Username:&#160;&#160;</string>
     <string name="currenPass">Current password:</string>
-    <string name="edCurrenPass">Enter your current password</string>
+    <string name="edCurrenPass">Enter your current password here</string>
     <string name="newPass">New password:</string>
-    <string name="edNewPass">Enter your new password</string>
+    <string name="edNewPass">Enter your new password here</string>
     <string name="btnChangePass">Change password</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -82,5 +82,10 @@
     <string name="login_invalid_msg">Invalid login!</string>
     <string name="login_password_txt">Password</string>
     <string name="login_username_txt">Username</string>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Euskera</item>
+    </string-array>
 
 </resources>
