@@ -34,6 +34,8 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
     private TextView code;
+    private TextView machine;
+    private TextView sev;
 
     private int countObj;
 
@@ -75,8 +77,12 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
 
     public void onClickWorkOrder(View v) {
         code = (TextView) v.findViewById(R.id.tv_code);
+        machine = (TextView) v.findViewById(R.id.tv_machine);
+        sev = (TextView) v.findViewById(R.id.tv_priority);
         Intent i = new Intent(this, DetailsWorkOrderActivity.class);
         i.putExtra("Codigo", code.getText().toString());
+        i.putExtra("Maquina", machine.getText().toString());
+        i.putExtra("Sev", sev.getText().toString());
         startActivity(i);
     }
 
