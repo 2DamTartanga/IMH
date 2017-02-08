@@ -74,12 +74,9 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
 
     public void onClickWorkOrder(View v) {
         code = (TextView) v.findViewById(R.id.tv_code);
-        Intent i = new Intent(this, DetailsWorkOrderActivity.class);
-<<<<<<< HEAD
-        i.putExtra("Instruct", false);      //Mandar codigo de averia
-=======
+        Log.d("Mensaje", code.getText().toString());
+        Intent i = new Intent(this, DetailsWorkOrderActivity.class); //Mandar codigo de averia
         i.putExtra("Codigo", code.getText().toString());
->>>>>>> 1f55a3fe48db95f85c40c40481539db69635addf
         startActivity(i);
     }
 
