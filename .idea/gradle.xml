@@ -6,7 +6,10 @@
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
         <option name="gradleHome" value="C:\Program Files\Android\Android Studio2\gradle\gradle-2.14.1" />
+>>>>>>> 1f55a3fe48db95f85c40c40481539db69635addf
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -14,8 +17,11 @@
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+<<<<<<< HEAD
+=======
 =======
 >>>>>>> f6186b9910f42cb2b94df785a3abc284c2925733
+>>>>>>> 1f55a3fe48db95f85c40c40481539db69635addf
       </GradleProjectSettings>
     </option>
   </component>
