@@ -78,7 +78,8 @@
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:drawableRight="@drawable/ic_menu_instructions"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:onClick="onClickInstructions" />
 
     <Button
         android:text="Start Working"

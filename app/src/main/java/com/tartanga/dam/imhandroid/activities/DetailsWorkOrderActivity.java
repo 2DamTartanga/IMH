@@ -14,7 +14,12 @@ import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.manager.VersionController;
 import com.tartanga.dam.imhandroid.model.Breakdown;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
+import com.tartanga.dam.imhandroid.model.Group;
 import com.tartanga.dam.imhandroid.model.Message;
+import com.tartanga.dam.imhandroid.model.Repair;
+import com.tartanga.dam.imhandroid.model.WorkOrder;
+
+import java.util.ArrayList;
 
 public class DetailsWorkOrderActivity extends AppCompatActivity implements MessageListener{
 
@@ -27,6 +32,7 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
     private VersionController vControl = new VersionController();
     private Breakdown b;
     private int codeInt;
+    private WorkOrder wOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +42,14 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
         machine = getIntent().getStringExtra("Maquina");
         sev = getIntent().getStringExtra("Sev");
         codeInt = Integer.parseInt(code);
+        Group group= GlobalUser.getGlobalUser().getGroup();
         b = new Breakdown(codeInt,null,null,null,null,null,null,null);
-        ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.BREAKDOWN, b));
+        Repair r = new Repair();
+        r.setGroup(group);
+        ArrayList<Repair> aR = new ArrayList<Repair>();
+        aR.add(r);
+        WorkOrder wo = new WorkOrder(b, 0, null, null, null, aR);
+        ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.WORK_ORDER, wo));
         ts.execute();
         if(vControl.olderVersions())
             setContentView(R.layout.fragment_work_order_older_versions);
@@ -56,11 +68,16 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
         tFailure = (TextView) findViewById(R.id.tv_failure_type);
 
 
+
         if(ins) {
             btnStart.setVisibility(View.INVISIBLE);
             btnNext.setVisibility(View.INVISIBLE);
             btnCancel.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void onClickInstructions(View v){
+
     }
 
     public void onClickStart(View v) {
@@ -88,15 +105,18 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
 
     @Override
     public void messageReceived(Object obj) {
-        Breakdown bd = (Breakdown) obj;
-        rellenar(bd);
+        if(obj instanceof WorkOrder){
+            wOrder = (WorkOrder) obj;
+            rellenar();
+        }
+
     }
 
-    private void rellenar(Breakdown bd) {
+    private void rellenar() {
         tMachine.setText(machine);
         tSev.setText("Severity: " + sev);
-        tBreakdown.setText("Breakdown \n" + bd.getSubject());
-        tDescripcion.setText("Description \n" + bd.getDescription());
-        tFailure.setText("Failure type: " + bd.getFailureType());
+        tBreakdown.setText("Breakdown \n" + wOrder.getBreakdown().getSubject());
+        tDescripcion.setText("Description \n" + wOrder.getBreakdown().getDescription());
+        tFailure.setText("Failure type: " + wOrder.getBreakdown().getFailureType());
     }
 }

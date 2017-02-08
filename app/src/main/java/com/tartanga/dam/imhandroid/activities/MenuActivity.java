@@ -80,7 +80,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(settings);
                 break;
             case R.id.btnLogout:
-                //TODO: MÉTODO BD PARA LOGOUT
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
                 break;
         }
     }
