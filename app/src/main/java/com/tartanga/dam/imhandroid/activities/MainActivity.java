@@ -1,6 +1,7 @@
 package com.tartanga.dam.imhandroid.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.Manager;
@@ -164,7 +166,12 @@ public class MainActivity extends AppCompatActivity
     public void messageReceived(Object obj) {
         GlobalUser.setGlobalUser(((User) obj));
         if(obj == null){
-            Toast.makeText(this,"Login invalid", Toast.LENGTH_LONG).show();
+            StyleableToast t = new StyleableToast(this, getApplicationContext().getString(R.string.login_invalid_msg), Toast.LENGTH_SHORT);
+            t.setBackgroundColor(Color.parseColor("#ff5a5f"));
+            t.setTextColor(Color.WHITE);
+            t.setIcon(R.drawable.ic_alert_login);
+            t.setMaxAlpha();
+            t.show();
         }else {
             startActivity(new Intent(this, MenuActivity.class));
             this.finish();//TODO cerrar esto?
