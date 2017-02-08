@@ -33,6 +33,7 @@
     <string name="maintenance_request_machine">Machine: %1$s</string>
     <string name="machine_details">Touch for details</string>
     <string name="failure_type">Failure type:</string>
+    <string name="undo">UNDO</string>
 
     <string-array name="arr_failure_type">
         <item>Choose failure type</item>

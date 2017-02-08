@@ -1,8 +1,10 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -13,15 +15,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
+import com.tartanga.dam.imhandroid.interfaces.MessageListener;
+import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.manager.VersionController;
+import com.tartanga.dam.imhandroid.model.Breakdown;
+import com.tartanga.dam.imhandroid.model.GlobalUser;
+import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.Repair;
+import com.tartanga.dam.imhandroid.model.WorkOrder;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 
-public class SendWorkOrderActivity extends AppCompatActivity {
+public class SendWorkOrderActivity extends AppCompatActivity implements MessageListener{
 
     private EditText et_time_spent;
     private Spinner spn_failure_localization;
@@ -35,10 +48,16 @@ public class SendWorkOrderActivity extends AppCompatActivity {
     private boolean repairDate;
     private String formattedDate;
     private Date date;
+    private HashMap<Integer,String> tools = new HashMap<>();
+    private WorkOrder workOrder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Breakdown breakdown = (Breakdown) getIntent().getSerializableExtra(("Breakdown");
+        workOrder = new WorkOrder(breakdown, 0, null, null, null);
 
         if(vControl.olderVersions())
             setContentView(R.layout.frame_repair_older_versions);
@@ -118,6 +137,13 @@ public class SendWorkOrderActivity extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_Availability.setAdapter(adapterAval);
+
+        ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
+        ts.execute();
+
+        ThreadSender ts2 = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, workOrder));
+        ts2.execute();
+
     }
 
     public void onSetRepairDate(View v) {
@@ -154,7 +180,7 @@ public class SendWorkOrderActivity extends AppCompatActivity {
                 r.setRepaired(true);
             else
                 r.setRepaired(false);
-            
+
         } else {
             Toast.makeText(this, "Please, fill in all fields", Toast.LENGTH_LONG).show();
         }
@@ -178,4 +204,40 @@ public class SendWorkOrderActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+    @Override
+    public void messageReceived(Object obj) {
+        tools.putAll((HashMap<Integer, String>) obj);
+        Log.d("TOOLS",tools.size()+"");
+        String[] toolsString = new String[tools.size()];
+
+        int i = 0;
+
+        for (Map.Entry<Integer, String> tool: tools.entrySet()) {
+            toolsString[i] = tool.getValue();
+            Log.d("TOOLSSIZE",tool.getValue()+"");
+            i++;
+        }
+
+        ArrayAdapter<String> adapterTools = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, toolsString);
+        adapterTools.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_tools.setAdapter(adapterTools);
+    }
+
+    public void onClickUndo(View v) {
+
+    }
+
+    /*
+    @Override
+    public void messageReceived(Object obj) {
+        Log.d("ArrayList de Ots", String.valueOf(obj));
+        ArrayList<WorkOrder> obj2= ((ArrayList<WorkOrder>) obj);
+        Log.d("ArrayList de Ots", obj2.size()+"");
+        orders=obj2;
+
+        adapter = new WorkOrderAdapter(orders);
+        recycler.setAdapter(adapter);
+
+    }*/
 }

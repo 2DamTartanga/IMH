@@ -22,6 +22,7 @@ public class Message implements Serializable{
 	public static final String MACHINE = "machine";
 	public static final String WORK_ZONE = "work zone";
 	public static final String BREAKDOWN = "breakdown";
+	public static final String TOOLS = "tools";
 
 	//public static final String ENGLISH = "en";
 	//public static final String EUSKARA = "eus";
