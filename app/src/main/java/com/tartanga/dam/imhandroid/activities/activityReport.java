@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,10 +13,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.interfaces.MessageListener;
+import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.manager.VersionController;
+import com.tartanga.dam.imhandroid.model.Breakdown;
+import com.tartanga.dam.imhandroid.model.GlobalUser;
+import com.tartanga.dam.imhandroid.model.Machine;
+import com.tartanga.dam.imhandroid.model.Message;
 
-public class ActivityReport extends AppCompatActivity {
+public class ActivityReport extends AppCompatActivity implements MessageListener {
 
     TextView tMachineCode;
     Spinner sFailureType;
@@ -23,6 +31,7 @@ public class ActivityReport extends AppCompatActivity {
     EditText eSubject;
     EditText eDescription;
     Button btn;
+    String machineCode = "";
     private VersionController vControl = new VersionController();
 
     @Override
@@ -40,6 +49,8 @@ public class ActivityReport extends AppCompatActivity {
         eSubject = (EditText) findViewById(R.id.et_breakdown);
         eDescription = (EditText) findViewById(R.id.et_description);
         btn = (Button) findViewById(R.id.btn_send);
+        machineCode = getIntent().getExtras().getString("id");
+        tMachineCode.setText(getString(R.string.maintenance_request_machine,machineCode));
 
         //SPINNER FAILURE TYPE
         String[] type = getResources().getStringArray(R.array.arr_failure_type);
@@ -103,16 +114,52 @@ public class ActivityReport extends AppCompatActivity {
     }
 
     public void onClickSend(View v){
-        String machineCode = tMachineCode.getText().toString();
-        String failureType = sFailureType.toString();
-        String equipmentAvailable = sEquipmentAvailable.toString();
         String subject = eSubject.getText().toString();
         String description = eDescription.getText().toString();
-        Toast.makeText(this,"ENVIAR DATOS", Toast.LENGTH_LONG).show();
+        int equipmentAvailable = sEquipmentAvailable.getSelectedItemPosition();
+        String failureType = sFailureType.getSelectedItem().toString();
+        boolean ok =  (!subject.isEmpty() && equipmentAvailable != 0 && sFailureType.getSelectedItemPosition() != 0 );
+        Machine m = new Machine(machineCode);
+        String failure = "s";
+        switch (equipmentAvailable){
+            case 1:
+                failure = "V";
+                break;
+            case 2:
+                failure = "R";
+                break;
+            case 3:
+                failure = "A";
+                break;
+            default:
+                ok = false;
+                break;
+        }
+        Breakdown br = new Breakdown(0,new java.util.Date(), GlobalUser.getGlobalUser(),failureType,subject,description,m,failure);
+        if(ok) {
+            ThreadSender ts = new ThreadSender(this, new Message(Message.ADD, Message.BREAKDOWN, br));
+            ts.execute();
+            Toast.makeText(this, "BREAKDOWN CREATED", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, MenuActivity.class);
+            startActivity(i);
+            this.finish();
+        }else{
+            StyleableToast t = new StyleableToast(this, "FILL EMPTY FIELDS", Toast.LENGTH_SHORT);
+            t.setBackgroundColor(Color.parseColor("#ff5a5f"));
+            t.setTextColor(Color.WHITE);
+            t.setIcon(R.drawable.ic_alert_login);
+            t.setMaxAlpha();
+            t.show();
+        }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public void messageReceived(Object obj) {
+
     }
 }

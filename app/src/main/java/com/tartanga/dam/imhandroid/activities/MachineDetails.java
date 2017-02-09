@@ -46,7 +46,7 @@ public class MachineDetails extends AppCompatActivity implements MessageListener
 
     }
 
-    public void onClickWorkOrder(View v){
+    public void onClickOrder(View v){
 
     }
     public void onClickAddRequest(View v){
@@ -87,4 +87,6 @@ public class MachineDetails extends AppCompatActivity implements MessageListener
 
         ft.commit();
     }
+
+
 }
