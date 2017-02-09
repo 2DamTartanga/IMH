@@ -57,7 +57,7 @@ public class BreakdownFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        CardView v = (CardView) inflater.inflate(R.layout.card_work_order, container, false);
+        CardView v = (CardView) inflater.inflate(R.layout.card_breakdown, container, false);
         ConstraintLayout lay = (ConstraintLayout) v.findViewById(R.id.layout);
         TextView txtSubject = (TextView) lay.findViewById(R.id.tv_breakdown);
         TextView txtMachine = (TextView) lay.findViewById(R.id.tv_machine);
