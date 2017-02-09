@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+        //
         if (v.getId() == R.id.btn_login) {
             ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN,null,new User("unaisainz","unaisainz")));
             ts.execute();
