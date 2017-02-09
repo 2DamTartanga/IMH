@@ -92,11 +92,12 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
     }
 
     private float calculateTotal() {
+
         for (Section sec: sections){
             for(int i=0; i< status.length; i++){
                 status[i] += sec.getStatus()[i];
             }
         }
-        return 97;//TODO calcular
+        return 97.32653244231f;//TODO calcular
     }
 }
