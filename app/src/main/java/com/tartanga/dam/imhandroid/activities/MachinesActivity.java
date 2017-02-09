@@ -64,7 +64,6 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
 
     //MACHINE
     public void onClickMachine(View v) {
-        Toast.makeText(this,"Details", Toast.LENGTH_LONG).show();
         TextView txt = (TextView) v.findViewById(R.id.tv_machine_name);
         Intent i = new Intent(this, MachineDetails.class);
         i.putExtra("codigo", txt.getText());
