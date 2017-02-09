@@ -17,7 +17,6 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
 
     private List<WorkOrder> orders;
 
-
     public static class WorkOrderViewHolder extends RecyclerView.ViewHolder {
 
         //TODO: AQUI DECLARAS LAS VARIABLES
