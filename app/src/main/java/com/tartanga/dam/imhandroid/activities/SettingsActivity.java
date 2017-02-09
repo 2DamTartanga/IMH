@@ -19,7 +19,6 @@ import com.tartanga.dam.imhandroid.model.User;
 
 public class SettingsActivity extends AppCompatActivity implements MessageListener{
 
-    private Button btnChangePass;
     private TextView txtUsername, txtCurrentPass;
     private EditText edCurrentPass, edNewPass;
 
@@ -39,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
         ThreadSender ts = new ThreadSender(this, new Message(Message.GET, null, u));
         ts.execute();
 
-        btnChangePass = (Button)findViewById(R.id.btnChangePass);
+        Button btnChangePass = (Button) findViewById(R.id.btnChangePass);
         btnChangePass.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             if(checkForm()) {
