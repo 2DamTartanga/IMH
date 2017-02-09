@@ -4,22 +4,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
-import com.tartanga.dam.imhandroid.manager.Manager;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.Message;
@@ -56,13 +49,10 @@ public class MainActivity extends AppCompatActivity
         User u = new User(username.getText().toString(), pass.getText().toString());
         if (v.getId() == R.id.btn_login) {
             if (!username.getText().toString().isEmpty() && !pass.getText().toString().isEmpty()) {
-                ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN,null,u));
+                ThreadSender ts = new ThreadSender(this, new Message(Message.LOGIN, null, u));
                 ts.execute();
             }
-            /*
-            Intent i = new Intent(this, MenuActivity.class);
-            startActivity(i);
-            */
+        }
     }
 
 
