@@ -62,6 +62,12 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
             if(((ArrayList) obj).get(0) != null) {
                 if (((ArrayList) obj).get(0) instanceof Section) {
                     sections = ((ArrayList) obj);
+                    status = new int[]{0,0,0};
+                    for (Section sec: sections){
+                        for(int i=0; i<status.length; i++){
+                            status[i] += sec.getStatus()[i];
+                        }
+                    }
                     if(total != -1){
                         isEmpty = false;
                     }
@@ -82,7 +88,6 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
         LinearLayout ll = (LinearLayout) findViewById(R.id.activity_fragmentos_cartas);
         FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        status = new int[]{0,0,0};
         float total = this.total;
         fragment_ZoneTotal fZT = fragment_ZoneTotal.newInstance(status[0],status[2],status[1],total);
         ft.add(ll.getId(), fZT);
@@ -93,17 +98,11 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
             ft.add(ll.getId(),fz);
         }
 
-
-
         ft.commit();
     }
 
     private void calculateTotal(float obj) {
-        for (Section sec: sections){
-            for(int i=0; i< status.length; i++){
-                status[i] += sec.getStatus()[i];
-            }
-        }
+
         total = obj;
     }
 }
