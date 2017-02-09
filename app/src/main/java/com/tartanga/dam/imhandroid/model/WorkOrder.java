@@ -14,7 +14,7 @@ public class WorkOrder implements Serializable {
 	private String others;
 	private String typeOfMaintenance;
 	private Date creationDate;
-	private ArrayList<Repair> repairs;
+	private Repair repair;
 	private Breakdown breakdown;
 	
 	public WorkOrder(Breakdown breakdown, int severity, Date date, String others, String typeOfMaintenance) {
@@ -25,13 +25,13 @@ public class WorkOrder implements Serializable {
 		this.typeOfMaintenance = typeOfMaintenance;
 	}
 	public WorkOrder(Breakdown breakdown, int severity, Date date, String others, String typeOfMaintenance,
-			ArrayList<Repair> repairs) {
+			Repair repairs) {
 		this.breakdown = breakdown;
 		this.severity = severity;
 		this.creationDate = date;
 		this.others = others;
 		this.typeOfMaintenance = typeOfMaintenance;
-		this.repairs = repairs;
+		this.repair = repairs;
 	}
 	
 	public Breakdown getBreakdown() {
@@ -49,8 +49,8 @@ public class WorkOrder implements Serializable {
 	public String getTypeOfMaintenance() {
 		return typeOfMaintenance;
 	}
-	public ArrayList<Repair> getRepairs() {
-		return repairs;
+	public Repair getRepairs() {
+		return repair;
 	}
 	
 

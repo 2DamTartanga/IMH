@@ -61,9 +61,7 @@ public class Breakdown implements Serializable {
 		return equipmentAvailable;
 	}
 
-	public String toString(){
+	/*public String toString(){
 		return getMachine().toString();
-	}
-	
-	
+	}*/
 }
