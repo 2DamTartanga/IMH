@@ -45,9 +45,7 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
         b = new Breakdown(codeInt, null, null, null, null, null, null, null);
         Repair r = new Repair();
         r.setGroup(group);
-        ArrayList<Repair> aR = new ArrayList<Repair>();
-        aR.add(r);
-        WorkOrder wo = new WorkOrder(b, 0, null, null, null, aR);
+        WorkOrder wo = new WorkOrder(b, 0, null, null, null, r);
         ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.WORK_ORDER, wo));
         ts.execute();
         if(vControl.olderVersions())
@@ -65,8 +63,6 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
         tDescripcion = (TextView) findViewById(R.id.tv_description);
         tSev = (TextView) findViewById(R.id.tv_severity);
         tFailure = (TextView) findViewById(R.id.tv_failure_type);
-
-
 
         if(ins) {
             btnStart.setVisibility(View.INVISIBLE);
@@ -93,7 +89,7 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
 
     public void onClickNext(View v) {
         Intent i = new Intent(this, SendWorkOrderActivity.class);
-        i.putExtra("Codigo", code);
+        i.putExtra("Work", wOrder);
         startActivity(i);
     }
 

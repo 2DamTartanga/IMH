@@ -1,6 +1,7 @@
 package com.tartanga.dam.imhandroid.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Machine implements Serializable {
 
@@ -29,6 +30,12 @@ public class Machine implements Serializable {
 	private String serialNumber;
 	private String year;
 	private Section section; //??
+	private ArrayList<Breakdown> breakdowns;
+
+	public Machine(String id) {
+		this.id = id;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -149,7 +156,13 @@ public class Machine implements Serializable {
 	public void setSection(Section section) {
 		this.section = section;
 	}
-	
-	
-	
+
+
+	public ArrayList<Breakdown> getBreakdowns() {
+		return breakdowns;
+	}
+
+	public void setBreakdowns(ArrayList<Breakdown> breakdowns) {
+		this.breakdowns = breakdowns;
+	}
 }
