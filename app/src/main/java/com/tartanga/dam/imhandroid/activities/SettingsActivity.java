@@ -44,7 +44,9 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
             public void onClick(View v) {
             if(checkForm()) {
 
-                // TODO call to server method to change password
+                User u = new User(GlobalUser.getGlobalUser().getUsername(), edNewPass.getText().toString());
+                ThreadSender ts = new ThreadSender(this, new Message(Message.MOD, Message.USER, u));
+                ts.execute();
 
             }else {
                 StyleableToast s = new StyleableToast(getApplicationContext(), "You need to complete all fields.", Toast.LENGTH_SHORT);
@@ -70,9 +72,25 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
     @Override
     public void messageReceived(Object obj){
         if(obj instanceof User) {
+
             User u = (User) obj;
             txtUsername.setText( txtUsername.getText() + " " + u.getUsername());
             txtCurrentPass.setText( txtCurrentPass.getText() + " " + u.getPassword());
+
+        } else if(obj instanceof Boolean) {
+
+            boolean result = (Boolean) obj;
+            StyleableToast s = new StyleableToast(
+                    getApplicationContext(),
+                    result ? getString(R.string.password_change_ok) : getString(R.string.password_change_error),
+                    Toast.LENGTH_SHORT
+            );
+            s.setBackgroundColor(result ? Color.parseColor("#5aff75") : Color.parseColor("#ff5a5f"));
+            s.setTextColor(Color.WHITE);
+            s.setIcon(result ? R.drawable.ic_ok_icon : R.drawable.ic_alert_login);
+            s.setMaxAlpha();
+            s.show();
+
         }
     }
 }

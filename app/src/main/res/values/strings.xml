@@ -83,6 +83,8 @@
     <string name="login_invalid_msg">Invalid login!</string>
     <string name="login_password_txt">Password</string>
     <string name="login_username_txt">Username</string>
+    <string name="password_change_ok">Password changed successfully</string>
+    <string name="password_change_error">Error while changing password, try again please.</string>
 
     <string-array name="languages">
         <item>English</item>
