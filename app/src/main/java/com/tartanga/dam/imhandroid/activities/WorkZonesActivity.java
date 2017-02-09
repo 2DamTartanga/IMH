@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
-import com.tartanga.dam.imhandroid.adaptadores.WorkZonesAdapter;
 import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
 import com.tartanga.dam.imhandroid.fragments.fragmento_Zonas;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
@@ -26,15 +22,17 @@ import java.util.ArrayList;
 
 public class WorkZonesActivity extends AppCompatActivity implements MessageListener{
 
-    ArrayList<Section> sections;
+    ArrayList<Section> sections = null;
     int[] status;
     boolean isEmpty = true;
-
+    float total = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_zones);
         ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.WORK_ZONE, null));
+        ts.execute();
+        ts = new ThreadSender(this,new Message(Message.GET, Message.PERCENT, null));
         ts.execute();
         //TODO implementar
     }
@@ -64,21 +62,28 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
             if(((ArrayList) obj).get(0) != null) {
                 if (((ArrayList) obj).get(0) instanceof Section) {
                     sections = ((ArrayList) obj);
-                    init();
+                    if(total != -1){
+                        isEmpty = false;
+                    }
                 } else if (((ArrayList) obj).get(0) instanceof Machine) {
 
                 }
             }
+        }else if(obj instanceof Float){
+            calculateTotal((float) obj);
+            if(sections != null){
+                isEmpty = false;
+            }
         }
+        if(!isEmpty) init();
     }
 
     private void init() {
-        isEmpty = false;
         LinearLayout ll = (LinearLayout) findViewById(R.id.activity_fragmentos_cartas);
         FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         status = new int[]{0,0,0};
-        float total = calculateTotal();
+        float total = this.total;
         fragment_ZoneTotal fZT = fragment_ZoneTotal.newInstance(status[0],status[2],status[1],total);
         ft.add(ll.getId(), fZT);
         //Fragment total finished
@@ -93,13 +98,12 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
         ft.commit();
     }
 
-    private float calculateTotal() {
-
+    private void calculateTotal(float obj) {
         for (Section sec: sections){
             for(int i=0; i< status.length; i++){
                 status[i] += sec.getStatus()[i];
             }
         }
-        return 97.32653244231f;//TODO calcular
+        total = obj;
     }
 }
