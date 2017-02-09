@@ -15,16 +15,8 @@ import android.widget.TextView;
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link fragment_ZoneTotal#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class fragment_ZoneTotal extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_WORKING = "w";
     private static final String ARG_HALF_WORKING = "f";
     private static final String ARG_NOT_WORKING = "pgtraram1";
@@ -35,8 +27,6 @@ public class fragment_ZoneTotal extends Fragment {
     private int nw;
     private float total;
 
-    private View.OnClickListener clickListener;
-    private MessageListener mListener;
 
     public fragment_ZoneTotal() {
         // Required empty public constructor
@@ -79,39 +69,10 @@ public class fragment_ZoneTotal extends Fragment {
         TextView tvNW = (TextView) lay.findViewById(R.id.tv_not_working);
         TextView tvHW = (TextView) lay.findViewById(R.id.tv_half_working);
         TextView tvTotal = (TextView) lay.findViewById(R.id.tv_percent);
-        tvW.setText(working+"");
-        tvHW.setText(hw+"");
-        tvNW.setText(nw+"");
-        tvTotal.setText(total+"%");
+        tvW.setText(String.valueOf(working));
+        tvHW.setText(String.valueOf(hw));
+        tvNW.setText(String.valueOf(nw));
+        tvTotal.setText(String.format("%.1f%%", total));
         return view;
-    }
-
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        /*if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }*/
-    }
-
-
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Log.v("tag", "Fragmento adjuntado");
-        /*if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
     }
 }

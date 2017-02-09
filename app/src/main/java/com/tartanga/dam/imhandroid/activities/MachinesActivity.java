@@ -177,7 +177,6 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
 
             if(filter.get(Character.toUpperCase(m.getStatus()))){
                 MachineFragment mf = MachineFragment.newInstance(m.getId(), m.getStatus());
-                mf.setOnClickListener(this);//TODO quitar todos estos?
                 ft.add(ll.getId(), mf);
             }
         }
