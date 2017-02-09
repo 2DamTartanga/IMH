@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.fragments;
 
+import android.hardware.camera2.params.StreamConfigurationMap;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -64,7 +65,21 @@ public class BreakdownFragment extends Fragment {
         txtSubject.setText(subject);
         txtMachine.setText(id);
         txtMachine.setVisibility(View.INVISIBLE);
-        txtSeverity.setText(severity);
+        String sev = "Severity: ";
+        severity = severity.toUpperCase();
+        switch (severity){
+            case "V":
+                sev += "Low";
+                break;
+            case "A":
+                sev += "Medium";
+                break;
+            case "R":
+                sev += "High";
+                break;
+        }
+
+        txtSeverity.setText(sev);
         return v;
     }
 
