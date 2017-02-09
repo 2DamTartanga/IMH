@@ -12,8 +12,8 @@
     tools:context="com.tartanga.dam.imhandroid.activities.InstruccionesActivity">
 
     <TextView
-        android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/tv_Instruccion" />
+        android:id="@+id/tv_Instruccion"
+        android:textAlignment="center" />
 </LinearLayout>

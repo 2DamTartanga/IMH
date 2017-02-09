@@ -11,26 +11,4 @@
     tools:context="com.tartanga.dam.imhandroid.activities.activity_fragmentos_cartas"
     android:orientation="vertical">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layoutFragmento1">
-
-    </android.support.constraint.ConstraintLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layoutFragmento2">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/cardList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </FrameLayout>
-
 </LinearLayout>

@@ -7,5 +7,4 @@ package com.tartanga.dam.imhandroid.interfaces;
 public interface MessageListener {
 
     void messageReceived(Object obj);
-
 }

@@ -10,7 +10,6 @@ import android.app.Application;
 public class GlobalUser extends Application{
     private static User globalUser;
 
-
     public static User getGlobalUser() {
         return globalUser;
     }

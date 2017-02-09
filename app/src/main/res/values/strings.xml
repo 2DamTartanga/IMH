@@ -34,6 +34,7 @@
     <string name="machine_details">Touch for details</string>
     <string name="failure_type">Failure type:</string>
     <string name="undo">UNDO</string>
+    <string name="noInstruc">No instructions available</string>
 
     <string-array name="arr_failure_type">
         <item>Choose failure type</item>
