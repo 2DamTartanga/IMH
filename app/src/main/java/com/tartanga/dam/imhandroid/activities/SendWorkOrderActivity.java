@@ -44,6 +44,8 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     private String formattedDate;
     private Date date;
     private HashMap<Integer,String> tools = new HashMap<>();
+    private HashMap<Integer,String> tools2 = new HashMap<>();
+    private int count=0;
     private WorkOrder workOrder;
 
 
@@ -51,11 +53,10 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Breakdown breakdown = (Breakdown) getIntent().getSerializableExtra(("Breakdown"));
-        workOrder = new WorkOrder(breakdown, 0, null, null, null);
+        workOrder = (WorkOrder) getIntent().getSerializableExtra(("Work"));
 
         if(vControl.olderVersions())
-            setContentView(R.layout.frame_repair_older_versions);
+            setContentView(R.layout.frame_repair);
         else
             setContentView(R.layout.frame_repair);
 
@@ -133,11 +134,13 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_Availability.setAdapter(adapterAval);
 
-        ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
-        ts.execute();
+        if(count==0) {
+            ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
+            ts.execute();
+        }
+        else if(count==1) {
 
-        ThreadSender ts2 = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, workOrder));
-        ts2.execute();
+        }
 
     }
 
@@ -202,21 +205,32 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
 
     @Override
     public void messageReceived(Object obj) {
-        tools.putAll((HashMap<Integer, String>) obj);
-        Log.d("TOOLS",tools.size()+"");
-        String[] toolsString = new String[tools.size()];
+        if(count==0) {
+            tools.putAll((HashMap<Integer, String>) obj);
+            Log.d("TOOLS", tools.size() + "");
 
-        int i = 0;
+            String[] toolsString = new String[tools.size()];
 
-        for (Map.Entry<Integer, String> tool: tools.entrySet()) {
-            toolsString[i] = tool.getValue();
-            Log.d("TOOLSSIZE",tool.getValue()+"");
-            i++;
+            int i = 0;
+
+            for (Map.Entry<Integer, String> tool : tools.entrySet()) {
+                toolsString[i] = tool.getValue();
+                Log.d("TOOLSSIZE", tool.getValue() + "");
+                i++;
+            }
+
+            ArrayAdapter<String> adapterTools = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, toolsString);
+            adapterTools.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spn_tools.setAdapter(adapterTools);
+            count++;
+            Log.d("ESSSS", "AQUIIIIIIIIIIIIIIIIIIIII");
+            ThreadSender ts2 = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, workOrder));
+            ts2.execute();
         }
-
-        ArrayAdapter<String> adapterTools = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, toolsString);
-        adapterTools.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spn_tools.setAdapter(adapterTools);
+        else if(count==1){
+            tools2.putAll((HashMap<Integer, String>) obj);
+            Log.d("TOOLS2", tools2.size() + "");
+        }
     }
 
     public void onClickUndo(View v) {
