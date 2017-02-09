@@ -72,7 +72,7 @@ public class fragment_ZoneTotal extends Fragment {
         tvW.setText(String.valueOf(working));
         tvHW.setText(String.valueOf(hw));
         tvNW.setText(String.valueOf(nw));
-        tvTotal.setText(String.format("%s%%", total));
+        tvTotal.setText(String.format("%.1f%%", total));
         return view;
     }
 }
