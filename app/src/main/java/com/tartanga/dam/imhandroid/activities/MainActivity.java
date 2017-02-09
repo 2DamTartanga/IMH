@@ -15,12 +15,12 @@ import android.widget.Toast;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
+import com.tartanga.dam.imhandroid.manager.Manager;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.User;
 
-import static com.tartanga.dam.imhandroid.manager.Manager.getInstance;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, MessageListener {
@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity
 
     private void init() {
         Manager m = Manager.getInstance();
-
     }
 
     @Override
@@ -73,31 +72,6 @@ public class MainActivity extends AppCompatActivity
         }*/
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-/*
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     @Override
