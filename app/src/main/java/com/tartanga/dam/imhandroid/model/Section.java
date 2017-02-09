@@ -13,6 +13,10 @@ public class Section implements Serializable {
 	private ArrayList<Machine> machines;
 	private int[] status;
 
+	public Section(String id){
+		this.id = id;
+	}
+
 	public Section(String id, ArrayList<Machine> machines) {
 		this.id = id;
 		this.machines = machines;
@@ -25,7 +29,21 @@ public class Section implements Serializable {
 	public ArrayList<Machine> getMachines() {
 		return machines;
 	}
-	
-	
-	
+
+
+	public int[] getStatus() {
+		return status;
+	}
+
+	public void setStatus(int[] status) {
+		this.status = status;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

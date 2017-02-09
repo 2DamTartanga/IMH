@@ -1,12 +1,13 @@
 package com.tartanga.dam.imhandroid.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Breakdown implements Serializable {
-
+	/**
+	 *
+	 */
 	private static final long serialVersionUID = 1L;
-
 	private int id;
 	private Date date;
 	private String failureType;
