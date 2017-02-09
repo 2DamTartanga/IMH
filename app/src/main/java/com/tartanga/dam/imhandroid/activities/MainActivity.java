@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,8 @@ import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.User;
 
+import static com.tartanga.dam.imhandroid.manager.Manager.getInstance;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, MessageListener {
 
@@ -41,22 +44,6 @@ public class MainActivity extends AppCompatActivity
         StrictMode.setThreadPolicy(p);
         setContentView(R.layout.fragment_login);
 
-
-
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);*/
-
         btn = (Button) findViewById(R.id.btn_login);
         btn.setOnClickListener(this);
 
@@ -66,18 +53,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void init() {
-        Manager m = Manager.getInstance();
-
+        Manager m = getInstance();
     }
 
     @Override
     public void onBackPressed() {
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }*/
         this.finish();
     }
 
@@ -95,11 +75,6 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -108,20 +83,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-/*
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -133,32 +94,6 @@ public class MainActivity extends AppCompatActivity
         User u = new User(username.getText().toString(), pass.getText().toString());
         ThreadSender ts = new ThreadSender(this, new Message(Message.LOGIN, null, u));
         ts.execute();
-       /* User uServer = null;
-
-        String nombreUsu = "";
-        String nombre = "";
-        int grupo = 0;
-
-        //Toast.makeText(this, username.getText(), Toast.LENGTH_SHORT).show();
-       /try {
-            Main m = new Main(Message.LOGIN, null, u);
-            uServer = (User) m.getObj();
-            Log.d("MENSAJE", uServer.getUsername());
-            nombreUsu = uServer.getUsername();
-            nombre = uServer.getName();
-            grupo = uServer.getGroup().getId();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (v.getId() == R.id.btn_login) {
-            if (!username.getText().toString().isEmpty() && !pass.getText().toString().isEmpty()) {
-                ThreadSender ts = new ThreadSender(this,new Message(Message.LOGIN,null,new User(username.getText().toString(),pass.getText().toString())));
-                ts.execute();
-            }
-            /*
-            Intent i = new Intent(this, MenuActivity.class);
-            startActivity(i);
-            */
     }
 
 
