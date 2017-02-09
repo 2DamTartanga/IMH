@@ -14,44 +14,26 @@ import android.widget.TextView;
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link fragmento_Zonas#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class fragmento_Zonas extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_WORKING = "w";
     private static final String ARG_HALF_WORKING = "f";
     private static final String ARG_NOT_WORKING = "pgtraram1";
     private static final String ARG_NAME = "efw";
     private static final String ARG_TOTAL = "pargtrrgam1";
-    // TODO: Rename and change types of parameters
+
     private int working;//TODO refactor
     private int hw;
     private int nw;
     private String name;
     private float total;
 
-    private MessageListener mListener;
-    private View.OnClickListener clickListener;
 
     public fragmento_Zonas() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * //@param param1 Parameter 1.
-     * //@param param2 Parameter 2.
-     * @return A new instance of fragment fragmento_Zonas.
-     */
-    // TODO: Rename and change types and number of parameters
     public static fragmento_Zonas newInstance(int working, int hw, int nw, String name) {
         fragmento_Zonas fragment = new fragmento_Zonas();
         Bundle args = new Bundle();
@@ -88,40 +70,10 @@ public class fragmento_Zonas extends Fragment {
         TextView txt2 = (TextView) lay.findViewById(R.id.tv_half_working);
         TextView txt3 = (TextView) lay.findViewById(R.id.tv_not_working);
         TextView txt4 = (TextView) lay.findViewById(R.id.tv_work_zone);
-        view.setOnClickListener(clickListener);
-        txt.setText(working+"");
-        txt2.setText(hw+"");
-        txt3.setText(nw+"");
+        txt.setText(String.valueOf(working));
+        txt2.setText(String.valueOf(hw));
+        txt3.setText(String.valueOf(nw));
         txt4.setText(name);
         return view;
     }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            //mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        /*if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
-    }
-
-    public void setOnClickListener(Activity activity){
-        clickListener = ((View.OnClickListener) activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
 }

@@ -22,15 +22,11 @@ import com.tartanga.dam.imhandroid.model.Section;
 
 import java.util.ArrayList;
 
-public class WorkZonesActivity extends AppCompatActivity implements MessageListener, View.OnClickListener{
+public class WorkZonesActivity extends AppCompatActivity implements MessageListener{
 
     ArrayList<Section> sections;
     int[] status;
     boolean isEmpty = true;
-
-    private RecyclerView recycler;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager lManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +83,6 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
         for (Section section: sections){
             status = section.getStatus();
             fragmento_Zonas fz = fragmento_Zonas.newInstance(status[0],status[2],status[1], section.getName());
-            fz.setOnClickListener(this);
             ft.add(ll.getId(),fz);
         }
 
@@ -102,11 +97,6 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
                 status[i] += sec.getStatus()[i];
             }
         }
-        return 97;
-    }
-
-    @Override
-    public void onClick(View view) {
-        Log.d("fe","freuighreihgr");
+        return 97;//TODO calcular
     }
 }
