@@ -60,8 +60,10 @@ public class Breakdown implements Serializable {
 	public String getEquipmentAvailable() {
 		return equipmentAvailable;
 	}
-	
-	
+
+	public String toString(){
+		return getMachine().toString();
+	}
 	
 	
 }

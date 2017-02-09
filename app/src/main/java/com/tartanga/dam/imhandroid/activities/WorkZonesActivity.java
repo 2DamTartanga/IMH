@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.adaptadores.WorkZonesAdapter;
 import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
 import com.tartanga.dam.imhandroid.fragments.fragmento_Zonas;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;

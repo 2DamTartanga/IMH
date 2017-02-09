@@ -13,24 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
-import com.tartanga.dam.imhandroid.interfaces.MessageListener;
-import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.manager.VersionController;
-import com.tartanga.dam.imhandroid.model.Breakdown;
-import com.tartanga.dam.imhandroid.model.GlobalUser;
-import com.tartanga.dam.imhandroid.model.Machine;
-import com.tartanga.dam.imhandroid.model.Message;
 
-import java.sql.Date;
-
-public class ActivityReport extends AppCompatActivity implements MessageListener {
+public class ActivityReport extends AppCompatActivity {
 
     TextView tMachineCode;
     Spinner sFailureType;
     Spinner sEquipmentAvailable;
     EditText eSubject;
     EditText eDescription;
-    String machineCode;
     Button btn;
     private VersionController vControl = new VersionController();
 
@@ -75,7 +66,6 @@ public class ActivityReport extends AppCompatActivity implements MessageListener
                 }
                 return view;
             }
-
         };
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -110,46 +100,19 @@ public class ActivityReport extends AppCompatActivity implements MessageListener
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sEquipmentAvailable.setAdapter(adapter1);
-
-        machineCode = getIntent().getExtras().getString("id");
-        tMachineCode.setText(getString(R.string.maintenance_request_machine,machineCode));
     }
 
     public void onClickSend(View v){
+        String machineCode = tMachineCode.getText().toString();
+        String failureType = sFailureType.toString();
+        String equipmentAvailable = sEquipmentAvailable.toString();
         String subject = eSubject.getText().toString();
         String description = eDescription.getText().toString();
-        int equipmentAvailable = sEquipmentAvailable.getSelectedItemPosition();
-        String failureType = sFailureType.getSelectedItem().toString();
-
-        Machine m = new Machine(machineCode);
-        String failure = "s";
-        switch (equipmentAvailable){
-            case 1:
-                failure = "V";
-                break;
-            case 2:
-                failure = "R";
-                break;
-            case 3:
-                failure = "A";
-                break;
-            default:
-                failure = String.valueOf(equipmentAvailable);
-                break;
-        }
-        Breakdown br = new Breakdown(0,new java.util.Date(), GlobalUser.getGlobalUser(),failureType,subject,description,m,failure);
         Toast.makeText(this,"ENVIAR DATOS", Toast.LENGTH_LONG).show();
-        ThreadSender ts = new ThreadSender(this,new Message(Message.ADD, Message.BREAKDOWN, br));
-        ts.execute();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-    }
-
-    @Override
-    public void messageReceived(Object obj) {
-
     }
 }

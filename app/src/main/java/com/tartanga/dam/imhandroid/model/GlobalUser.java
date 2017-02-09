@@ -6,6 +6,7 @@ import android.app.Application;
  * Created by 2dam on 06/02/2017.
  */
 
+
 public class GlobalUser extends Application{
     private static User globalUser;
 
@@ -16,4 +17,5 @@ public class GlobalUser extends Application{
     public static void setGlobalUser(User globalUser) {
         GlobalUser.globalUser = globalUser;
     }
+
 }

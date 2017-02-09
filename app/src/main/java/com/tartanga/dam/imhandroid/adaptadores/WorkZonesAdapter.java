@@ -9,8 +9,6 @@ import android.widget.TextView;
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.model.Section;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 /**

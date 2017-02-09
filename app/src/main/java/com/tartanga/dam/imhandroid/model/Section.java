@@ -21,10 +21,11 @@ public class Section implements Serializable {
 		this.id = id;
 		this.machines = machines;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
+
 	public ArrayList<Machine> getMachines() {
 		return machines;
 	}
