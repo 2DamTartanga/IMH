@@ -11,8 +11,13 @@ import android.widget.Toast;
 
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.interfaces.MessageListener;
+import com.tartanga.dam.imhandroid.model.Message;
+import com.tartanga.dam.imhandroid.manager.ThreadSender;
+import com.tartanga.dam.imhandroid.model.GlobalUser;
+import com.tartanga.dam.imhandroid.model.User;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity implements MessageListener{
 
     private Button btnChangePass;
     private TextView txtUsername, txtCurrentPass;
@@ -29,13 +34,18 @@ public class SettingsActivity extends AppCompatActivity {
         edCurrentPass = (EditText) findViewById(R.id.edCurrentPass);
         edNewPass = (EditText) findViewById(R.id.edNewPass);
 
+        // to populate textViews
+        User u = new User(GlobalUser.getGlobalUser().getUsername(), GlobalUser.getGlobalUser().getPassword());
+        ThreadSender ts = new ThreadSender(this, new Message(Message.GET, null, u));
+        ts.execute();
+
         btnChangePass = (Button)findViewById(R.id.btnChangePass);
         btnChangePass.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             if(checkForm()) {
 
                 // TODO call to server method to change password
-                
+
             }else {
                 StyleableToast s = new StyleableToast(getApplicationContext(), "You need to complete all fields.", Toast.LENGTH_SHORT);
                 s.setBackgroundColor(Color.parseColor("#ff5a5f"));
@@ -55,5 +65,14 @@ public class SettingsActivity extends AppCompatActivity {
 
     private boolean checkForm(){
         return !edCurrentPass.getText().equals("") && !edNewPass.getText().equals("");
+    }
+
+    @Override
+    public void messageReceived(Object obj){
+        if(obj instanceof User) {
+            User u = (User) obj;
+            txtUsername.setText( txtUsername.getText() + " " + u.getUsername());
+            txtCurrentPass.setText( txtCurrentPass.getText() + " " + u.getPassword());
+        }
     }
 }
