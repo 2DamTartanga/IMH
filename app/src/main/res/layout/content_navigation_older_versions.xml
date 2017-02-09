@@ -61,8 +61,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginStart="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="8dp"
-            app:layout_constraintHorizontal_bias="0.0" />
+            app:layout_constraintHorizontal_bias="0.46" />
 
         <Button
             android:text="@string/nav_settings"

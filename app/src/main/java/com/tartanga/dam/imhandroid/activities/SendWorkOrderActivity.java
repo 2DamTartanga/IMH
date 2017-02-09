@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -29,7 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SendWorkOrderActivity extends AppCompatActivity implements MessageListener{
+public class SendWorkOrderActivity extends AppCompatActivity implements MessageListener, AdapterView.OnItemSelectedListener {
 
     private EditText et_time_spent;
     private Spinner spn_failure_localization;
@@ -39,11 +40,14 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     private Switch sw_failure_repaired;
     private Switch sw_add_instructions;
     private Spinner spn_Availability;
+    private TextView textViewTools;
     private VersionController vControl = new VersionController();
     private boolean repairDate;
     private String formattedDate;
     private Date date;
     private HashMap<Integer,String> tools = new HashMap<>();
+    private HashMap<Integer,String> tools2 = new HashMap<>();
+    private int count=0;
     private WorkOrder workOrder;
 
 
@@ -51,11 +55,10 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Breakdown breakdown = (Breakdown) getIntent().getSerializableExtra(("Breakdown"));
-        workOrder = new WorkOrder(breakdown, 0, null, null, null);
+        workOrder = (WorkOrder) getIntent().getSerializableExtra(("Work"));
 
         if(vControl.olderVersions())
-            setContentView(R.layout.frame_repair_older_versions);
+            setContentView(R.layout.frame_repair);
         else
             setContentView(R.layout.frame_repair);
 
@@ -67,6 +70,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         sw_failure_repaired = (Switch) findViewById(R.id.sw_failure_repaired);
         sw_add_instructions = (Switch) findViewById(R.id.sw_add_instructions);
         spn_Availability = (Spinner) findViewById(R.id.spn_availability);
+        textViewTools = (TextView) findViewById(R.id.textView2);
 
         repairDate = false;
 
@@ -133,11 +137,12 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_Availability.setAdapter(adapterAval);
 
-        ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
-        ts.execute();
+        if(count==0) {
+           // ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
 
-        ThreadSender ts2 = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, workOrder));
-        ts2.execute();
+            ThreadSender ts2 = new ThreadSender(this, new Message(Message.GET, Message.REPAIR, workOrder));
+            ts2.execute();
+        }
 
     }
 
@@ -202,37 +207,72 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
 
     @Override
     public void messageReceived(Object obj) {
-        tools.putAll((HashMap<Integer, String>) obj);
-        Log.d("TOOLS",tools.size()+"");
-        String[] toolsString = new String[tools.size()];
+        if(count == 0) {
+            Log.d("MENSAJE", "ENTRA LA PRIMERA VEZ");
+            tools.putAll((HashMap<Integer, String>) obj);
+            Log.d("TOOLS", tools.size() + "");
 
-        int i = 0;
+            String[] toolsString = new String[tools.size()];
 
-        for (Map.Entry<Integer, String> tool: tools.entrySet()) {
-            toolsString[i] = tool.getValue();
-            Log.d("TOOLSSIZE",tool.getValue()+"");
-            i++;
+            int i = 0;
+
+            for (Map.Entry<Integer, String> tool : tools.entrySet()) {
+                toolsString[i] = tool.getValue();
+                i++;
+            }
+
+            ArrayAdapter<String> adapterTools = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, toolsString);
+            adapterTools.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spn_tools.setAdapter(adapterTools);
+            count++;
+
+            //ThreadSender ts2 = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, workOrder));
+            //ts2.execute();
         }
+        else if(count == 1){
+            Log.d("MENSAJE", "ENTRA LA SEGUNDA VEZ");
+            tools2.putAll((HashMap<Integer, String>) obj);
+            Log.d("TOOLS2", tools2.size() + "");
+            if(tools2==null)
+                textViewTools.setText("No tools.");
+            else {
+                String[] toolsString1 = new String[tools2.size()];
 
-        ArrayAdapter<String> adapterTools = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, toolsString);
-        adapterTools.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spn_tools.setAdapter(adapterTools);
+                int i = 0;
+                String toolsUser = "";
+                for (Map.Entry<Integer, String> tool : tools2.entrySet()) {
+                    toolsString1[i] = tool.getValue();
+                    if (i == 0)
+                        toolsUser = toolsString1[i];
+                    else
+                        toolsUser = toolsUser + ", " + toolsString1[i];
+                    textViewTools.setText(toolsUser);
+                    i++;
+                }/*
+                Boolean primero = true;
+                for (Map.Entry<Integer, String> tool : tools2.entrySet()) {
+                    toolsString1[i] = tool.getValue();
+                    if (primero)
+                        toolsUser = toolsString1[i];
+                    else
+                        toolsUser = toolsUser + ", " + toolsString1[i];
+                    textViewTools.setText(toolsUser);
+                }*/
+            }
+        }
     }
 
     public void onClickUndo(View v) {
 
     }
 
-    /*
     @Override
-    public void messageReceived(Object obj) {
-        Log.d("ArrayList de Ots", String.valueOf(obj));
-        ArrayList<WorkOrder> obj2= ((ArrayList<WorkOrder>) obj);
-        Log.d("ArrayList de Ots", obj2.size()+"");
-        orders=obj2;
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        tools2.put(tools.size() ,(String) tools.get(i));
+    }
 
-        adapter = new WorkOrderAdapter(orders);
-        recycler.setAdapter(adapter);
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
-    }*/
+    }
 }
