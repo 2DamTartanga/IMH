@@ -52,7 +52,7 @@ public class WorkOrder implements Serializable {
 	public Repair getRepairs() {
 		return repair;
 	}
-	
+	public void setRepair(Repair r){this.repair=r;}
 
 
 	

@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.manager.VersionController;
 import com.tartanga.dam.imhandroid.model.Breakdown;
+import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.Repair;
 import com.tartanga.dam.imhandroid.model.WorkOrder;
@@ -39,6 +41,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     private EditText et_repair_process;
     private Switch sw_failure_repaired;
     private Switch sw_add_instructions;
+    private TextView work;
     private Spinner spn_Availability;
     private TextView textViewTools;
     private VersionController vControl = new VersionController();
@@ -49,6 +52,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     private HashMap<Integer,String> tools2 = new HashMap<>();
     private int count=0;
     private WorkOrder workOrder;
+    private Boolean recogido = false;
 
 
     @Override
@@ -62,6 +66,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         else
             setContentView(R.layout.frame_repair);
 
+        work = (TextView) findViewById(R.id.tv_work_order);
         et_time_spent = (EditText) findViewById(R.id.et_time_spent);
         spn_failure_localization = (Spinner) findViewById(R.id.spn_failure_localization);
         et_replacements = (EditText) findViewById(R.id.et_replacements);
@@ -71,6 +76,26 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         sw_add_instructions = (Switch) findViewById(R.id.sw_add_instructions);
         spn_Availability = (Spinner) findViewById(R.id.spn_availability);
         textViewTools = (TextView) findViewById(R.id.textView2);
+        workOrder.getRepairs().getTools();
+        spn_tools.setOnItemSelectedListener(this);
+        work.setText("OT-" + workOrder.getBreakdown().getId());
+        String[] toolsString2 = new String[workOrder.getRepairs().getTools().size()];
+        String toolsUser="";
+        int i = 0;
+
+        ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
+        ts.execute();
+
+        for (Map.Entry<Integer, String> tool : workOrder.getRepairs().getTools().entrySet()) {
+            toolsString2[i] = tool.getValue();
+            if(i==0)
+                toolsUser = toolsString2[i];
+            else
+                toolsUser = toolsUser + ", " + toolsString2[i];
+            textViewTools.setText(toolsUser);
+            tools2.putAll(workOrder.getRepairs().getTools());
+            i++;
+        }
 
         repairDate = false;
 
@@ -137,12 +162,6 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_Availability.setAdapter(adapterAval);
 
-        if(count==0) {
-           // ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
-
-            ThreadSender ts2 = new ThreadSender(this, new Message(Message.GET, Message.REPAIR, workOrder));
-            ts2.execute();
-        }
 
     }
 
@@ -159,34 +178,6 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         Toast.makeText(this, "Date set to: " + formattedDate, Toast.LENGTH_SHORT).show();
     }
 
-    public void onClickOK(View v) {
-        //TODO ENVIAR A LA BASE DE DATOS
-        if(repairDate &&
-                !et_time_spent.getText().toString().isEmpty() &&
-                !(spn_failure_localization.getSelectedItemPosition() == 0) &&
-                !(spn_Availability.getSelectedItemPosition() == 0) &&
-                !et_replacements.getText().toString().isEmpty() &&
-                !(spn_tools.getSelectedItemPosition()==0) &&
-                !et_repair_process.getText().toString().isEmpty() ) {
-
-            Repair r = new Repair();
-            r.setDate(date);
-            r.setFailureLocalization(spn_failure_localization.getSelectedItemPosition());
-            r.setAvailabilityAfterRepair(spn_Availability.getSelectedItem().toString());
-            r.setReplacements(et_replacements.getText().toString());
-            //TODO: SPINNER TOOLS
-            r.setRepairProcess(et_repair_process.getText().toString());
-            if(sw_failure_repaired.isChecked())
-                r.setRepaired(true);
-            else
-                r.setRepaired(false);
-
-        } else {
-            Toast.makeText(this, "Please, fill in all fields", Toast.LENGTH_LONG).show();
-        }
-
-    }
-
     public void onClickClear(View v) {
         if(!et_time_spent.getText().toString().isEmpty() || !et_replacements.getText().toString().isEmpty() || !et_repair_process.getText().toString().isEmpty() ) {
             et_time_spent.setText("");
@@ -195,7 +186,6 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
             spn_tools.setSelection(0);
             et_repair_process.setText("");
             sw_failure_repaired.setChecked(false);
-            sw_add_instructions.setChecked(false);
             spn_Availability.setSelection(0);
         }
     }
@@ -207,60 +197,27 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
 
     @Override
     public void messageReceived(Object obj) {
-        if(count == 0) {
+        if(!recogido){
             Log.d("MENSAJE", "ENTRA LA PRIMERA VEZ");
             tools.putAll((HashMap<Integer, String>) obj);
             Log.d("TOOLS", tools.size() + "");
 
-            String[] toolsString = new String[tools.size()];
+            String[] toolsString = new String[tools.size()+1];
 
             int i = 0;
-
+            toolsString[0] = "Choose";
             for (Map.Entry<Integer, String> tool : tools.entrySet()) {
-                toolsString[i] = tool.getValue();
+                toolsString[i+1] = tool.getValue();
                 i++;
             }
 
             ArrayAdapter<String> adapterTools = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, toolsString);
             adapterTools.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spn_tools.setAdapter(adapterTools);
-            count++;
-
-            //ThreadSender ts2 = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, workOrder));
-            //ts2.execute();
+            recogido = true;
         }
-        else if(count == 1){
-            Log.d("MENSAJE", "ENTRA LA SEGUNDA VEZ");
-            tools2.putAll((HashMap<Integer, String>) obj);
-            Log.d("TOOLS2", tools2.size() + "");
-            if(tools2==null)
-                textViewTools.setText("No tools.");
-            else {
-                String[] toolsString1 = new String[tools2.size()];
-
-                int i = 0;
-                String toolsUser = "";
-                for (Map.Entry<Integer, String> tool : tools2.entrySet()) {
-                    toolsString1[i] = tool.getValue();
-                    if (i == 0)
-                        toolsUser = toolsString1[i];
-                    else
-                        toolsUser = toolsUser + ", " + toolsString1[i];
-                    textViewTools.setText(toolsUser);
-                    i++;
-                }/*
-                Boolean primero = true;
-                for (Map.Entry<Integer, String> tool : tools2.entrySet()) {
-                    toolsString1[i] = tool.getValue();
-                    if (primero)
-                        toolsUser = toolsString1[i];
-                    else
-                        toolsUser = toolsUser + ", " + toolsString1[i];
-                    textViewTools.setText(toolsUser);
-                }*/
-            }
         }
-    }
+
 
     public void onClickUndo(View v) {
 
@@ -268,11 +225,71 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        tools2.put(tools.size() ,(String) tools.get(i));
+        if(spn_tools.getSelectedItem() != "Choose"){
+            textViewTools.setText(textViewTools.getText().toString() + ", " + spn_tools.getSelectedItem());
+            for (Map.Entry<Integer, String> t: tools.entrySet()){
+                if(t.getValue()==spn_tools.getSelectedItem()){
+                    tools2.put(t.getKey(), (String)spn_tools.getSelectedItem());
+                    break;
+                }
+            }
+        }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void onClickOK(View v){
+        Log.d("MENSAJE", "OK PULSADO");
+        if(repairDate &&
+                !et_time_spent.getText().toString().isEmpty() &&
+                !(spn_failure_localization.getSelectedItemPosition() == 0) &&
+                !(spn_Availability.getSelectedItemPosition() == 0) &&
+                !et_replacements.getText().toString().isEmpty() &&
+                !(spn_tools.getSelectedItemPosition()==0) &&
+                !et_repair_process.getText().toString().isEmpty() ) {
+
+            Repair r = new Repair();
+            Date fecha = new Date();
+            r.setDate(fecha);
+            float time = Float.parseFloat(et_time_spent.getText().toString());
+            r.setTime(time);
+            int aval = spn_Availability.getSelectedItemPosition();
+            String failure ="";
+            switch (aval){
+                case 1:
+                    failure = "V";
+                    break;
+                case 2:
+                    failure = "R";
+                    break;
+                case 3:
+                    failure = "A";
+                    break;
+            }
+            r.setAvailabilityAfterRepair(failure);
+            r.setTools(tools2);
+            String repair = et_repair_process.getText().toString();
+            r.setRepairProcess(repair);
+            Boolean isR = sw_failure_repaired.isChecked();
+            r.setRepaired(isR);
+            String repla = et_replacements.getText().toString();
+            r.setReplacements(repla);
+            r.setGroup(GlobalUser.getGlobalUser().getGroup());
+            int loc = spn_failure_localization.getSelectedItemPosition();
+            r.setFailureLocalization(loc);
+
+            workOrder.setRepair(r);
+            ThreadSender ts = new ThreadSender(this, new Message(Message.ADD,Message.REPAIR, workOrder));
+            ts.execute();
+            Toast.makeText(this, "Repair report sent", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this,MenuActivity.class);
+            startActivity(i);
+        } else {
+            Toast.makeText(this, "Please, fill in all fields", Toast.LENGTH_LONG).show();
+        }
 
     }
 }

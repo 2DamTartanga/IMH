@@ -74,8 +74,12 @@ public class WorkOrderAdapter extends RecyclerView.Adapter<WorkOrderAdapter.Work
     public int getItemCount() {
 
         //TODO: UN COUNT DEL NUMERO DE WORK ORDERS QUE HAY EN LA BD
+        try{
+            return orders.size();
+        }catch(Exception e){
+            return 0;
+        }
 
-        return orders.size();
     }
 
 
