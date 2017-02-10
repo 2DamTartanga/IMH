@@ -98,6 +98,7 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
     public void onClickNext(View v) {
         Intent i = new Intent(this, SendWorkOrderActivity.class);
         i.putExtra("Work", wOrder);
+        Log.d("MENSAJE", "BOTON SIGUIENTE");
         startActivity(i);
     }
 
