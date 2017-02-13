@@ -139,16 +139,16 @@ public class ActivityReport extends AppCompatActivity implements MessageListener
         String failureType = "";
         switch (failureTypePosition){
             case 1:
-                failureType = "";
+                failureType = "Electrical";
                 break;
             case 2:
-                failureType = "";
+                failureType = "Mechanical";
                 break;
             case 3:
-                failureType = "";
+                failureType = "Security";
                 break;
             case 4:
-                failureType = "";
+                failureType = "Others";
                 break;
             default:
                 ok = false;

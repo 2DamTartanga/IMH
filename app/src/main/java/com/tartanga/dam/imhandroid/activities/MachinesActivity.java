@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -40,15 +41,21 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_machines);
-        Intent i = getIntent();
-        String sectionId = getIntent().getExtras().getString("zone");
 
         filter.put('V',true);
         filter.put('A',true);
         filter.put('R',true);
-        ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.WORK_ZONE, new Section(sectionId)));
-        ts.execute();
-
+        section = ((Section) getIntent().getExtras().getSerializable("zone"));
+        String type  = getIntent().getExtras().getString("type");
+        for (int j = 0; j<section.getMachines().size(); j++){
+            if(!section.getMachines().get(j).getMachineFamilly().equals(type)){
+                Log.d("section","ELIMINADO " + section.getMachines().get(j).getMachineFamilly());
+                section.getMachines().remove(j);
+                j--;
+            }else{
+                Log.d("section","NO ELIMINADO" + section.getMachines().get(j).getMachineFamilly());
+            }
+        }
         //BOTONES FRAGMENTO
         /*btn_working = (ImageButton) findViewById(R.id.btn_working);
         btn_half_working = (ImageButton) findViewById(R.id.btn_half_working);
@@ -59,6 +66,7 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
         btn_half_working = (ImageButton) findViewById(R.id.btnHalfWorking);
         btn_not_working = (ImageButton) findViewById(R.id.btnNotWorking);
 
+        loadUi();
 
     }
 
@@ -144,14 +152,7 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
     public void onClickNot(View v){
         Toast.makeText(this,"NOT WORKING", Toast.LENGTH_LONG).show();
     }
-/*
-    private boolean oldVersion() {
-        if (android.os.Build.VERSION.SDK_INT > 19) {
-            return false;
-        } else
-            return true;
-    }
-    */
+
 
     @Override
     public void onBackPressed() {
@@ -160,10 +161,6 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
 
     @Override
     public void messageReceived(Object obj) {
-        if(obj instanceof Section){
-            this.section = ((Section) obj);
-            loadUi();
-        }
     }
 
     private void loadUi() {
@@ -175,6 +172,7 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
         for (Machine m: section.getMachines()){
 
             if(filter.get(Character.toUpperCase(m.getStatus()))){
+                Log.d("section","MOSTRADO" + m.getMachineFamilly() );
                 MachineFragment mf = MachineFragment.newInstance(m.getId(), m.getStatus());
                 ft.add(ll.getId(), mf);
             }

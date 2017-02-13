@@ -37,8 +37,8 @@ public class fragment_ZoneTotal extends Fragment {
         fragment_ZoneTotal fragment = new fragment_ZoneTotal();
         Bundle args = new Bundle();
         args.putInt(ARG_WORKING, working);
-        args.putInt(ARG_NOT_WORKING, hw);
-        args.putInt(ARG_HALF_WORKING, nw);
+        args.putInt(ARG_HALF_WORKING, hw);
+        args.putInt(ARG_NOT_WORKING, nw);
         args.putFloat(ARG_TOTAL, total);
         fragment.setArguments(args);
         return fragment;
