@@ -117,7 +117,7 @@ public class ActivityReport extends AppCompatActivity implements MessageListener
         String subject = eSubject.getText().toString();
         String description = eDescription.getText().toString();
         int equipmentAvailable = sEquipmentAvailable.getSelectedItemPosition();
-        String failureType = sFailureType.getSelectedItem().toString();
+        int failureTypePosition = sFailureType.getSelectedItemPosition();
         boolean ok =  (!subject.isEmpty() && equipmentAvailable != 0 && sFailureType.getSelectedItemPosition() != 0 );
         Machine m = new Machine(machineCode);
         String failure = "s";
@@ -135,6 +135,26 @@ public class ActivityReport extends AppCompatActivity implements MessageListener
                 ok = false;
                 break;
         }
+
+        String failureType = "";
+        switch (failureTypePosition){
+            case 1:
+                failureType = "";
+                break;
+            case 2:
+                failureType = "";
+                break;
+            case 3:
+                failureType = "";
+                break;
+            case 4:
+                failureType = "";
+                break;
+            default:
+                ok = false;
+                break;
+        }
+
         Breakdown br = new Breakdown(0,new java.util.Date(), GlobalUser.getGlobalUser(),failureType,subject,description,m,failure);
         if(ok) {
             ThreadSender ts = new ThreadSender(this, new Message(Message.ADD, Message.BREAKDOWN, br));
