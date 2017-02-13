@@ -9,9 +9,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.tartanga.dam.imhandroid.activities.TypeMachineActivity">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/container"
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="30"/>
+        android:id="@+id/scroll_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/layout" />
+    </ScrollView>
 </LinearLayout>

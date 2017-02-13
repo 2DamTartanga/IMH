@@ -12,7 +12,6 @@
     <string name="not_working">Not Working:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="empty"></string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
     <string name="percent">%1$d %%</string>
@@ -35,11 +34,12 @@
     <string name="failure_type">Failure type:</string>
     <string name="undo">UNDO</string>
     <string name="noInstruc">No instructions available</string>
-
+    <string name="source">Failure source</string>
     <string-array name="arr_failure_type">
         <item>Choose failure type</item>
         <item>Electrical</item>
         <item>Mechanical</item>
+        <item>Security</item>
         <item>Others</item>
     </string-array>
 

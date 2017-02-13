@@ -22,6 +22,7 @@ public class fragmento_Zonas extends Fragment {
     private static final String ARG_NOT_WORKING = "pgtraram1";
     private static final String ARG_NAME = "efw";
     private static final String ARG_TOTAL = "pargtrrgam1";
+    private static final String ARG_HIDDEN = "parrgam1";
 
     private int working;//TODO refactor
     private int hw;
@@ -38,8 +39,8 @@ public class fragmento_Zonas extends Fragment {
         fragmento_Zonas fragment = new fragmento_Zonas();
         Bundle args = new Bundle();
         args.putInt(ARG_WORKING, working);
-        args.putInt(ARG_NOT_WORKING, hw);
-        args.putInt(ARG_HALF_WORKING, nw);
+        args.putInt(ARG_HALF_WORKING, hw);
+        args.putInt(ARG_NOT_WORKING, nw);
         args.putString(ARG_NAME, name);
         fragment.setArguments(args);
         return fragment;

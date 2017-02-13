@@ -1,0 +1,95 @@
+<resources>
+    <!-- DEFAULT -->
+    <string name="app_name">PantallasElgoibar</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- NON DEFAULT -->
+    <string name="working">Working:</string>
+    <string name="half_working">Half Working:</string>
+    <string name="not_working">Not Working:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="yes">BAI</string>
+    <string name="no">EZ</string>
+    <string name="percent">%1$d %%</string>
+    <string name="nav_all_zones">&#160;&#160;&#160;&#160;Makinen egoera</string>
+    <string name="nav_work_orders">&#160;&#160;&#160;&#160;Lan agindua</string>
+    <string name="nav_instructions">&#160;&#160;&#160;&#160;Burutu gabeko lanak</string>
+    <string name="nav_settings">&#160;&#160;&#160;&#160;Ezarpenak</string>
+    <string name="nav_logout">&#160;&#160;&#160;&#160;Deskonektatu</string>
+    <string name="nav_help">Help &amp; Feedback</string>
+    <string name="action_login">Logout</string>
+    <string name="title_total">TOTALA</string>
+    <string name="availability">Erabilgarritasuna</string>
+    <string name="see_instructions">INSTRUKZIOAK</string>
+    <string name="more_info">XEHETASUNA</string>
+    <string name="send">BIDALI</string>
+    <string name="breakdown">Matxura</string>
+    <string name="description">Deskripzioa</string>
+    <string name="maintenance_request_machine">Makina: %1$s</string>
+    <string name="machine_details">Makinaren xehetasunak</string>
+    <string name="failure_type">Matxura mota:</string>
+    <string name="undo">DESEGIN</string>
+    <string name="noInstruc">No instructions available</string>
+    <string name="source">Failure source</string>
+
+    <string-array name="arr_failure_type">
+        <item>Matxura mota aukeratu:</item>
+        <item>Electrikoa</item>
+        <item>Mekanikoa</item>
+        <item>Segurtasuna</item>
+        <item>Bestelakoak</item>
+    </string-array>
+
+
+    <string name="equipment_available">Makina erabilgarria:</string>
+
+
+    <string-array name="arr_equipment_available">
+        <item>Erabilgarritasuna aukeratu</item>
+        <item>Bai</item>
+        <item>Ez</item>
+        <item>Erabilgarritasun mugatua</item>
+    </string-array>
+
+    <string name="choose">Aukeratu</string>
+
+    <string-array name="failure_localization">
+        <item>Matxuraren kokapena aukeratu</item>
+        <item>Abiadura kaxa</item>
+        <item>Elikadura</item>
+        <item>Neurgailuak</item>
+        <item>Transmisioa</item>
+        <item>Segurtasuna</item>
+        <item>Lubricazio sistemak</item>
+        <item>Panel elektrikoa</item>
+        <item>Multzo hidraulikoa</item>
+        <item>Neumatikoa</item>
+    </string-array>
+
+    <!-- SETTINGS ACTIVITY -->
+    <string name="title">Pasahitza aldatu</string>
+    <string name="username">Erabiltzaila:&#160;&#160;</string>
+    <string name="currenPass">Oraingo pasahitza:</string>
+    <string name="edCurrenPass">Oraingo pasahitza sartu</string>
+    <string name="newPass">Pasahitza berria:</string>
+    <string name="edNewPass">Pasahitza berria sartu</string>
+    <string name="btnChangePass">Pasahitza aldatu</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_invalid_msg">Konekzio ukatua!</string>
+    <string name="login_password_txt">Pasahitza</string>
+    <string name="login_username_txt">Erabiltzaila</string>
+    <string name="password_change_ok">Pasahitza aldatuta</string>
+    <string name="password_change_error">Pasahitza okerra, sartu berriro</string>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Euskera</item>
+    </string-array>
+
+</resources>
