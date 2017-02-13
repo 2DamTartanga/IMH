@@ -1,13 +1,16 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +22,15 @@ import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.User;
 
+import java.util.Locale;
+
 public class SettingsActivity extends AppCompatActivity implements MessageListener, View.OnClickListener{
 
     private TextView txtUsername, txtCurrentPass;
     private EditText edCurrentPass, edNewPass;
+    private Spinner spinner;
+    private Locale locale;
+    private Configuration config = new Configuration();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,29 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
 
         Button btnChangePass = (Button) findViewById(R.id.btnChangePass);
         btnChangePass.setOnClickListener(this);
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                switch (spinner.getSelectedItemPosition()) {
+                    case 0:
+                        locale = new Locale("en");
+                        //config.locale = locale;
+                        config.setLocale(locale);
+                        break;
+                    case 1:
+                        locale = new Locale("eu");
+                        //config.locale = locale;
+                        config.setLocale(locale);
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
     }
 
     @Override
