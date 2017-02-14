@@ -19,6 +19,7 @@ public class  Repair implements Serializable {
 	private boolean isRepaired;
 	private String replacements;
 	private Group group;
+	private Date asignationDate;
 	
 	public Date getDate() {
 		return date;

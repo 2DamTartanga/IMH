@@ -39,7 +39,7 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
 
     public void onClickZone(View v) {
         TextView txt = (TextView) v.findViewById(R.id.tv_work_zone);
-        Intent i = new Intent(this, MachinesActivity.class);
+        Intent i = new Intent(this, TypeMachineActivity.class);
         String secId = null;
         for (Section sec : sections){
             if(sec.getName().equals(txt.getText())){
@@ -48,6 +48,7 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
             }
         }
         i.putExtra("zone", secId);
+
         startActivity(i);
     }
 
@@ -89,12 +90,12 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
         FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         float total = this.total;
-        fragment_ZoneTotal fZT = fragment_ZoneTotal.newInstance(status[0],status[2],status[1],total);
+        fragment_ZoneTotal fZT = fragment_ZoneTotal.newInstance(status[0],status[1],status[2],total);
         ft.add(ll.getId(), fZT);
         //Fragment total finished
         for (Section section: sections){
             status = section.getStatus();
-            fragmento_Zonas fz = fragmento_Zonas.newInstance(status[0],status[2],status[1], section.getName());
+            fragmento_Zonas fz = fragmento_Zonas.newInstance(status[0],status[1],status[2], section.getName());
             ft.add(ll.getId(),fz);
         }
 

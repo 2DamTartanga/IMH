@@ -1,13 +1,18 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +24,17 @@ import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.User;
 
-public class SettingsActivity extends AppCompatActivity implements MessageListener, View.OnClickListener{
+import java.util.Locale;
+
+public class SettingsActivity extends AppCompatActivity implements MessageListener, View.OnClickListener, Spinner.OnItemSelectedListener{
 
     private TextView txtUsername, txtCurrentPass;
     private EditText edCurrentPass, edNewPass;
+    private Spinner spinner;
+    private Locale locale;
+    private Configuration config = new Configuration();
+    private boolean firstLoad = true;
+    private boolean secondLoad = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +54,10 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
 
         Button btnChangePass = (Button) findViewById(R.id.btnChangePass);
         btnChangePass.setOnClickListener(this);
+
+        spinner = ((Spinner) findViewById(R.id.spinner));
+        spinner.setOnItemSelectedListener(this);
+        firstLoad = true;
     }
 
     @Override
@@ -97,4 +113,40 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
         }
 
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if(!firstLoad && !secondLoad){
+            Log.d("position", "i=" + i + " pos=" + spinner.getSelectedItemPosition());
+            switch (spinner.getSelectedItemPosition()) {
+                case 0:
+                    locale = new Locale("en");
+                    //config.locale = locale;
+                    config.setLocale(locale);
+                    break;
+                case 1:
+                    locale = new Locale("eu");
+                    //config.locale = locale;
+                    config.setLocale(locale);
+                    break;
+            }
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            Intent intent = new Intent(this, SettingsActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            //startActivity(intent);
+            recreate();
+        }else {
+            if(firstLoad) firstLoad = false;
+            else secondLoad = false;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        //Empty
+    }
+
 }

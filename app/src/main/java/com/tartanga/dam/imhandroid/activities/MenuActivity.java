@@ -16,28 +16,22 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     Button btnZonas, btnOT, btnInstructions, btnSettings, btnLogout;
     private VersionController vControl = new VersionController();
 
-    private String nombreUsu ="";
-    private String nombre = "";
-    private int grupo = 0;
 
-    GlobalUser u;
-
-
-    //GlobalUser u;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //versionAdapter();
 
         setContentView(vControl.olderVersions() ? (R.layout.content_navigation_older_versions) : (R.layout.content_navigation));
-        //Log.d("Usuario", us.getUsername());
 
         Intent i = getIntent();
+<<<<<<< HEAD
         String nombreUsuario = i.getStringExtra("NombreUsuario");
 
 
         //Log.d("Usuario", u.getGlobalUser().getName());
         //Log.d("Usuario", u.getGlobalUser().getName());
+=======
+>>>>>>> 2f2eee9a53d1ee4c017f121a81605622b91c7b78
 
         btnZonas = (Button) findViewById(R.id.btnZones);
         btnZonas.setOnClickListener(this);
@@ -50,6 +44,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         btnLogout = (Button) findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(this);
 
+<<<<<<< HEAD
         if(GlobalUser.getGlobalUser().getGroup()==null){
             btnOT.setEnabled(false);
             btnOT.setVisibility(View.GONE);
@@ -59,6 +54,13 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         //int i = Build.VERSION.SDK_INT;
         //Toast.makeText(this, String.valueOf(i), Toast.LENGTH_LONG).show();
+=======
+        if(GlobalUser.getGlobalUser().getGroup() == null){
+            btnOT.setVisibility(View.GONE);
+            btnInstructions.setVisibility(View.GONE);
+        }
+
+>>>>>>> 2f2eee9a53d1ee4c017f121a81605622b91c7b78
     }
 
     @Override
