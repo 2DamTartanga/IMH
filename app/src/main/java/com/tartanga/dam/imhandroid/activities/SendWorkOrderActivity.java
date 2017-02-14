@@ -62,7 +62,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         workOrder = (WorkOrder) getIntent().getSerializableExtra(("Work"));
 
         if(vControl.olderVersions())
-            setContentView(R.layout.frame_repair);
+            setContentView(R.layout.frame_repair_older_versions);
         else
             setContentView(R.layout.frame_repair);
 
@@ -73,7 +73,9 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         spn_tools = (Spinner) findViewById(R.id.spn_tools);
         et_repair_process = (EditText) findViewById(R.id.et_repair_process);
         sw_failure_repaired = (Switch) findViewById(R.id.sw_failure_repaired);
-        sw_add_instructions = (Switch) findViewById(R.id.sw_add_instructions);
+
+
+
         spn_Availability = (Spinner) findViewById(R.id.spn_availability);
         textViewTools = (TextView) findViewById(R.id.textView2);
         workOrder.getRepairs().getTools();
@@ -86,15 +88,17 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
         ts.execute();
 
-        for (Map.Entry<Integer, String> tool : workOrder.getRepairs().getTools().entrySet()) {
-            toolsString2[i] = tool.getValue();
-            if(i==0)
-                toolsUser = toolsString2[i];
-            else
-                toolsUser = toolsUser + ", " + toolsString2[i];
-            textViewTools.setText(toolsUser);
-            tools2.putAll(workOrder.getRepairs().getTools());
-            i++;
+        if(workOrder.getRepairs().getTools()!=null){
+            for (Map.Entry<Integer, String> tool : workOrder.getRepairs().getTools().entrySet()) {
+                toolsString2[i] = tool.getValue();
+                if(i==0)
+                    toolsUser = toolsString2[i];
+                else
+                    toolsUser = toolsUser + ", " + toolsString2[i];
+                textViewTools.setText(toolsUser);
+                tools2.putAll(workOrder.getRepairs().getTools());
+                i++;
+            }
         }
 
         repairDate = false;
@@ -198,7 +202,6 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     @Override
     public void messageReceived(Object obj) {
         if(!recogido){
-            Log.d("MENSAJE", "ENTRA LA PRIMERA VEZ");
             tools.putAll((HashMap<Integer, String>) obj);
             Log.d("TOOLS", tools.size() + "");
 
@@ -225,13 +228,23 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Boolean existe = false;
         if(spn_tools.getSelectedItem() != "Choose"){
-            textViewTools.setText(textViewTools.getText().toString() + ", " + spn_tools.getSelectedItem());
-            for (Map.Entry<Integer, String> t: tools.entrySet()){
-                if(t.getValue()==spn_tools.getSelectedItem()){
-                    tools2.put(t.getKey(), (String)spn_tools.getSelectedItem());
-                    break;
+            for (Map.Entry<Integer,String> t1: tools2.entrySet()) {
+                if (t1.getValue().equals(spn_tools.getSelectedItem().toString())) {
+                    existe = true;
                 }
+            }
+            if(!existe){
+                textViewTools.setText(textViewTools.getText().toString() + ", " + spn_tools.getSelectedItem());
+                for (Map.Entry<Integer, String> t: tools.entrySet()){
+                    if(t.getValue().equals(spn_tools.getSelectedItem().toString())){
+                        tools2.put(t.getKey(), spn_tools.getSelectedItem().toString());
+                        break;
+                    }
+                }
+            }else{
+                Toast.makeText(this, "This tool already exist", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -247,7 +260,6 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
                 !et_time_spent.getText().toString().isEmpty() &&
                 !(spn_failure_localization.getSelectedItemPosition() == 0) &&
                 !(spn_Availability.getSelectedItemPosition() == 0) &&
-                !et_replacements.getText().toString().isEmpty() &&
                 !(spn_tools.getSelectedItemPosition()==0) &&
                 !et_repair_process.getText().toString().isEmpty() ) {
 

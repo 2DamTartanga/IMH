@@ -2,6 +2,7 @@ package com.tartanga.dam.imhandroid.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent i = getIntent();
         String nombreUsuario = i.getStringExtra("NombreUsuario");
+
+
         //Log.d("Usuario", u.getGlobalUser().getName());
         //Log.d("Usuario", u.getGlobalUser().getName());
 
@@ -46,6 +49,13 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         btnSettings.setOnClickListener(this);
         btnLogout = (Button) findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(this);
+
+        if(GlobalUser.getGlobalUser().getGroup()==null){
+            btnOT.setEnabled(false);
+            btnOT.setVisibility(View.GONE);
+            btnInstructions.setEnabled(false);
+            btnInstructions.setVisibility(View.GONE);
+        }
 
         //int i = Build.VERSION.SDK_INT;
         //Toast.makeText(this, String.valueOf(i), Toast.LENGTH_LONG).show();
