@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class Main implements MessageListener {
 
-    private final int PORT = 8008;
-    private final String IP = "10.22.82.173";
+    private final int PORT = 6100;
+    private final String IP = "10.22.82.170";
     //private final String IP = "10.22.87.157";
     private Object obj;
 

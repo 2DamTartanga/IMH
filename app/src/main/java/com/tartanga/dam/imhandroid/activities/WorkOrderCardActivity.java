@@ -89,7 +89,7 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
         ArrayList<WorkOrder> obj2 = ((ArrayList<WorkOrder>) obj);
         orders = obj2;
         if(obj2==null){
-            StyleableToast st = new StyleableToast(this, "No Work Orders Assigned.", Toast.LENGTH_SHORT);
+            StyleableToast st = new StyleableToast(this, getApplicationContext().getString(R.string.noWorkOrders), Toast.LENGTH_SHORT);
             st.setBackgroundColor(Color.parseColor("#ff5a5f"));
             st.setTextColor(Color.WHITE);
             st.setMaxAlpha();

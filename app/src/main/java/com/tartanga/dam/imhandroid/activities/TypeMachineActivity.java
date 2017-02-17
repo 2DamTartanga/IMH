@@ -91,9 +91,6 @@ public class TypeMachineActivity extends AppCompatActivity implements MessageLis
             fragmento_Zonas mf = fragmento_Zonas.newInstance(working,halfWorking,notWorking, type);
             ft.add(ll.getId(), mf);
         }
-
-
-
         ft.commit();
     }
 

@@ -17,10 +17,16 @@ import java.net.SocketException;
  * Created by 2dam on 01/02/2017.
  */
 
-public class ThreadSender extends AsyncTask<Object, Object, Object>{
+public class
 
-    private final int PORT = 8008;
-    private final String HOST = "10.22.82.173";
+
+
+
+
+ThreadSender extends AsyncTask<Object, Object, Object>{
+
+    private final int PORT = 6100;
+    private final String HOST = "10.22.82.175";
     private MessageListener listener;
     private Socket cs;
     private Message msg;

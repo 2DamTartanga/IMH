@@ -2,13 +2,17 @@ package com.tartanga.dam.imhandroid.activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -31,8 +35,8 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
     private TextView txtUsername, txtCurrentPass;
     private EditText edCurrentPass, edNewPass;
     private Spinner spinner;
-    private Locale locale;
-    private Configuration config = new Configuration();
+    /*private Locale locale;
+    private Configuration config = new Configuration();*/
     private boolean firstLoad = true;
     private boolean secondLoad = true;
 
@@ -57,7 +61,38 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
 
         spinner = ((Spinner) findViewById(R.id.spinner));
         spinner.setOnItemSelectedListener(this);
-        firstLoad = true;
+        spinner.setSelection(0);
+        //SPINNER AVAILABILITY AFTER REPAIR
+        String[] languages = getResources().getStringArray(R.array.languages);
+
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.spinner_size, languages) {
+            @Override
+            public boolean isEnabled(int position) {
+                if(position == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        //firstLoad = true;
     }
 
     @Override
@@ -103,7 +138,7 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
             ThreadSender ts = new ThreadSender(this, new Message(Message.MOD, Message.USER, u));
             ts.execute();
 
-        }else {
+        } else {
             StyleableToast s = new StyleableToast(this, "You need to complete all fields.", Toast.LENGTH_SHORT);
             s.setBackgroundColor(Color.parseColor("#ff5a5f"));
             s.setTextColor(Color.WHITE);
@@ -116,32 +151,34 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        if(!firstLoad && !secondLoad){
+        //if(!firstLoad && !secondLoad){
             Log.d("position", "i=" + i + " pos=" + spinner.getSelectedItemPosition());
             switch (spinner.getSelectedItemPosition()) {
-                case 0:
-                    locale = new Locale("en");
-                    //config.locale = locale;
-                    config.setLocale(locale);
-                    break;
                 case 1:
-                    locale = new Locale("eu");
+                    /*locale = new Locale("en");
                     //config.locale = locale;
-                    config.setLocale(locale);
+                    config.setLocale(locale);*/
+                    setLocale("en");
+                    break;
+                case 2:
+                    /*locale = new Locale("eu");
+                    //config.locale = locale;
+                    config.setLocale(locale);*/
+                    setLocale("eu");
                     break;
             }
-            Locale.setDefault(locale);
+            /*Locale.setDefault(locale);
             Configuration config = new Configuration();
-            config.locale = locale;
+            //config.locale = locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
             Intent intent = new Intent(this, SettingsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             //startActivity(intent);
-            recreate();
-        }else {
+            recreate();*/
+        /*} else {
             if(firstLoad) firstLoad = false;
             else secondLoad = false;
-        }
+        }*/
     }
 
     @Override
@@ -149,4 +186,18 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
         //Empty
     }
 
+    public void setLocale(String lang) {
+        Locale myLocale = new Locale(lang);
+        //Resources res = getResources();
+        //DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = getBaseContext().getResources().getConfiguration();
+        //conf.locale = myLocale;
+        conf.setLocale(myLocale);
+        getBaseContext().getResources().updateConfiguration(conf, getBaseContext().getResources().getDisplayMetrics());
+        Intent refresh = new Intent(this, SettingsActivity.class);
+       /* startActivity(refresh);
+        recreate();*/
+        Intent menu = new Intent(this, MenuActivity.class);
+        startActivity(menu);
+    }
 }

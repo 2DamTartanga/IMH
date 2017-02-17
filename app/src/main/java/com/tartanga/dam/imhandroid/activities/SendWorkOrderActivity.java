@@ -74,32 +74,34 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         et_repair_process = (EditText) findViewById(R.id.et_repair_process);
         sw_failure_repaired = (Switch) findViewById(R.id.sw_failure_repaired);
 
-
-
         spn_Availability = (Spinner) findViewById(R.id.spn_availability);
         textViewTools = (TextView) findViewById(R.id.textView2);
-        workOrder.getRepairs().getTools();
+
         spn_tools.setOnItemSelectedListener(this);
         work.setText("OT-" + workOrder.getBreakdown().getId());
-        String[] toolsString2 = new String[workOrder.getRepairs().getTools().size()];
+
         String toolsUser="";
         int i = 0;
 
         ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
         ts.execute();
-
-        if(workOrder.getRepairs().getTools()!=null){
-            for (Map.Entry<Integer, String> tool : workOrder.getRepairs().getTools().entrySet()) {
-                toolsString2[i] = tool.getValue();
-                if(i==0)
-                    toolsUser = toolsString2[i];
-                else
-                    toolsUser = toolsUser + ", " + toolsString2[i];
-                textViewTools.setText(toolsUser);
-                tools2.putAll(workOrder.getRepairs().getTools());
-                i++;
+        if(workOrder.getRepairs()!=null){
+            if(workOrder.getRepairs().getTools()!=null){
+                workOrder.getRepairs().getTools();
+                String[] toolsString2 = new String[workOrder.getRepairs().getTools().size()];
+                for (Map.Entry<Integer, String> tool : workOrder.getRepairs().getTools().entrySet()) {
+                    toolsString2[i] = tool.getValue();
+                    if(i==0)
+                        toolsUser = toolsString2[i];
+                    else
+                        toolsUser = toolsUser + ", " + toolsString2[i];
+                    textViewTools.setText(toolsUser);
+                    tools2.putAll(workOrder.getRepairs().getTools());
+                    i++;
+                }
             }
         }
+
 
         repairDate = false;
 
@@ -229,7 +231,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Boolean existe = false;
-        if(spn_tools.getSelectedItem() != "Choose"){
+        if(!spn_tools.getSelectedItem().equals("Choose")){
             for (Map.Entry<Integer,String> t1: tools2.entrySet()) {
                 if (t1.getValue().equals(spn_tools.getSelectedItem().toString())) {
                     existe = true;
@@ -239,6 +241,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
                 textViewTools.setText(textViewTools.getText().toString() + ", " + spn_tools.getSelectedItem());
                 for (Map.Entry<Integer, String> t: tools.entrySet()){
                     if(t.getValue().equals(spn_tools.getSelectedItem().toString())){
+                        Log.d("MENSAJE", "ENTRA AL SPINNER");
                         tools2.put(t.getKey(), spn_tools.getSelectedItem().toString());
                         break;
                     }
