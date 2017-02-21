@@ -45,7 +45,6 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        txtCurrentPass = (TextView) findViewById(R.id.txtCurrentPass);
         txtUsername = (TextView) findViewById(R.id.txtUsername);
 
         edCurrentPass = (EditText) findViewById(R.id.edCurrentPass);
@@ -110,7 +109,6 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
         if(obj instanceof User) {
             User u = (User) obj;
             txtUsername.setText( txtUsername.getText() + " " + u.getUsername());
-            txtCurrentPass.setText( txtCurrentPass.getText() + " " + u.getPassword());
 
         } else if(obj instanceof Boolean) {
 
@@ -159,12 +157,14 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
                     //config.locale = locale;
                     config.setLocale(locale);*/
                     setLocale("en");
+                    Toast.makeText(getApplicationContext(),"Language changed",Toast.LENGTH_SHORT).show();
                     break;
                 case 2:
                     /*locale = new Locale("eu");
                     //config.locale = locale;
                     config.setLocale(locale);*/
                     setLocale("eu");
+                    Toast.makeText(getApplicationContext(),"Hizkuntza aldatuta",Toast.LENGTH_SHORT).show();
                     break;
             }
             /*Locale.setDefault(locale);

@@ -110,7 +110,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void messageReceived(Object obj) {
-        GlobalUser.setGlobalUser(((User) obj));
+        if(obj instanceof User)
+            GlobalUser.setGlobalUser(((User) obj));
         if(obj == null){
             StyleableToast t = new StyleableToast(this, getApplicationContext().getString(R.string.login_invalid_msg), Toast.LENGTH_SHORT);
             t.setBackgroundColor(Color.parseColor("#ff5a5f"));

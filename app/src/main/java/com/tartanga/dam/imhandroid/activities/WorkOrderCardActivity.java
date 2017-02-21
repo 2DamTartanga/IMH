@@ -94,6 +94,7 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
             st.setTextColor(Color.WHITE);
             st.setMaxAlpha();
             st.show();
+            this.finish();
         }else{
             adapter = new WorkOrderAdapter(orders);
             recycler.setAdapter(adapter);

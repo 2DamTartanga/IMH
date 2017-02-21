@@ -131,7 +131,7 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
         String url = wOrder.getOthers();
         String s = "";
         String s2="";
-        if(url!=null && url!=""){
+        if(url!=null && !url.isEmpty()){
             s = url.substring(0,3);
             s2 = url.substring(0,4);
         }
@@ -141,7 +141,7 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
             Intent iUrl = new Intent(Intent.ACTION_VIEW);
             iUrl.setData(Uri.parse(url));
             startActivity(iUrl);
-        }else if(url!=null && url!=""){
+        }else if(url!=null && !url.isEmpty()){
             Intent i = new Intent(this, InstruccionesActivity.class);
             i.putExtra("Texto", url);
             startActivity(i);
@@ -152,6 +152,7 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
             t.setIcon(R.drawable.ic_alert_login);
             t.setMaxAlpha();
             t.show();
+
         }
     }
 }
