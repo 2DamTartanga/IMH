@@ -2,7 +2,9 @@ package com.tartanga.dam.imhandroid.manager;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.tartanga.dam.imhandroid.activities.MainActivity;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.model.Message;
 
@@ -17,28 +19,25 @@ import java.net.SocketException;
  * Created by 2dam on 01/02/2017.
  */
 
-public class
+public class ThreadSender extends AsyncTask<Object, Object, Object>{
 
-
-
-
-
-ThreadSender extends AsyncTask<Object, Object, Object>{
-
-    private final int PORT = 6100;
+    private final int PORT = 8080;
+   // private final String HOST = "150.241.230.4";
     private final String HOST = "10.22.82.175";
     private MessageListener listener;
     private Socket cs;
     private Message msg;
+    private MainActivity m;
 
     public ThreadSender(Object listener, /*Socket cs,*/ Message msg) {
         Socket cs = null;
+        this.listener = ((MessageListener) listener);
         try {
             cs = new Socket(HOST, PORT);
         } catch (IOException e) {
+            ((MessageListener) listener).messageReceived("Error de conexión");
             e.printStackTrace();
         }
-        this.listener = ((MessageListener) listener);
         this.cs = cs;
         this.msg = msg;
     }
@@ -52,6 +51,7 @@ ThreadSender extends AsyncTask<Object, Object, Object>{
 
 
     private void connectionLost() {
+        //Toast.makeText(m.getApplicationContext(), "Server not available", Toast.LENGTH_LONG).show();
     }
 
     @Override

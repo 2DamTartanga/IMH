@@ -9,6 +9,6 @@ import android.os.Build;
 public class VersionController {
 
     public boolean olderVersions() {
-        return Build.VERSION.SDK_INT > 19;
+        return Build.VERSION.SDK_INT < 19;
     }
 }

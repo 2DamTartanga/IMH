@@ -11,7 +11,7 @@ public class  Repair implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Date date;
-	private int failureLocalization;
+	private Localization failureLocalization;
 	private float time;
 	private String availabilityAfterRepair;
 	private HashMap<Integer,String> tools;
@@ -24,7 +24,7 @@ public class  Repair implements Serializable {
 	public Date getDate() {
 		return date;
 	}
-	public int getFailureLocalization() {
+	public Localization getFailureLocalization() {
 		return failureLocalization;
 	}
 	public float getTime() {
@@ -45,12 +45,13 @@ public class  Repair implements Serializable {
 	public String getReplacements() {
 		return replacements;
 	}
-	
-	
+
+	public void setAsignationDate(Date date){this.asignationDate=date;}
+	public Date getAsignationDate(){return asignationDate;}
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public void setFailureLocalization(int failureLocalization) {
+	public void setFailureLocalization(Localization failureLocalization) {
 		this.failureLocalization = failureLocalization;
 	}
 	public void setTime(float time) {

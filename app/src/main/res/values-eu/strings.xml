@@ -14,6 +14,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="yes">BAI</string>
     <string name="no">EZ</string>
+    <string name="spent">Erabilitako denbora</string>
+    <string name="failLoc">Matxuraren kokapena</string>
+    <string name="rep">Ordezko piezak</string>
     <string name="percent">%1$d %%</string>
     <string name="nav_all_zones">&#160;&#160;&#160;&#160;Makinen egoera</string>
     <string name="nav_work_orders">&#160;&#160;&#160;&#160;Lan agindua</string>

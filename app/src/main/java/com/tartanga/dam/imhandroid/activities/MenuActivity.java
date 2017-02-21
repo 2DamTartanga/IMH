@@ -16,6 +16,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     Button btnZonas, btnOT, btnInstructions, btnSettings, btnLogout;
     private VersionController vControl = new VersionController();
 
+    @Override
+    public void onBackPressed() {
+        //finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

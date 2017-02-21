@@ -1,6 +1,6 @@
 <resources>
     <!-- DEFAULT -->
-    <string name="app_name">PantallasElgoibar</string>
+    <string name="app_name">IMH Tailerra</string>
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -14,6 +14,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="yes">YES</string>
     <string name="no">NO</string>
+    <string name="spent">Time spent</string>
+    <string name="rep">Replacements</string>
+    <string name="failLoc">Failure localization</string>
     <string name="percent">%1$d %%</string>
     <string name="nav_all_zones">&#160;&#160;&#160;&#160;Machine status</string>
     <string name="nav_work_orders">&#160;&#160;&#160;&#160;Work Orders</string>

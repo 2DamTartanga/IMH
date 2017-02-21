@@ -21,11 +21,13 @@ import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.manager.VersionController;
 import com.tartanga.dam.imhandroid.model.Breakdown;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
+import com.tartanga.dam.imhandroid.model.Localization;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.Repair;
 import com.tartanga.dam.imhandroid.model.WorkOrder;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -50,6 +52,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     private Date date;
     private HashMap<Integer,String> tools = new HashMap<>();
     private HashMap<Integer,String> tools2 = new HashMap<>();
+    private ArrayList<Localization> listLoc = new ArrayList<Localization>();
     private int count=0;
     private WorkOrder workOrder;
     private Boolean recogido = false;
@@ -101,41 +104,13 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
                 }
             }
         }
+        ThreadSender ts1 = new ThreadSender(this, new Message(Message.GET, Message.LOCALIZATION,null));
+        ts1.execute();
 
 
         repairDate = false;
 
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.failure_localization, android.R.layout.simple_spinner_item);
-
-        String[] localizations = getResources().getStringArray(R.array.failure_localization);
-        //SPINNER FAILURE LOCALIZATIONS
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_item, localizations) {
-            @Override
-            public boolean isEnabled(int position) {
-                if(position == 0) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if(position == 0){
-                    // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
-                }
-                else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spn_failure_localization.setAdapter(adapter);
 
         //SPINNER AVAILABILITY AFTER REPAIR
         String[] availability = getResources().getStringArray(R.array.arr_equipment_available);
@@ -165,7 +140,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
             }
         };
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterAval.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_Availability.setAdapter(adapterAval);
 
 
@@ -203,25 +178,52 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
 
     @Override
     public void messageReceived(Object obj) {
-        if(!recogido){
-            tools.putAll((HashMap<Integer, String>) obj);
-            Log.d("TOOLS", tools.size() + "");
-
-            String[] toolsString = new String[tools.size()+1];
-
-            int i = 0;
-            toolsString[0] = "Choose";
-            for (Map.Entry<Integer, String> tool : tools.entrySet()) {
-                toolsString[i+1] = tool.getValue();
-                i++;
+        if(obj instanceof ArrayList){
+            listLoc = (ArrayList<Localization>) obj;
+            for(int i = 0; i<listLoc.size();i++){
+                Log.d("MENSAJE", listLoc.get(i).toString());
             }
+            ArrayAdapter adapter5 = new ArrayAdapter<Localization>(this,android.R.layout.select_dialog_item, listLoc) {
 
-            ArrayAdapter<String> adapterTools = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, toolsString);
-            adapterTools.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spn_tools.setAdapter(adapterTools);
-            recogido = true;
+                @Override
+                public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                    View view = super.getDropDownView(position, convertView, parent);
+                    TextView tv = (TextView) view;
+                    if(position == 0){
+                        // Set the hint text color gray
+                        tv.setTextColor(Color.GRAY);
+                    }
+                    else {
+                        tv.setTextColor(Color.BLACK);
+                    }
+                    return view;
+                }
+            };
+            adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spn_failure_localization.setAdapter(adapter5);
+        }else{
+            if(!recogido){
+                if (obj != null) {
+                    tools.putAll((HashMap<Integer, String>) obj);
+                    Log.d("TOOLS", tools.size() + "");
+
+                    String[] toolsString = new String[tools.size()+1];
+
+                    int i = 0;
+                    toolsString[0] = "Choose";
+                    for (Map.Entry<Integer, String> tool : tools.entrySet()) {
+                        toolsString[i+1] = tool.getValue();
+                        i++;
+                    }
+
+                    ArrayAdapter<String> adapterTools = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, toolsString);
+                    adapterTools.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spn_tools.setAdapter(adapterTools);
+                    recogido = true;
+                }
+            }
         }
-        }
+    }
 
 
     public void onClickUndo(View v) {
@@ -261,13 +263,12 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
         Log.d("MENSAJE", "OK PULSADO");
         if(repairDate &&
                 !et_time_spent.getText().toString().isEmpty() &&
-                !(spn_failure_localization.getSelectedItemPosition() == 0) &&
                 !(spn_Availability.getSelectedItemPosition() == 0) &&
-                !(spn_tools.getSelectedItemPosition()==0) &&
                 !et_repair_process.getText().toString().isEmpty() ) {
 
             Repair r = new Repair();
             Date fecha = new Date();
+            r.setAsignationDate(workOrder.getRepairs().getAsignationDate());
             r.setDate(fecha);
             float time = Float.parseFloat(et_time_spent.getText().toString());
             r.setTime(time);
@@ -294,8 +295,14 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
             r.setReplacements(repla);
             r.setGroup(GlobalUser.getGlobalUser().getGroup());
             int loc = spn_failure_localization.getSelectedItemPosition();
-            r.setFailureLocalization(loc);
-
+            Localization lo = new Localization();
+            for(int i = 0;i<listLoc.size();i++){
+                if(i==loc){
+                    lo = listLoc.get(i);
+                    break;
+                }
+            }
+            r.setFailureLocalization(lo);
             workOrder.setRepair(r);
             ThreadSender ts = new ThreadSender(this, new Message(Message.ADD,Message.REPAIR, workOrder));
             ts.execute();

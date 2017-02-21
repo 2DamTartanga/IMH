@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/et_time_spent"
-            android:hint="Time spent"
+            android:hint="@string/spent"
             android:layout_marginStart="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="8dp"
@@ -65,7 +65,7 @@
             android:inputType="numberDecimal" />
 
         <TextView
-            android:text="Failure localization:"
+            android:text="@string/failLoc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_failure_localization"
@@ -105,7 +105,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/et_replacements"
-            android:hint="Replacements"
+            android:hint="@string/rep"
             app:layout_constraintTop_toBottomOf="@+id/spn_availability"
             android:layout_marginStart="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -124,8 +124,6 @@
             app:layout_constraintTop_toBottomOf="@+id/et_replacements"
             android:layout_marginStart="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/button"
-            android:layout_marginEnd="8dp"
             app:layout_constraintHorizontal_bias="0.25" />
 
         <EditText
