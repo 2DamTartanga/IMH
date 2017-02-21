@@ -75,8 +75,12 @@
         <item>Pneumatic</item>
     </string-array>
 
+    <!-- INSTRUCTIONS ACTIVITY -->
+    <string name="instructions">No pending instructions</string>
+
     <!-- SETTINGS ACTIVITY -->
     <string name="account_settings">Account settings</string>
+    <string name="required_fields">You need to complete all fields</string>
     <string name="title">Change password</string>
     <string name="username">Username:&#160;&#160;</string>
     <string name="currenPass">Current password:</string>

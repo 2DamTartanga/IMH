@@ -37,7 +37,7 @@
     <string name="failure_type">Failure type:</string>
     <string name="undo">UNDO</string>
     <string name="noInstruc">No instructions available</string>
-    <string name="source">Failure source</string>
+    <string name="source">Notes</string>
     <string-array name="arr_failure_type">
         <item>Choose failure type</item>
         <item>Electrical</item>
@@ -72,7 +72,12 @@
         <item>Pneumatic</item>
     </string-array>
 
+    <!-- INSTRUCTIONS ACTIVITY -->
+    <string name="instructions">No pending instructions</string>
+
     <!-- SETTINGS ACTIVITY -->
+    <string name="account_settings">Account settings</string>
+    <string name="required_fields">You need to complete all fields</string>
     <string name="title">Change password</string>
     <string name="username">Username:&#160;&#160;</string>
     <string name="currenPass">Current password:</string>

@@ -89,11 +89,12 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
         ArrayList<WorkOrder> obj2 = ((ArrayList<WorkOrder>) obj);
         orders = obj2;
         if(obj2==null){
-            StyleableToast st = new StyleableToast(this, getApplicationContext().getString(R.string.noWorkOrders), Toast.LENGTH_SHORT);
+            /*StyleableToast st = new StyleableToast(this, getApplicationContext().getString(R.string.noWorkOrders), Toast.LENGTH_SHORT);
             st.setBackgroundColor(Color.parseColor("#ff5a5f"));
             st.setTextColor(Color.WHITE);
             st.setMaxAlpha();
-            st.show();
+            st.show();*/
+            Toast.makeText(this, getApplicationContext().getString(R.string.noWorkOrders), Toast.LENGTH_SHORT).show();
             this.finish();
         }else{
             adapter = new WorkOrderAdapter(orders);

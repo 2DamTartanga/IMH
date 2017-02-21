@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -73,7 +74,6 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
                     return true;
                 }
             }
-
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
@@ -105,15 +105,12 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
 
     @Override
     public void messageReceived(Object obj){
-
         if(obj instanceof User) {
             User u = (User) obj;
-            txtUsername.setText( txtUsername.getText() + " " + u.getUsername());
-
+            txtUsername.setText(txtUsername.getText() + " " + u.getUsername());
         } else if(obj instanceof Boolean) {
-
             boolean result = (Boolean) obj;
-            StyleableToast s = new StyleableToast(
+            /*StyleableToast s = new StyleableToast(
                     getApplicationContext(),
                     result ? getString(R.string.password_change_ok) : getString(R.string.password_change_error),
                     Toast.LENGTH_SHORT
@@ -122,29 +119,26 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
             s.setTextColor(Color.WHITE);
             s.setIcon(result ? R.drawable.ic_ok_icon : R.drawable.ic_alert_login);
             s.setMaxAlpha();
-            s.show();
-
+            s.show();*/
+            Toast.makeText(getApplicationContext(),result ? getString(R.string.password_change_ok) : getString(R.string.password_change_error),Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onClick(View view) {
-
         if(checkForm()) {
-
             User u = new User(GlobalUser.getGlobalUser().getUsername(), edNewPass.getText().toString());
             ThreadSender ts = new ThreadSender(this, new Message(Message.MOD, Message.USER, u));
             ts.execute();
-
         } else {
-            StyleableToast s = new StyleableToast(this, "You need to complete all fields.", Toast.LENGTH_SHORT);
+            /*StyleableToast s = new StyleableToast(this, "You need to complete all fields", Toast.LENGTH_SHORT);
             s.setBackgroundColor(Color.parseColor("#ff5a5f"));
             s.setTextColor(Color.WHITE);
             s.setIcon(R.drawable.ic_alert_login);
             s.setMaxAlpha();
-            s.show();
+            s.show();*/
+            Toast.makeText(this,getString(R.string.required_fields),Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
@@ -192,7 +186,9 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
         //DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = getBaseContext().getResources().getConfiguration();
         //conf.locale = myLocale;
-        conf.setLocale(myLocale);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            conf.setLocale(myLocale);
+        }
         getBaseContext().getResources().updateConfiguration(conf, getBaseContext().getResources().getDisplayMetrics());
         Intent refresh = new Intent(this, SettingsActivity.class);
        /* startActivity(refresh);

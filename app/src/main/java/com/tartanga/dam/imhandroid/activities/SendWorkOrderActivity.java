@@ -240,7 +240,11 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
                 }
             }
             if(!existe){
-                textViewTools.setText(textViewTools.getText().toString() + ", " + spn_tools.getSelectedItem());
+                if(textViewTools.getText().toString().isEmpty()){
+                    textViewTools.setText((String)spn_tools.getSelectedItem());
+                } else {
+                    textViewTools.setText(textViewTools.getText().toString() + ", " + spn_tools.getSelectedItem());
+                }
                 for (Map.Entry<Integer, String> t: tools.entrySet()){
                     if(t.getValue().equals(spn_tools.getSelectedItem().toString())){
                         Log.d("MENSAJE", "ENTRA AL SPINNER");

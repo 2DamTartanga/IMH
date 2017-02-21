@@ -74,8 +74,12 @@
         <item>Neumatikoa</item>
     </string-array>
 
+    <!-- INSTRUCTIONS ACTIVITY -->
+    <string name="instructions">Ez dago instrukziorik</string>
+
     <!-- SETTINGS ACTIVITY -->
     <string name="account_settings">Kontu ezaugarriak</string>
+    <string name="required_fields">Bete itzazu hutsune guztiak</string>
     <string name="title">Pasahitza aldatu</string>
     <string name="username">Erabiltzaila:&#160;&#160;</string>
     <string name="currenPass">Oraingo pasahitza:</string>

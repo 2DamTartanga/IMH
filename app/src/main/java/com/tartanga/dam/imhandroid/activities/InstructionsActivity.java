@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
@@ -25,6 +26,9 @@ public class InstructionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
 
+        Toast.makeText(this, getString(R.string.instructions), Toast.LENGTH_LONG).show();
+        this.finish();
+
         recycler = (RecyclerView) findViewById(R.id.container);
         recycler.setHasFixedSize(true);
 
@@ -34,7 +38,6 @@ public class InstructionsActivity extends AppCompatActivity {
         adapter = new WorkOrderAdapter(orders);
         recycler.setAdapter(adapter);
     }
-
 
     public void onClickWorkOrder(View v) {
         Intent i = new Intent(this, DetailsWorkOrderActivity.class);
@@ -47,5 +50,4 @@ public class InstructionsActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 }
-
 

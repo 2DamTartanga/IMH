@@ -17,6 +17,7 @@ import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.Manager;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
+import com.tartanga.dam.imhandroid.manager.VersionController;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.User;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        this.finish();
+        finish();
     }
 
     @Override
@@ -107,18 +108,18 @@ public class MainActivity extends AppCompatActivity
             */
     }
 
-
     @Override
     public void messageReceived(Object obj) {
         if(obj instanceof User)
             GlobalUser.setGlobalUser(((User) obj));
         if(obj == null){
-            StyleableToast t = new StyleableToast(this, getApplicationContext().getString(R.string.login_invalid_msg), Toast.LENGTH_SHORT);
+            /*StyleableToast t = new StyleableToast(this, getApplicationContext().getString(R.string.login_invalid_msg), Toast.LENGTH_SHORT);
             t.setBackgroundColor(Color.parseColor("#ff5a5f"));
             t.setTextColor(Color.WHITE);
             t.setIcon(R.drawable.ic_alert_login);
             t.setMaxAlpha();
-            t.show();
+            t.show();*/
+            Toast.makeText(this, getApplicationContext().getString(R.string.login_invalid_msg), Toast.LENGTH_SHORT).show();
         }else {
             startActivity(new Intent(this, MenuActivity.class));
             this.finish();//TODO cerrar esto?

@@ -146,13 +146,13 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
             i.putExtra("Texto", url);
             startActivity(i);
         }else if(url==null || url.equals("")){
-            StyleableToast t = new StyleableToast(this, getApplicationContext().getString(R.string.noInstruc), Toast.LENGTH_SHORT);
+            /*StyleableToast t = new StyleableToast(this, getApplicationContext().getString(R.string.noInstruc), Toast.LENGTH_SHORT);
             t.setBackgroundColor(Color.parseColor("#ff5a5f"));
             t.setTextColor(Color.WHITE);
             t.setIcon(R.drawable.ic_alert_login);
             t.setMaxAlpha();
-            t.show();
-
+            t.show();*/
+            Toast.makeText(this, getApplicationContext().getString(R.string.noInstruc), Toast.LENGTH_SHORT).show();
         }
     }
 }
