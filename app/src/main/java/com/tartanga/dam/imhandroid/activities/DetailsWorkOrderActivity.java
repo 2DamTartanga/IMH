@@ -40,6 +40,7 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
     private Breakdown b;
     private int codeInt;
     private WorkOrder wOrder;
+    private boolean connectionLost=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +99,17 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
     }
 
     public void onClickNext(View v) {
-        Intent i = new Intent(this, SendWorkOrderActivity.class);
-        /*Repair r1 = new Repair();
-        wOrder.setRepair(r1);*/
-        i.putExtra("Work", wOrder);
-        Log.d("MENSAJE", "BOTON SIGUIENTE");
-        startActivity(i);
+        if (!connectionLost) {
+            Intent i = new Intent(this, SendWorkOrderActivity.class);
+            /*Repair r1 = new Repair();
+            wOrder.setRepair(r1);*/
+            i.putExtra("Work", wOrder);
+            Log.d("MENSAJE", "BOTON SIGUIENTE");
+            startActivity(i);
+        } else {
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
     }
 
     @Override
@@ -116,10 +122,12 @@ public class DetailsWorkOrderActivity extends AppCompatActivity implements Messa
         if(obj instanceof WorkOrder){
             wOrder = (WorkOrder) obj;
             rellenar();
-        }else if(obj.toString().equals("Connection with server lost")){
+        }
+        if(obj.toString().equals("Connection with server lost")){
             //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
-            DialogFragment newFragment = new ConnectionLostFragment();
-            newFragment.show(getFragmentManager(), "Error");
+            connectionLost=true;
+            /*DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");*/
         }
     }
 

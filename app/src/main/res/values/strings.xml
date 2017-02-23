@@ -80,6 +80,7 @@
     <string name="account_settings">Account settings</string>
     <string name="required_fields">You need to complete all fields</string>
     <string name="title">Change password</string>
+    <string name="passWarning">Enter the correct current password</string>
     <string name="username">Username:&#160;&#160;</string>
     <string name="currenPass">Current password:</string>
     <string name="edCurrenPass">Enter your current password here</string>

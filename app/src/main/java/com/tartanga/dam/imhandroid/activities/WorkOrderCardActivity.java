@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
+import com.tartanga.dam.imhandroid.fragments.ConnectionLostFragment;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
@@ -65,8 +67,13 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
 
 
         //Log.d("GROUP", GlobalUser.getGlobalUser().getGroup().getId()+"");
-        ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.WORK_ORDER, GlobalUser.getGlobalUser().getGroup()));
-        ts.execute();
+        try {
+            ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.WORK_ORDER, GlobalUser.getGlobalUser().getGroup()));
+            ts.execute();
+        }catch(Exception e){
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
     }
 
     public void onClickOrder(View v) {
@@ -88,7 +95,12 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
     public void messageReceived(Object obj) {
         ArrayList<WorkOrder> obj2 = ((ArrayList<WorkOrder>) obj);
         orders = obj2;
-        if(obj2==null){
+        if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
+        else if(obj2==null){
             /*StyleableToast st = new StyleableToast(this, getApplicationContext().getString(R.string.noWorkOrders), Toast.LENGTH_SHORT);
             st.setBackgroundColor(Color.parseColor("#ff5a5f"));
             st.setTextColor(Color.WHITE);
@@ -96,10 +108,14 @@ public class WorkOrderCardActivity extends AppCompatActivity implements MessageL
             st.show();*/
             Toast.makeText(this, getApplicationContext().getString(R.string.noWorkOrders), Toast.LENGTH_SHORT).show();
             this.finish();
-        }else{
+        }
+
+        else{
             adapter = new WorkOrderAdapter(orders);
             recycler.setAdapter(adapter);
         }
+
+
     }
 
 }

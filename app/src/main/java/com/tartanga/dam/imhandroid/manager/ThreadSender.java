@@ -22,9 +22,15 @@ import java.net.SocketException;
 
 public class ThreadSender extends AsyncTask<Object, Object, Object>{
 
-    private final int PORT = 8080;
-   // private final String HOST = "150.241.230.4";
-    private final String HOST = "10.22.82.175";
+
+    // Datos IMH
+    private final int PORT = 6100;
+    private final String HOST = "150.241.230.4";
+
+    // Datos Tartanga
+    //private final int PORT = 8080;
+    //private final String HOST = "10.22.82.175";
+    
     private MessageListener listener;
     private Socket cs;
     private Message msg;
@@ -104,6 +110,10 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
     @Override
     protected void onProgressUpdate(Object... values) {
         super.onProgressUpdate(values);
-        listener.messageReceived(values[0]);
+       try {
+            listener.messageReceived(values[0]);
+       } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

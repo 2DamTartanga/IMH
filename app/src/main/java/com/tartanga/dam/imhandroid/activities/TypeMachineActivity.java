@@ -27,9 +27,9 @@ import java.util.List;
 
 public class TypeMachineActivity extends AppCompatActivity implements MessageListener {
 
-
     Section section;
     String type = "";
+    private boolean connectionLost=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +39,19 @@ public class TypeMachineActivity extends AppCompatActivity implements MessageLis
 
         ThreadSender ts = new ThreadSender(this,new Message(Message.GET, Message.WORK_ZONE, new Section(sectionId)));
         ts.execute();
-
-
     }
 
     public void onClickZone(View v) {
-        Intent i = new Intent(this, MachinesActivity.class);
-        type = ((TextView) v.findViewById(R.id.tv_work_zone)).getText().toString();
-        i.putExtra("zone", section);
-        i.putExtra("type", type);
-        startActivity(i);
+        if (!connectionLost) {
+            Intent i = new Intent(this, MachinesActivity.class);
+            type = ((TextView) v.findViewById(R.id.tv_work_zone)).getText().toString();
+            i.putExtra("zone", section);
+            i.putExtra("type", type);
+            startActivity(i);
+        } else {
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
     }
 
     @Override
@@ -101,10 +104,12 @@ public class TypeMachineActivity extends AppCompatActivity implements MessageLis
         if(obj instanceof Section) {
             section = ((Section) obj);
             init();
-        }else if(obj.toString().equals("Connection with server lost")){
+        }
+        if(obj.toString().equals("Connection with server lost")){
             //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
-            DialogFragment newFragment = new ConnectionLostFragment();
-            newFragment.show(getFragmentManager(), "Error");
+            connectionLost=true;
+            /*DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");*/
         }
     }
 }

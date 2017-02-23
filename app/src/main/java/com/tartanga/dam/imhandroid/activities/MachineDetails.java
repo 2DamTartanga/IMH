@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,6 +18,7 @@ import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
 import com.tartanga.dam.imhandroid.fragments.AddBreakdownFragment;
 import com.tartanga.dam.imhandroid.fragments.BreakdownFragment;
+import com.tartanga.dam.imhandroid.fragments.ConnectionLostFragment;
 import com.tartanga.dam.imhandroid.fragments.FragmentAddReport;
 import com.tartanga.dam.imhandroid.fragments.MachineFragment;
 import com.tartanga.dam.imhandroid.fragments.WorkOrderFragment;
@@ -42,8 +44,6 @@ public class MachineDetails extends AppCompatActivity implements MessageListener
         String machineId = getIntent().getExtras().getString("codigo");
         ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.MACHINE, new Machine(machineId)));
         ts.execute();
-
-
     }
 
     public void onClickOrder(View v){
@@ -65,6 +65,11 @@ public class MachineDetails extends AppCompatActivity implements MessageListener
         if(obj instanceof Machine){
             machine = ((Machine) obj);
             loadUI();
+        }else if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            //connectionLost=true;
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
         }
     }
 

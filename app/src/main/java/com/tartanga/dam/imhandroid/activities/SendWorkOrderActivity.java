@@ -58,6 +58,7 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
     private int count=0;
     private WorkOrder workOrder;
     private Boolean recogido = false;
+    private boolean connectionLost = false;
 
 
     @Override
@@ -87,7 +88,6 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
 
         String toolsUser="";
         int i = 0;
-
         ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.TOOLS, null));
         ts.execute();
         if(workOrder.getRepairs()!=null){
@@ -203,7 +203,17 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
             };
             adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spn_failure_localization.setAdapter(adapter5);
-        }else{
+        }
+
+        else if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            connectionLost = true;
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
+
+
+        else{
             if(!recogido){
                 if (obj != null) {
                     tools.putAll((HashMap<Integer, String>) obj);
@@ -225,15 +235,6 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
                 }
             }
         }
-        if(obj.toString().equals("Connection with server lost")){
-            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
-            DialogFragment newFragment = new ConnectionLostFragment();
-            newFragment.show(getFragmentManager(), "Error");
-        }
-    }
-
-
-    public void onClickUndo(View v) {
 
     }
 
@@ -317,9 +318,11 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
             workOrder.setRepair(r);
             ThreadSender ts = new ThreadSender(this, new Message(Message.ADD,Message.REPAIR, workOrder));
             ts.execute();
-            Toast.makeText(this, "Repair report sent", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(this,MenuActivity.class);
-            startActivity(i);
+            if(!connectionLost) {
+                Toast.makeText(this, "Repair report sent", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(this,MenuActivity.class);
+                startActivity(i);
+            }
         } else {
             Toast.makeText(this, "Please, fill in all fields", Toast.LENGTH_LONG).show();
         }

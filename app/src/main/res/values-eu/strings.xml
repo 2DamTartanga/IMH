@@ -84,6 +84,7 @@
     <string name="title">Pasahitza aldatu</string>
     <string name="username">Erabiltzaila:&#160;&#160;</string>
     <string name="currenPass">Oraingo pasahitza:</string>
+    <string name="passWarning">Oraingo pasahitz zuzena sartu</string>
     <string name="edCurrenPass">Oraingo pasahitza sartu</string>
     <string name="newPass">Pasahitza berria:</string>
     <string name="edNewPass">Pasahitza berria sartu</string>
@@ -102,7 +103,7 @@
     <string-array name="languages">
         <item>Aukeratu hizkuntza</item>
         <item>Ingelesa</item>
-        <item>Euskera</item>
+        <item>Euskara</item>
     </string-array>
 
     <!-- CONNECTION LOST DIALOG -->

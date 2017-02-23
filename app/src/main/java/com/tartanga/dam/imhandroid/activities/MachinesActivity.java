@@ -38,6 +38,7 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
     private boolean workClicked=false;
     private boolean halfWorkClicked=false;
     private boolean notWorkClicked=false;
+    private boolean connectionLost=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,19 +70,23 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
         btn_not_working = (ImageButton) findViewById(R.id.btnNotWorking);
 
         loadUi();
-
     }
 
     //MACHINE
     public void onClickMachine(View v) {
         TextView txt = (TextView) v.findViewById(R.id.tv_machine_name);
-        Intent i = new Intent(this, MachineDetails.class);
-        i.putExtra("codigo", txt.getText());
-        startActivity(i);
+        if (!connectionLost) {
+            Intent i = new Intent(this, MachineDetails.class);
+            i.putExtra("codigo", txt.getText());
+            startActivity(i);
+        } else {
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
     }
 
     //FILTROS
-    //TODO: ONCLICK BOTONES DE LA ACTIVIDAD
+    //ONCLICK BOTONES DE LA ACTIVIDAD
     public void onClickWork (View v) {
         //Toast.makeText(this,"WORKING", Toast.LENGTH_SHORT).show();
         if (!workClicked) {
@@ -110,12 +115,9 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
     public void onClickHalfWork (View v) {
         //Toast.makeText(this,"WORKING", Toast.LENGTH_SHORT).show();
         if (!halfWorkClicked) {
-
             btn_half_working.setImageResource(R.drawable.ic_half_working_disabled);
                 //btn_half_working.setBackgroundResource(R.color.colorGray);
                 //btn_half_working.getBackground().setAlpha(95);
-
-
             halfWorkClicked=true;
         } else {
             btn_half_working.setImageResource(R.drawable.ic_half_working);
@@ -131,7 +133,6 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
             btn_not_working.setImageResource(R.drawable.ic_not_working_disabled);
                 //btn_not_working.setBackgroundResource(R.color.colorGray);
                 //btn_not_working.getBackground().setAlpha(95);
-
             notWorkClicked=true;
         } else {
             btn_not_working.setImageResource(R.drawable.ic_not_working);
@@ -141,8 +142,8 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
         refreshFilter();
     }
 
-    //TODO: ONCLICK BOTONES DEL FRAGMENTO
-    public void onClickWorking(View v){
+    //BOTONES DEL FRAGMENTO
+    /*public void onClickWorking(View v){
         Toast.makeText(this,"WORKING", Toast.LENGTH_LONG).show();
         btn_working.setBackgroundResource(R.drawable.ic_working_disabled);
     }
@@ -153,9 +154,9 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
 
     public void onClickNot(View v){
         Toast.makeText(this,"NOT WORKING", Toast.LENGTH_LONG).show();
-    }
+    }*/
 
-
+    //////////////////////////////////////////////////////////////////////
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -165,6 +166,7 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
     public void messageReceived(Object obj) {
         if(obj.toString().equals("Connection with server lost")){
             //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            connectionLost=true;
             DialogFragment newFragment = new ConnectionLostFragment();
             newFragment.show(getFragmentManager(), "Error");
         }
@@ -184,9 +186,6 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
                 ft.add(ll.getId(), mf);
             }
         }
-
-
-
         ft.commit();
     }
 }

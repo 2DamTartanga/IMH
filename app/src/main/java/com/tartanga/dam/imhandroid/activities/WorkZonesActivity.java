@@ -28,6 +28,8 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
     int[] status;
     boolean isEmpty = true;
     float total = -1;
+    private boolean connectionLost=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,17 +43,22 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
 
     public void onClickZone(View v) {
         TextView txt = (TextView) v.findViewById(R.id.tv_work_zone);
-        Intent i = new Intent(this, TypeMachineActivity.class);
-        String secId = null;
-        for (Section sec : sections){
-            if(sec.getName().equals(txt.getText())){
-                secId = sec.getId();
-                break;
+        if (!connectionLost) {
+            Intent i = new Intent(this, TypeMachineActivity.class);
+            String secId = null;
+            for (Section sec : sections) {
+                if (sec.getName().equals(txt.getText())) {
+                    secId = sec.getId();
+                    break;
+                }
             }
-        }
-        i.putExtra("zone", secId);
+            i.putExtra("zone", secId);
 
-        startActivity(i);
+            startActivity(i);
+        } else {
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
     }
 
     @Override
@@ -83,10 +90,11 @@ public class WorkZonesActivity extends AppCompatActivity implements MessageListe
             if(sections != null){
                 isEmpty = false;
             }
-        } else if(obj.toString().equals("Connection with server lost")){
+        }else if(obj.toString().equals("Connection with server lost")){
             //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
-            DialogFragment newFragment = new ConnectionLostFragment();
-            newFragment.show(getFragmentManager(), "Error");
+            connectionLost=true;
+            /*DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");*/
         }
         if(!isEmpty) init();
     }

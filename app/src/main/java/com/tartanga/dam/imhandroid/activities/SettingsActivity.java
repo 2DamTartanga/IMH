@@ -43,6 +43,7 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
     private boolean firstLoad = true;
     private boolean secondLoad = true;
     private boolean connectionLost = false;
+    String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +56,15 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
         edNewPass = (EditText) findViewById(R.id.edNewPass);
 
         // to populate textViews
-        User u = new User(GlobalUser.getGlobalUser().getUsername(), GlobalUser.getGlobalUser().getPassword());
-        ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.USER, u));
-        ts.execute();
+
+
+
+        if(!connectionLost) {
+            User u = new User(GlobalUser.getGlobalUser().getUsername(), GlobalUser.getGlobalUser().getPassword());
+            password = u.getPassword();
+            ThreadSender ts = new ThreadSender(this, new Message(Message.GET, Message.USER, u));
+            ts.execute();
+        }
 
         Button btnChangePass = (Button) findViewById(R.id.btnChangePass);
         btnChangePass.setOnClickListener(this);
@@ -106,6 +113,10 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
         return !edCurrentPass.getText().toString().equals("") && !edNewPass.getText().toString().equals("");
     }
 
+   /* private boolean checkPass(String pass){
+        return (edCurrentPass.getText().toString().equals(pass));
+    }*/
+
     @Override
     public void messageReceived(Object obj){
         if(obj instanceof User) {
@@ -124,30 +135,47 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
             s.setMaxAlpha();
             s.show();*/
             Toast.makeText(getApplicationContext(),result ? getString(R.string.password_change_ok) : getString(R.string.password_change_error),Toast.LENGTH_SHORT).show();
-        }
-        if(obj.toString().equals("Connection with server lost")){
+        } else if(obj.toString().equals("Connection with server lost")){
             //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
             connectionLost = true;
-            DialogFragment newFragment = new ConnectionLostFragment();
-            newFragment.show(getFragmentManager(), "Error");
+            /*DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");*/
         }
+
     }
 
     @Override
     public void onClick(View view) {
-        if(checkForm()) {
-            User u = new User(GlobalUser.getGlobalUser().getUsername(), edNewPass.getText().toString());
-            ThreadSender ts = new ThreadSender(this, new Message(Message.MOD, Message.USER, u));
-            ts.execute();
-        } else {
-            /*StyleableToast s = new StyleableToast(this, "You need to complete all fields", Toast.LENGTH_SHORT);
-            s.setBackgroundColor(Color.parseColor("#ff5a5f"));
-            s.setTextColor(Color.WHITE);
-            s.setIcon(R.drawable.ic_alert_login);
-            s.setMaxAlpha();
-            s.show();*/
-            Toast.makeText(this,getString(R.string.required_fields),Toast.LENGTH_SHORT).show();
-        }
+         if (checkForm()) {
+             User u = new User(GlobalUser.getGlobalUser().getUsername(), edNewPass.getText().toString());
+             if (password.equals(edCurrentPass.getText().toString())) {
+                 try {
+                     if (!connectionLost) {
+                         ThreadSender ts = new ThreadSender(this, new Message(Message.MOD, Message.USER, u));
+                         ts.execute();
+                     } else {
+                         DialogFragment newFragment = new ConnectionLostFragment();
+                         newFragment.show(getFragmentManager(), "Error");
+                     }
+
+                 }catch (Exception e) {
+                     DialogFragment newFragment = new ConnectionLostFragment();
+                     newFragment.show(getFragmentManager(), "Error");
+                 }finally {
+                     password = u.getPassword();
+                 }
+             } else {
+                 Toast.makeText(getApplicationContext(), getString(R.string.passWarning), Toast.LENGTH_SHORT).show();
+             }
+         } else {
+             /*StyleableToast s = new StyleableToast(this, "You need to complete all fields", Toast.LENGTH_SHORT);
+             s.setBackgroundColor(Color.parseColor("#ff5a5f"));
+             s.setTextColor(Color.WHITE);
+             s.setIcon(R.drawable.ic_alert_login);
+             s.setMaxAlpha();
+             s.show();*/
+             Toast.makeText(this, getString(R.string.required_fields), Toast.LENGTH_SHORT).show();
+         }
     }
 
     @Override

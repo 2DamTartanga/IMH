@@ -18,6 +18,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     Button btnZonas, btnOT, btnInstructions, btnSettings, btnLogout;
     private VersionController vControl = new VersionController();
+    private boolean connectionLost = false;
 
     @Override
     public void onBackPressed() {
@@ -77,8 +78,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(zonas);
                 break;
             case R.id.btnOT:
-                Intent ot = new Intent(this, WorkOrderCardActivity.class);
-                startActivity(ot);
+                if(!connectionLost) {
+                    Intent ot = new Intent(this, WorkOrderCardActivity.class);
+                    startActivity(ot);
+                }
                 break;
             case R.id.btnInstructions:
                 Intent inst = new Intent(this, InstructionsActivity.class);
@@ -100,6 +103,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     public void messageReceived(Object obj) {
         if(obj.toString().equals("Connection with server lost")){
             //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            connectionLost = true;
             DialogFragment newFragment = new ConnectionLostFragment();
             newFragment.show(getFragmentManager(), "Error");
         }
