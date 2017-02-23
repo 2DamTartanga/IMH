@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +11,12 @@ import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkOrderAdapter;
+import com.tartanga.dam.imhandroid.fragments.ConnectionLostFragment;
+import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 
 import java.util.List;
 
-public class InstructionsActivity extends AppCompatActivity {
+public class InstructionsActivity extends AppCompatActivity implements MessageListener {
 
     List orders;
 
@@ -48,6 +51,15 @@ public class InstructionsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public void messageReceived(Object obj) {
+        if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
     }
 }
 

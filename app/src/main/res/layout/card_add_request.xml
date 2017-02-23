@@ -29,7 +29,7 @@
             android:onClick="onClickAddRequest" />
 
         <TextView
-            android:text="Add new maintenance request"
+            android:text="@string/add_new_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_add_request"

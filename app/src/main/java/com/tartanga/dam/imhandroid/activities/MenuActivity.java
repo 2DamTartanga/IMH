@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -8,10 +9,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.fragments.ConnectionLostFragment;
+import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.VersionController;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
 
-public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener, MessageListener {
 
     Button btnZonas, btnOT, btnInstructions, btnSettings, btnLogout;
     private VersionController vControl = new VersionController();
@@ -90,6 +93,15 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 finish();
                 break;
+        }
+    }
+
+    @Override
+    public void messageReceived(Object obj) {
+        if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.fragments.ConnectionLostFragment;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
@@ -40,6 +42,7 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
     private Configuration config = new Configuration();*/
     private boolean firstLoad = true;
     private boolean secondLoad = true;
+    private boolean connectionLost = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +125,12 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
             s.show();*/
             Toast.makeText(getApplicationContext(),result ? getString(R.string.password_change_ok) : getString(R.string.password_change_error),Toast.LENGTH_SHORT).show();
         }
+        if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            connectionLost = true;
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
     }
 
     @Override
@@ -188,10 +197,12 @@ public class SettingsActivity extends AppCompatActivity implements MessageListen
         //conf.locale = myLocale;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             conf.setLocale(myLocale);
+        } else {
+            conf.locale = myLocale;
         }
         getBaseContext().getResources().updateConfiguration(conf, getBaseContext().getResources().getDisplayMetrics());
-        Intent refresh = new Intent(this, SettingsActivity.class);
-       /* startActivity(refresh);
+        /*Intent refresh = new Intent(this, SettingsActivity.class);
+        startActivity(refresh);
         recreate();*/
         Intent menu = new Intent(this, MenuActivity.class);
         startActivity(menu);

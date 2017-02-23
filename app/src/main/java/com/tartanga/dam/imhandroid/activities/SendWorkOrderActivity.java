@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.fragments.ConnectionLostFragment;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.manager.VersionController;
@@ -189,13 +191,13 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
                 public View getDropDownView(int position, View convertView, ViewGroup parent) {
                     View view = super.getDropDownView(position, convertView, parent);
                     TextView tv = (TextView) view;
-                    if(position == 0){
+                    /*if(position == 0){
                         // Set the hint text color gray
                         tv.setTextColor(Color.GRAY);
                     }
                     else {
                         tv.setTextColor(Color.BLACK);
-                    }
+                    }*/
                     return view;
                 }
             };
@@ -222,6 +224,11 @@ public class SendWorkOrderActivity extends AppCompatActivity implements MessageL
                     recogido = true;
                 }
             }
+        }
+        if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
         }
     }
 

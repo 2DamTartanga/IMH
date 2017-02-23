@@ -5,6 +5,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+    <string name="connection_lost">Failed to connect to the server</string>
 
     <!-- NON DEFAULT -->
     <string name="working">Working:</string>
@@ -46,9 +47,9 @@
         <item>Others</item>
     </string-array>
 
-
     <string name="equipment_available">Equipment available:</string>
-
+    <string name="fill_empty_fields">FILL EMPTY FIELDS</string>
+    <string name="add_new_request">Add new maintenance request</string>
 
     <string-array name="arr_equipment_available">
         <item>Choose availability</item>
@@ -86,6 +87,7 @@
     <string name="edNewPass">Enter your new password here</string>
     <string name="btnChangePass">Change password</string>
     <string name="preferences">Preferences</string>
+    <string name="change_language">Change language: </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -98,7 +100,10 @@
     <string-array name="languages">
         <item>Choose your language</item>
         <item>English</item>
-        <item>Euskera</item>
+        <item>Basque</item>
     </string-array>
 
+    <!-- CONNECTION LOST DIALOG -->
+    <string name="textConnectLost">Could not perform action due to server failure</string>
+    <string name="btnExit">Exit</string>
 </resources>

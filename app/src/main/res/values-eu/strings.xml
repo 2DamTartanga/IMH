@@ -5,6 +5,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+    <string name="connection_lost">Zerbitzariarekin konekzio akatsa</string>
 
     <!-- NON DEFAULT -->
     <string name="working">Working:</string>
@@ -36,9 +37,9 @@
     <string name="machine_details">Makinaren xehetasunak</string>
     <string name="failure_type">Matxura mota:</string>
     <string name="undo">DESEGIN</string>
-    <string name="noInstruc">No instructions available</string>
+    <string name="noInstruc">Ez dago instrukziorik</string>
     <string name="source">Failure source</string>
-    <string name="noWorkOrders">Ez daude lan agindurik</string>
+    <string name="noWorkOrders">Ez dago lan agindurik</string>
 
     <string-array name="arr_failure_type">
         <item>Matxura mota aukeratu:</item>
@@ -48,9 +49,9 @@
         <item>Bestelakoak</item>
     </string-array>
 
-
     <string name="equipment_available">Makina erabilgarria:</string>
-
+    <string name="fill_empty_fields">BETE HUTSUNEAK</string>
+    <string name="add_new_request">Mantentze parte berria gehitu</string>
 
     <string-array name="arr_equipment_available">
         <item>Erabilgarritasuna aukeratu</item>
@@ -104,4 +105,8 @@
         <item>Euskera</item>
     </string-array>
 
+    <!-- CONNECTION LOST DIALOG -->
+    <!--<string name="textConnectLost">Could not perform action due to server failure</string>-->
+    <string name="textConnectLost">Ezin da ekintza burutu zerbitzariaren hutsegitea dela eta</string>
+    <string name="btnExit">Irten</string>
 </resources>

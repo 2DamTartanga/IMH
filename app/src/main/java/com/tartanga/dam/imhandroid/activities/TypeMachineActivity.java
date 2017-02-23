@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.tartanga.dam.imhandroid.R;
 import com.tartanga.dam.imhandroid.adaptadores.WorkZonesAdapter;
+import com.tartanga.dam.imhandroid.fragments.ConnectionLostFragment;
 import com.tartanga.dam.imhandroid.fragments.MachineFragment;
 import com.tartanga.dam.imhandroid.fragments.fragmento_Zonas;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
@@ -99,6 +101,10 @@ public class TypeMachineActivity extends AppCompatActivity implements MessageLis
         if(obj instanceof Section) {
             section = ((Section) obj);
             init();
+        }else if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
         }
     }
 }

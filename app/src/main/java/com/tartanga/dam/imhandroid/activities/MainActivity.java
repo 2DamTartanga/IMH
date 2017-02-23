@@ -1,9 +1,10 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,12 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.fragments.ConnectionLostFragment;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.Manager;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
-import com.tartanga.dam.imhandroid.manager.VersionController;
 import com.tartanga.dam.imhandroid.model.GlobalUser;
 import com.tartanga.dam.imhandroid.model.Message;
 import com.tartanga.dam.imhandroid.model.User;
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        finish();
     }
 
     @Override
@@ -119,11 +118,17 @@ public class MainActivity extends AppCompatActivity
             t.setIcon(R.drawable.ic_alert_login);
             t.setMaxAlpha();
             t.show();*/
-            Toast.makeText(this, getApplicationContext().getString(R.string.login_invalid_msg), Toast.LENGTH_SHORT).show();
-        }else {
+            Toast.makeText(this, getApplicationContext().getString(R.string.login_invalid_msg), Toast.LENGTH_LONG).show();
+        }else if(!(obj instanceof String)){
             startActivity(new Intent(this, MenuActivity.class));
             this.finish();//TODO cerrar esto?
+        }else if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
         }
+    }
 
+    public void doPositiveClick() {
     }
 }

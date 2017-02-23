@@ -1,9 +1,11 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.fragments.ConnectionLostFragment;
 import com.tartanga.dam.imhandroid.interfaces.MessageListener;
 import com.tartanga.dam.imhandroid.manager.ThreadSender;
 import com.tartanga.dam.imhandroid.manager.VersionController;
@@ -33,6 +36,7 @@ public class ActivityReport extends AppCompatActivity implements MessageListener
     Button btn;
     String machineCode = "";
     private VersionController vControl = new VersionController();
+    private boolean connectionLost=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +122,7 @@ public class ActivityReport extends AppCompatActivity implements MessageListener
         String description = eDescription.getText().toString();
         int equipmentAvailable = sEquipmentAvailable.getSelectedItemPosition();
         int failureTypePosition = sFailureType.getSelectedItemPosition();
-        boolean ok =  (!subject.isEmpty() && equipmentAvailable != 0 && sFailureType.getSelectedItemPosition() != 0 );
+        boolean ok =  (!subject.isEmpty() && equipmentAvailable != 0 && sFailureType.getSelectedItemPosition() != 0);
         Machine m = new Machine(machineCode);
         String failure = "s";
         switch (equipmentAvailable){
@@ -159,17 +163,20 @@ public class ActivityReport extends AppCompatActivity implements MessageListener
         if(ok) {
             ThreadSender ts = new ThreadSender(this, new Message(Message.ADD, Message.BREAKDOWN, br));
             ts.execute();
-            Toast.makeText(this, "BREAKDOWN CREATED", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(this, MenuActivity.class);
-            startActivity(i);
-            this.finish();
+            if (!connectionLost) {
+                Toast.makeText(this, "BREAKDOWN CREATED", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(this, MenuActivity.class);
+                startActivity(i);
+                this.finish();
+            }
         }else{
-            StyleableToast t = new StyleableToast(this, "FILL EMPTY FIELDS", Toast.LENGTH_SHORT);
+            /*StyleableToast t = new StyleableToast(this, "FILL EMPTY FIELDS", Toast.LENGTH_SHORT);
             t.setBackgroundColor(Color.parseColor("#ff5a5f"));
             t.setTextColor(Color.WHITE);
             t.setIcon(R.drawable.ic_alert_login);
             t.setMaxAlpha();
-            t.show();
+            t.show();*/
+            Toast.makeText(this,"FILL EMPTY FIELDS",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -180,6 +187,12 @@ public class ActivityReport extends AppCompatActivity implements MessageListener
 
     @Override
     public void messageReceived(Object obj) {
-
+        if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            //Log.d("MENSAJE","ERROR CONEXION");
+            connectionLost=true;
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
     }
 }

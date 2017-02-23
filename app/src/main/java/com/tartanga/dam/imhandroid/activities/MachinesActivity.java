@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tartanga.dam.imhandroid.R;
+import com.tartanga.dam.imhandroid.fragments.ConnectionLostFragment;
 import com.tartanga.dam.imhandroid.fragments.MachineFragment;
 import com.tartanga.dam.imhandroid.fragments.fragment_ZoneTotal;
 import com.tartanga.dam.imhandroid.fragments.fragmento_Zonas;
@@ -161,6 +163,11 @@ public class MachinesActivity extends AppCompatActivity implements MessageListen
 
     @Override
     public void messageReceived(Object obj) {
+        if(obj.toString().equals("Connection with server lost")){
+            //Toast.makeText(this, getApplicationContext().getString(R.string.connection_lost), Toast.LENGTH_LONG).show();
+            DialogFragment newFragment = new ConnectionLostFragment();
+            newFragment.show(getFragmentManager(), "Error");
+        }
     }
 
     private void loadUi() {

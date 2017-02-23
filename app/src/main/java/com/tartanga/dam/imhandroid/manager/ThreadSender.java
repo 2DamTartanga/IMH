@@ -1,5 +1,6 @@
 package com.tartanga.dam.imhandroid.manager;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
     private Socket cs;
     private Message msg;
     private MainActivity m;
+    private boolean fallo = false;
 
     public ThreadSender(Object listener, /*Socket cs,*/ Message msg) {
         Socket cs = null;
@@ -35,8 +37,8 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
         try {
             cs = new Socket(HOST, PORT);
         } catch (IOException e) {
-            ((MessageListener) listener).messageReceived("Error de conexión");
-            e.printStackTrace();
+            fallo = true;
+            ((MessageListener) listener).messageReceived("Connection with server lost");
         }
         this.cs = cs;
         this.msg = msg;
@@ -56,23 +58,25 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
 
     @Override
     protected Object doInBackground(Object... objects) {
-        ObjectInputStream in;
-        ObjectOutputStream out;
-        Object input;
-        try {
-            out = new ObjectOutputStream(cs.getOutputStream());
-            in = new ObjectInputStream(cs.getInputStream());
-            Log.d("MENSAJE", "Enviando mensaje");
-            out.writeObject(msg);
-            Log.d("MENSAJE", "Mensaje enviado");
-            input = in.readObject();
-            publishProgress(input);
-        }catch (SocketException | EOFException e) {
-            connectionLost();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        if(!fallo) {
+            ObjectInputStream in;
+            ObjectOutputStream out;
+            Object input;
+            try {
+                out = new ObjectOutputStream(cs.getOutputStream());
+                in = new ObjectInputStream(cs.getInputStream());
+                Log.d("MENSAJE", "Enviando mensaje");
+                out.writeObject(msg);
+                Log.d("MENSAJE", "Mensaje enviado");
+                input = in.readObject();
+                publishProgress(input);
+            } catch (SocketException | EOFException e) {
+                connectionLost();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
