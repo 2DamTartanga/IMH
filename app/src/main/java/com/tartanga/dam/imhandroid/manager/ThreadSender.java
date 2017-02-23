@@ -24,13 +24,13 @@ public class ThreadSender extends AsyncTask<Object, Object, Object>{
 
 
     // Datos IMH
-    private final int PORT = 6100;
+    private final int PORT = 8080;
     private final String HOST = "150.241.230.4";
 
     // Datos Tartanga
     //private final int PORT = 8080;
     //private final String HOST = "10.22.82.175";
-    
+
     private MessageListener listener;
     private Socket cs;
     private Message msg;
